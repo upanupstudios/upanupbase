@@ -1,0 +1,45 @@
+<header class="header" id="header">
+  {% if page.alerts|render %}
+  <div class="header__row header__row--top">
+    <div class="container">
+      <div class="alerts-banner" id="alerts-banner" aria-labelledby="alerts-heading">
+        <header class="alerts-banner__header">
+          <h2 class="alerts-banner__heading reset-heading" id="alerts-heading">Alerts</h2>
+          <button class="alerts-banner__trigger button button--ui" data-toggle aria-controls="alerts-slider" title="Close the Alerts slider" aria-expanded="true">Close</button>
+        </header>
+        <div class="alerts-banner__slider-wrapper" id="alerts-slider" aria-hidden="false">
+          <div class="alerts-banner__slider-slides">{{ page.alerts }}</div>
+          <nav class="alerts-banner__controls slider-controls slider-controls--hidden">
+            <button class="slider-controls__button slider-controls__button--prev fas fa-caret-left" tabindex="0"><span class="visually-hidden">Previous</span></button>
+            <span class="slider-controls__index">
+              <span class="current">1</span>&nbsp;of&nbsp;<span class="total"></span>
+            </span>
+            <button class="slider-controls__button slider-controls__button--next fas fa-caret-right" tabindex="0"><span class="visually-hidden">Next</span></button>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  <div class="header__row header__row--middle">
+    <div class="header__menu-search">
+      <div class="container">
+        <div class="header__nav-search-trigger">
+          <div class="nav nav--header" id="header-menu">{{ page.nav__header }}</div>
+          {{ attach_library('upanupbase/mobile_search_trigger')}}
+          <button class="mobile-search-trigger" aria-controls="search-form" aria-expanded="false"><span class="visually-hidden">Open the search form</span></button>
+        </div>
+        <div class="search-form" id="search-form">{{ page.search }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="header__row header__row--bottom">
+    <div class="container">
+      <div class="header__logo">{{ page.logo }}</div>
+      <div class="header__menu-wrapper" id="main-menu-wrapper">
+        <button class="button button--emphasis mobile-menu-trigger" aria-controls="main-menu" aria-expanded="false">Menu</button>
+        <div class="nav nav--main" id="main-menu">{{ page.nav__main }}</div>
+      </div>
+    </div>
+  </div>
+</header>

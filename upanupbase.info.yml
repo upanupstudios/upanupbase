@@ -1,0 +1,33 @@
+#required mappings
+name: Upanup Base Theme
+description: Upanup's base theme
+type: theme
+core_version_requirement: ^8.8 || ^9
+# Defines the base theme
+base theme: stable9
+
+regions:
+  alerts: 'Alerts'
+  logo: 'Logo'
+  nav__main: 'Nav -- main'
+  nav__section: 'Nav -- section'
+  nav__header: 'Nav -- header'
+  nav__footer: 'Nav -- footer'
+  nav__breadcrumbs: 'Nav-- breadcrumbs'
+  search: 'Search form'
+  banner: 'Banner'
+  banner__content: 'Banner -- content'
+  banner__sidebar: 'Banner -- sidebar'
+  sidebar: 'Sidebar'
+  content: 'Content'
+  footer: 'Footer'
+  highlighted: 'Highlighted'
+  help: 'help'  
+  
+libraries:
+  - upanupbase/reset
+  - upanupbase/utility
+  - upanupbase/base
+  - upanupbase/nav
+  - upanupbase/cookie_consent
+  - upanupbase/swiper

@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Theme override for a field based on the @stable field template. See that
+ * file for full documentation.
+ *
+ * field_label supplies one additional variable:
+ * - label_tag: The label wrapper tag as chosen in the field_label.
+ *
+ * This template won't used if your theme overrides field.html.twig. Modify
+ * your own template to use the label_tag, e.g.:
+ *
+ *   <{{ label_tag|default('div') }}>
+ *     {{ label }}
+ *   </{{ label_tag|default('div') }}>
+ *
+ * @see field_label_preprocess_field()
+ */
+#}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
+%}
+{% set dqLength = items|length %}
+
+<section class="dynamic-quicklinks">
+  {% if dqLength > 1 %}
+  <header class="dynamic-quicklinks__header">
+    <div class="dynamic-quicklinks__filter dynamic-quicklinks__filter--mobile">
+      <label for="dynamic-quicklinks-select" class="visually-hidden">Filter quicklinks by category</label>
+      <select id="dynamic-quicklinks-select">
+        {% for item in items %}
+        <option value="{{ item.content['#paragraph'].field_title.value }}" data-category="{{ item.content['#paragraph'].field_title.value }}">{{ item.content['#paragraph'].field_title.value }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <ul class="dynamic-quicklinks__filter dynamic-quicklinks__filter--desktop">
+      {% for item in items %}
+        <li><button class="button button--default" data-category="{{ item.content['#paragraph'].field_title.value }}">{{ item.content['#paragraph'].field_title.value }}</button></li>
+      {% endfor %}
+    </ul>
+  </header>
+  {% endif %}
+  <div class="dynamic-quicklinks__content">
+    {% for item in items %}
+    <div class="dynamic-quicklinks__section{% if dqLength <= 1%} is-active{% endif %}" data-category="{{ item.content['#paragraph'].field_title.value }}">{{ item.content }}</div>
+    {% endfor %}
+  </div>
+</section>

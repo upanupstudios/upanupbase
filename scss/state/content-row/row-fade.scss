@@ -1,0 +1,14 @@
+@media (prefers-reduced-motion: no-preference) {
+  [data-visible] {
+    opacity: 0;
+    transform: translate(0,32px);
+    transition: all 0.2s ease-in-out;
+    transition-property: opacity,transform;
+    transition-delay: 0.25s;
+    transition-duration: 0.5s;
+    &[data-visible="visible"] {
+      opacity: 1;
+      transform: translate(0);
+    }
+  }
+}

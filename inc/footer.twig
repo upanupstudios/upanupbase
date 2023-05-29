@@ -1,0 +1,16 @@
+<footer id="footer" class="footer" role="contentinfo">
+  {% if page.footer|render is not empty %}
+  <div class="footer__top">
+    <div class="container">{{ page.footer }}</div>
+  </div>
+  {% endif %}
+  <div class="footer__bottom">
+    <div class="container">
+      <div class="footer__bottom-left">
+        <p class="footer__copyright">&copy; Xtheme {{ "now"|date("Y") }}</p>
+        <div class="nav nav--footer">{{ page.nav__footer }}</div>
+      </div>
+      <p class="footer__bottom-right footer__credit">Website by <a href="https://www.upanup.com">Upanup</a></p>
+    </div>
+  </div>
+</footer>

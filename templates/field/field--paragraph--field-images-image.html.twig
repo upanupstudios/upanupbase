@@ -1,0 +1,73 @@
+{#
+/**
+ * @file
+ * Theme override for a field based on the @stable field template. See that
+ * file for full documentation.
+ *
+ * field_label supplies one additional variable:
+ * - label_tag: The label wrapper tag as chosen in the field_label.
+ *
+ * This template won't used if your theme overrides field.html.twig. Modify
+ * your own template to use the label_tag, e.g.:
+ *
+ *   <{{ label_tag|default('div') }}>
+ *     {{ label }}
+ *   </{{ label_tag|default('div') }}>
+ *
+ * @see field_label_preprocess_field()
+ */
+#}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
+%}
+<div class="images-slider">
+  <div class="images-slider__slider swiper">
+  {% if label_hidden %}
+    {% if multiple %}
+      <{{ field_wrapper_tag }}{{ attributes.addClass(classes, 'field__items images-slider__slides swiper-wrapper').merge(field_wrapper_attributes) }}>
+        {% for item in items %}
+          <{{ field_item_wrapper_tag }}{{ item.attributes.addClass('field__item images-slider__slide swiper-slide') }}>{{ item.content }}</{{ field_item_wrapper_tag }}>
+        {% endfor %}
+      </{{ field_wrapper_tag }}>
+    {% else %}
+      {% for item in items %}
+        <{{ field_item_wrapper_tag }}{{ attributes.addClass(classes, 'field__item images-slider__slide swiper-slide').merge(item.attributes) }}>{{ item.content }}</{{ field_item_wrapper_tag }}>
+      {% endfor %}
+    {% endif %}
+  {% else %}
+    <{{ field_wrapper_tag }}{{ attributes.addClass(classes).merge(field_wrapper_attributes) }}>
+      <{{ label_tag|default('div') }}{{ title_attributes.addClass(title_classes) }}>{{ label }}</{{ label_tag|default('div') }}>
+      {% if multiple %}
+        <div class="field__items images-slider__slides swiper-wrapper">
+      {% endif %}
+      {% for item in items %}
+        <{{ field_item_wrapper_tag }}{{ item.attributes.addClass('field__item images-slider__slide swiper-slide') }}>{{ item.content }}</{{ field_item_wrapper_tag }}>
+      {% endfor %}
+      {% if multiple %}
+        </div>
+      {% endif %}
+    </{{ field_wrapper_tag }}>
+  {% endif %}
+  </div>
+  {% if multiple %}
+  {{ attach_library('upanupbase/images') }}
+  <nav class="images-slider__controls slider-controls slider-controls--hidden">
+    <button class="slider-controls__button slider-controls__button--prev fas fa-caret-left" tabindex="0"><span class="visually-hidden">Previous</span></button>
+    <span class="slider-controls__index">
+      <span class="current">1</span>&nbsp;of&nbsp;<span class="total"></span>
+    </span>
+    <button class="slider-controls__button slider-controls__button--next fas fa-caret-right" tabindex="0"><span class="visually-hidden">Next</span></button>
+  </nav>
+  {% endif %}
+</div>

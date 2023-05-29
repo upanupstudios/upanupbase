@@ -1,0 +1,129 @@
+reset:
+  version: 1.x
+  css:
+    base:
+      css/base/reset/normalize.css: {}
+      css/base/reset/box-sizing.css: {}
+utility:
+  version: 1.x
+  css:
+    layout:
+      css/layout/utility/layout/flex.css: {}
+      css/layout/utility/layout/grid.css: {}
+      css/layout/utility/spacing/gap.css: {}
+      css/layout/utility/spacing/margin.css: {}
+      css/layout/utility/spacing/padding.css: {}
+    state:
+       css/state/utility/media-queries/desktop-hidden.css: {}
+       css/state/utility/media-queries/mobile-hidden.css: {}
+base:
+  css:
+    component:
+      css/component/field/field.css: {}
+  js:
+    js/layout/hidden-sidebar/hidden-sidebar.min.js: { minified: true }
+    js/component/mobile-search-trigger/mobile-search-trigger.min.js: { minified: true }
+    js/component/scrollable/scrollable.min.js: { minified: true }
+    js/component/view-reset/view-reset.min.js: { minified: true }
+# Component
+accordion:
+  version: 1.x
+  js:
+    js/component/accordion/accordion.min.js: { minified: true }
+    js/component/accordion/accordion-group.min.js: { minified: true }
+alert:
+  version: 1.x
+  js:
+    js/component/alert/alert-banner.min.js: { minified: true }
+    js/component/alert/alert-slider.min.js: { minified: true }
+row_fade:
+  version: 1.x
+  css:
+    state:
+      css/state/content-row/row-fade.css: {}
+  js:
+    js/component/content-row/row-fade.min.js: { minified: true }
+images:
+  version: 1.x
+  js:
+    js/component/images/images-slider.min.js: { minified: true }
+message:
+  version: 1.x
+  js:
+    js/component/message/message-close.min.js: { minified: true }
+dynamic_quicklinks:
+  version: 1.x
+  js:
+    js/component/quicklink/dynamic-quicklinks.min.js: { minified: true }
+dynamic_quicklinks_storage:
+  version: 1.x
+  js:
+    js/component/quicklink/dynamic-quicklinks-storage.min.js: { minified: true }
+sidebar_block:
+  version: 1.x
+  js:
+    js/component/sidebar-block/sidebar-block.min.js: { minified: true }
+when:
+  version: 1.x
+  css:
+    component:
+      css/component/when/when.css: {}
+  js:
+    js/component/when/when-toggle.min.js: { minified: true }
+indented:
+  version: 1.x
+  css:
+    component:
+      css/component/indented/indented.css: {}
+media_embed_error:
+  version: 1.x
+  css:
+    component:
+      css/component/media-embed-error/media-embed-error.css: {}
+node:
+  version: 1.x
+  css:
+    component:
+      css/component/node/node.css: { weight: -10 }
+file:
+  version: 1.x
+  css:
+    component:
+      css/component/file/file.css: { weight: -10 }
+forum:
+  version: 1.x
+  css:
+    component:
+      css/component/forum/forum.css: { weight: -10 }
+progress:
+  version: 1.x
+  css:
+    component:
+      css/component/progress/progress.css: { weight: -10 }
+book_navigation:
+  version: 1.x
+  css:
+    component:
+      css/component/book-navigation/book-navigation.css: {}
+# Nav
+nav:
+  version: 1.x
+  js:
+    js/nav/submenu-trigger/submenu-trigger.min.js: { minified: true }
+    js/nav/mobile-menu-trigger/mobile-menu-trigger.min.js: { minified: true }
+    js/nav/hoverIntent/jquery.hoverIntent.min.js: { minified: true }
+    js/nav/hoverIntent/hoverIntent.min.js: { minified: true }
+    js/nav/keyNavMenus/jquery.keyNavMenus.min.js: { minified: true }
+    js/nav/keyNavMenuskeyNavMenus.min.js: { minified: true }
+# Third-party
+cookie_consent:
+  version: 1.x
+  js:
+    js/third-party/cookie-consent/cookie-consent.min.js: { minified: true }
+swiper:
+  version: 1.x
+  css:
+    theme:
+      css/third-party/swiper/swiper-bundle.min.css: { minified: true }
+  js:
+    js/third-party/swiper/swiper-bundle.min.js: { minified: true }

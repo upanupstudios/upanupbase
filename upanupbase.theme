@@ -1,0 +1,130 @@
+<?php
+
+use Drupal\Core\Url;
+
+// Taken from Classy
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\views\Form\ViewsForm;
+
+/**
+* Implements hook_preprocess_links__media_library_menu().
+*
+* This targets the menu of available media types in the media library's modal
+* dialog.
+*
+* @todo Do this in the relevant template once
+*   https://www.drupal.org/project/drupal/issues/3088856 is resolved.
+*/
+function upanupbase_preprocess_links__media_library_menu(array &$variables) {
+  foreach ($variables['links'] as &$link) {
+    $link['link']['#options']['attributes']['class'][] = 'media-library-menu__link';
+  }
+}
+
+/**
+* Implements hook_form_alter().
+*/
+function upanupbase_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  $form_object = $form_state->getFormObject();
+  if ($form_object instanceof ViewsForm && strpos($form_object->getBaseFormId(), 'views_form_media_library') === 0) {
+    $form['#attributes']['class'][] = 'media-library-views-form';
+  }
+}
+
+/**
+* Implements hook_preprocess_image_widget().
+*/
+function upanupbase_preprocess_image_widget(array &$variables) {
+  $data = &$variables['data'];
+  
+  // This prevents image widget templates from rendering preview container HTML
+  // to users that do not have permission to access these previews.
+  // @todo revisit in https://drupal.org/node/953034
+  // @todo revisit in https://drupal.org/node/3114318
+  if (isset($data['preview']['#access']) && $data['preview']['#access'] === FALSE) {
+    unset($data['preview']);
+  }
+}
+
+// End of Classy
+
+function upanupbase_preprocess_views_view(&$variables) {
+  if(isset($variables['css_class']) && str_contains($variables['css_class'],'inline-submit')) {
+    $variables['css_class'] = str_replace('inline-submit','',$variables['css_class']);
+    $variables['exposed']['#attributes']['class'][] = 'inline-submit';
+    if($variables['rows']) {
+      $variables['rows']['#attributes']['class'][] = $variables['css_class'];
+      $variables['css_class'] = null;
+    }
+  }
+}
+
+function upanupbase_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if (($node = \Drupal::routeMatch()->getParameter('node')) && is_object($node)) {
+    $content_type = $node->bundle();
+    $suggestions[] = 'page__'.$content_type;
+  }
+}
+
+function upanupbase_preprocess_html(&$variables) {
+  // Add path to body classes
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+  $path_alias = ltrim($path_alias, '/');
+  $variables['attributes']['class'][] = \Drupal\Component\Utility\Html::cleanCssIdentifier($path_alias);
+  $variables['url_path'] = \Drupal\Component\Utility\Html::cleanCssIdentifier($path_alias);
+  if (($node = \Drupal::request()->attributes->get('node')) && is_object($node)) {
+    $variables['attributes']['class'][] = 'node--' . $node->id();
+    $variables['attributes']['class'][] = 'type--' . $node->bundle();
+  }
+}
+
+function upanupbase_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  if (!empty($variables['elements']['#id'])) {
+    $block_id = $variables['elements']['#id'];
+    $block = Drupal\block\Entity\Block::load($block_id);
+    $region = $block->getRegion();
+    // Allow per-region block templating.
+    $suggestions[] = 'block__' . $region;
+    $suggestions[] = 'block__' . $region . '__' . $block_id;
+  }
+  // Allow custom block type templating - block–-type–-custom-block-name.html.twig
+  if (isset($variables['elements']['content']['#block_content'])) { 
+    array_splice($suggestions, 1, 0, 'block__type__' . $variables['elements']['content']['#block_content']->bundle()); 
+  }
+  return $suggestions;
+}
+
+function upanupbase_preprocess_paragraph(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $bundle = $paragraph->bundle();
+  if ($bundle == 'card' || $bundle == 'horizontal_card') {
+    $link_field = $paragraph->get('field_link');
+    if (!$link_field->isEmpty()) {
+      $link_element = $link_field->first()->getValue();
+      if (isset($link_element['uri'])) {
+        $link_element['options']['attributes']['aria-hidden'] = 'true';
+        $link_element['options']['attributes']['tabindex'] = '-1';
+        $variables['content']['field_link'][0]['#url'] = Url::fromUri($link_element['uri'], $link_element['options']);
+      }
+    }
+  }
+}
+
+function upanupbase_theme_suggestions_field_alter(array &$suggestions, array $variables) {
+  $element = $variables['element'];
+
+  // Check if the field is attached to a node and in the default view mode.
+  if (isset($element['#object']) && $element['#object'] instanceof \Drupal\node\NodeInterface) {
+    $node = $element['#object'];
+
+    // Get the field name.
+    $field_name = $element['#field_name'];
+
+    // Get the view mode
+    $view_mode = $element['#view_mode'];
+
+    // Add the field name to the list of suggestions.
+    $suggestions[] = 'field__' . $field_name . '__' . $view_mode;
+  }
+}

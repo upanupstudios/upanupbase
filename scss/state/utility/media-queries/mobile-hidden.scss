@@ -1,0 +1,6 @@
+@import "../../../variables/breakpoints";
+@import "../../../mixins/media-queries";
+
+.mobile-hidden {
+  @include max($breakpoint--m) {display: none;}
+}

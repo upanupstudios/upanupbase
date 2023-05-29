@@ -1,0 +1,15 @@
+@mixin max($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+@mixin min($breakpoint) {
+  @media (min-width: calc(#{$breakpoint} + 0.2px)) {
+    @content;
+  }
+}
+@mixin between($breakpoint-small, $breakpoint-large) {
+  @media (min-width: calc(#{$breakpoint-small} + 0.2px)) and (max-width: $breakpoint-large) {
+    @content;
+  }
+}

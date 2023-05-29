@@ -1,0 +1,6 @@
+@import "../../../variables/breakpoints";
+@import "../../../mixins/media-queries";
+
+.desktop-hidden {
+  @include min($breakpoint--m) {display: none;}
+}
