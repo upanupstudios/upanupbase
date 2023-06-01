@@ -114,7 +114,7 @@ nav:
     js/nav/hoverIntent/jquery.hoverIntent.min.js: { minified: true }
     js/nav/hoverIntent/hoverIntent.min.js: { minified: true }
     js/nav/keyNavMenus/jquery.keyNavMenus.min.js: { minified: true }
-    js/nav/keyNavMenuskeyNavMenus.min.js: { minified: true }
+    js/nav/keyNavMenus/keyNavMenus.min.js: { minified: true }
 # Third-party
 cookie_consent:
   version: 1.x
@@ -127,3 +127,29 @@ swiper:
       css/third-party/swiper/swiper-bundle.min.css: { minified: true }
   js:
     js/third-party/swiper/swiper-bundle.min.js: { minified: true }
+# Libraries for upanupstarter
+card:
+  version: 1.x
+  css:
+    component:
+      css/component/card/card.css: {}
+content-row:
+  version: 1.x
+  css:
+    component:
+      css/content-row/content-row.css: {}
+emphasis:
+  version: 1.x
+  css:
+    component:
+      css/emphasis/emphasis.css: {}
+image-text:
+  version: 1.x
+  css:
+    component:
+      css/image-text/image-text.css: {}
+images-slider:
+  version: 1.x
+  css:
+    component:
+      css/images-slider/images-slider.css: {}
