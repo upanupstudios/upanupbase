@@ -1,0 +1,14 @@
+button,
+.button,
+.btn {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}

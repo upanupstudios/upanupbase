@@ -29,5 +29,9 @@ libraries:
   - upanupbase/utility
   - upanupbase/base
   - upanupbase/nav
-  - upanupbase/cookie_consent
-  - upanupbase/swiper
+
+libraries-extend:
+  cookieconsent/cookieconsent:
+    - upanupbase/cookie-consent
+  cookieconsent/cookieconsent-min:
+    - upanupbase/cookie-consent

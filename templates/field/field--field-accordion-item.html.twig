@@ -37,6 +37,7 @@
 
 {% if label_hidden %}
   {% if multiple %}
+    {{ attach_library('upanupbase/accordion-group-toggle') }}
     <button class="accordion-group__toggle" data-toggle>Open all</button>
     <{{ field_wrapper_tag }}{{ attributes.addClass(classes, 'field__items').merge(field_wrapper_attributes) }}>
       {% for item in items %}
@@ -52,6 +53,7 @@
   <{{ field_wrapper_tag }}{{ attributes.addClass(classes).merge(field_wrapper_attributes) }}>
     <{{ label_tag|default('div') }}{{ title_attributes.addClass(title_classes) }}>{{ label }}</{{ label_tag|default('div') }}>
     {% if multiple %}
+      {{ attach_library('upanupbase/accordion-group-toggle') }}
       <button class="accordion-group__toggle" data-toggle>Open all</button>
       <div class="field__items">
     {% endif %}

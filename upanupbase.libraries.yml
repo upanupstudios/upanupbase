@@ -4,6 +4,7 @@ reset:
     base:
       css/base/reset/normalize.css: {}
       css/base/reset/box-sizing.css: {}
+      css/base/reset/button.css: {}
 utility:
   version: 1.x
   css:
@@ -18,6 +19,8 @@ utility:
        css/state/utility/media-queries/mobile-hidden.css: {}
 base:
   css:
+    base:
+      css/base/nav/nav.css: {}
     component:
       css/component/field/field.css: {}
   js:
@@ -25,12 +28,28 @@ base:
     js/component/mobile-search-trigger/mobile-search-trigger.min.js: { minified: true }
     js/component/scrollable/scrollable.min.js: { minified: true }
     js/component/view-reset/view-reset.min.js: { minified: true }
+# Third-party
+cookie-consent:
+  version: 1.x
+  js:
+    js/third-party/cookie-consent/cookie-consent.min.js: { minified: true }
+swiper:
+  version: 1.x
+  header: true
+  css:
+    theme:
+      css/third-party/swiper/swiper-bundle.min.css: { minified: true }
+  js:
+    js/third-party/swiper/swiper-bundle.min.js: { minified: true }
 # Component
 accordion:
   version: 1.x
   js:
     js/component/accordion/accordion.min.js: { minified: true }
-    js/component/accordion/accordion-group.min.js: { minified: true }
+accordion-group-toggle:
+  version: 1.x
+  js:
+    js/component/accordion/accordion-group-toggle.min.js: { minified: true }
 alert:
   version: 1.x
   js:
@@ -115,18 +134,6 @@ nav:
     js/nav/hoverIntent/hoverIntent.min.js: { minified: true }
     js/nav/keyNavMenus/jquery.keyNavMenus.min.js: { minified: true }
     js/nav/keyNavMenus/keyNavMenus.min.js: { minified: true }
-# Third-party
-cookie_consent:
-  version: 1.x
-  js:
-    js/third-party/cookie-consent/cookie-consent.min.js: { minified: true }
-swiper:
-  version: 1.x
-  css:
-    theme:
-      css/third-party/swiper/swiper-bundle.min.css: { minified: true }
-  js:
-    js/third-party/swiper/swiper-bundle.min.js: { minified: true }
 # Libraries for upanupstarter
 card:
   version: 1.x
@@ -153,3 +160,8 @@ images-slider:
   css:
     component:
       css/images-slider/images-slider.css: {}
+nav--tabs:
+  version: 1.x
+  css:
+    component:
+      css/component/nav/tabs.css: {}

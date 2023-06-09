@@ -11,11 +11,12 @@
  * themed in menu-local-task.html.twig.
  */
 #}
+{{ attach_library('upanupbase/nav--tabs') }}
 {% if primary %}
   <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
-  <ul class="tabs primary">{{ primary }}</ul>
+  <ul class="tabs primary flex fd-r fw-w ai-fs jc-fs g-16">{{ primary }}</ul>
 {% endif %}
 {% if secondary %}
   <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
-  <ul class="tabs secondary">{{ secondary }}</ul>
+  <ul class="tabs secondary flex fd-r fw-w ai-fs jc-fs g-16">{{ secondary }}</ul>
 {% endif %}
