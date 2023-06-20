@@ -1,12 +1,1 @@
-.facets-widget-links ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.facets-widget-links ul li {
-  line-height: inherit;
-  margin: 0;
-}
-.facets-widget-links ul li + li {
-  margin-top: 16px;
-}
+.facets-widget-links ul{list-style:none;margin:0;padding:0}.facets-widget-links ul li{line-height:inherit;margin:0}.facets-widget-links ul li+li{margin-top:16px}
