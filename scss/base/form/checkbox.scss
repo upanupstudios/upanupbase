@@ -1,0 +1,60 @@
+.form-type-checkbox {
+  display: block;
+  margin: 0 !important;
+  position: relative;
+  width: 100%;
+  label.option {
+    background-color: transparent;
+    display: inline-block;
+    margin-bottom:0;
+    position:relative;
+    &::before {
+      display:inline-block;
+      font-size: 1.125rem;
+      left: 0;
+      position:absolute;
+      top: 0.35rem;
+    }
+  }
+}
+
+input[type=checkbox] {
+  appearance: none;
+  border: 0;
+  height: 0;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 0;
+  &.error {
+    border: 0;
+  }
+  &:hover, &:active {
+    &:focus {outline: none;}
+  }
+  &:checked ~ label.option {
+    &::before {
+      display:inline-block;
+    }
+  }
+  &[disabled],
+  &.disabled,
+  fieldset[disabled] & {
+    cursor: not-allowed;
+  }
+}
+
+.form-no-label {
+  input[type=checkbox] {
+    appearance: checkbox;
+    height: auto;
+    left: auto;
+    position: relative;
+    top: auto;
+    width: auto;
+    &:focus {
+      ~ label {outline: none;}
+    }
+  }
+}

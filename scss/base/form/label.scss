@@ -1,0 +1,6 @@
+@import "../../variables/line-width";
+
+label {
+  display: inline-block;
+  max-width: $line-width;
+}

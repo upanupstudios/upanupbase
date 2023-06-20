@@ -1,0 +1,25 @@
+@import "../../variables/line-width";
+@import "../../mixins/unset";
+
+.messages {
+  &__message {
+    margin: auto 0;
+    max-width: $line-width;
+  }
+  + .messages {margin-top: 24px;}
+  &__list {@include unset-list;}
+  &__item {
+    + .messages__item {margin-top: 16px;}
+  }
+  &-wrapper {
+    clear: both;
+    display: block;
+    > .container {
+      [data-drupal-messages] {
+        clear: both;
+        display: block;
+        margin: 30px 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+@import "../../variables/line-width";
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  min-width: 0;
+  &.webform-composite-hidden-title {
+    > legend {margin: 0;}
+  }
+}
+
+legend {
+  border: 0;
+  display: block;
+  font-size: 1rem;
+  line-height: inherit;
+  max-width: $line-width;
+  padding: 0;
+  width: 100%;
+}

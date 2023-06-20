@@ -1,0 +1,32 @@
+.form-item {
+  max-width: 100%;
+  label,
+  legend {
+    clear: both;
+    display: block;
+    &.button {
+      display: inline-block;
+    }
+  }
+  &--error-message {
+    position: relative;
+    width: 100%;
+    &::before {
+      background: transparent;
+      height: auto;
+      left: 12px;
+      position: absolute;
+      top: 13px;
+      vertical-align: unset;
+      width: auto;
+    }
+  }
+}
+
+.form--inline {
+  > .form-item {
+    clear: both;
+    display: block;
+    float: none;
+  }
+}

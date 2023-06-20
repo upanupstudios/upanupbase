@@ -1,0 +1,43 @@
+input[type=search] {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+input[type=file] {
+  display: block;
+}
+
+select[multiple],
+select[size] {
+  height: auto;
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=decimal],
+input[type=tel],
+input[type=date],
+input[type=search],
+input[type=time],
+input[type=number],
+input[type=url],
+select,
+textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  max-width: 100%;
+}
+
+select {
+  line-height: normal;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+input[type=search] {
+  -webkit-appearance: none;
+}

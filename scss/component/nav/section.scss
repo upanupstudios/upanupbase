@@ -1,0 +1,30 @@
+.sidebar nav {
+  .menu__item-link-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    min-height: 50px;
+    position: relative;
+    > *:not(.submenu-trigger) {
+      flex: 0 1 auto;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .submenu-trigger {
+      flex: 0 1 auto;
+    }
+  }
+  .menu {
+    display: none;
+    .menu__item {
+      margin: 0;
+      position: relative;
+      &.is-open > .menu {display: block;}
+    }
+    &--level-0 {
+      display: block;
+    }
+  }
+}

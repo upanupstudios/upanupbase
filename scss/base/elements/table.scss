@@ -1,0 +1,69 @@
+table {
+  width: 100%;
+  thead {border: 0;}
+  tbody {border: 0;}
+  tfoot {border: 0;}
+  tr {
+    border: 0;
+  }
+  th {
+    border: 0;
+  }
+  td {
+    border: 0;
+  }
+  >*:last-child {border-bottom: 0;}
+}
+
+.tablesort {
+  position: relative;
+  &--asc {
+    background-image: none;
+  }
+  &--desc {
+    background-image: none;
+  }
+}
+
+/* [ SCROLLABLE ] ----------*/
+.scrollable {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  table {margin: 0;}
+  > div {
+    overflow-x:auto;
+    &::-webkit-scrollbar {
+      height: 12px;
+      &-track {
+        box-shadow:0 0 2px rgba(0,0,0,0.15) inset;
+        background:#f0f0f0;
+      }
+      &-thumb {
+        border-radius: 6px;
+        background: #cccccc;
+      }
+    }
+    &:focus {outline: none;}
+  }
+  &.has-scroll > div:after {
+    border-radius:10px 0 0 10px / 50% 0 0 50%;
+    box-shadow:-5px 0 10px rgba(0, 0, 0, 0.25);
+    content:'';
+    height:100%;
+    left:100%;
+    overflow: hidden;
+    position:absolute;
+    top:0;
+    width:50px;
+  }
+}
+
+.tabledrag {
+  &-handle {
+    padding: 0 12px;
+    .handle {display: none;}
+  }
+}

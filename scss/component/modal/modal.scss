@@ -1,0 +1,26 @@
+.ui-widget-overlay {
+  background: rgba(0,0,0,0.1);
+  opacity: 1;
+}
+.ui-dialog {
+  .ui-dialog-titlebar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .ui-dialog-content {
+    margin: 0;
+  }
+  .ui-dialog-titlebar-close {
+    height: auto;
+    position: relative;
+    right: auto;
+    text-indent: 0;
+    top: auto;
+    width: auto;
+    .ui-button-icon-space,
+    .ui-button-icon {display: none;}
+  }
+}

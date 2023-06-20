@@ -1,0 +1,6 @@
+@mixin transition($props,$delay: 0s,$duration: 0.2s) {
+  transition: all 0.2s ease-in-out;
+  transition-property: unquote($props);
+  transition-delay: $delay;
+  transition-duration: $duration;
+}

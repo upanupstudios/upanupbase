@@ -8,6 +8,7 @@
  */
 #}
 {% if breadcrumb %}
+  {{ attach_library('upanupbase/nav--breadcrumbs') }}
   <nav class="nav nav--breadcrumbs" role="navigation" aria-labelledby="system-breadcrumb">
     <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
     <ol>

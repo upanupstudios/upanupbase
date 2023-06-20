@@ -1,0 +1,21 @@
+.search-api-autocomplete-suggestion {
+  padding: 0;
+  .autocomplete-suggestion-user-input {
+    font-weight: inherit;
+  }
+}
+
+.search-api-autocomplete-search {
+  border: 0 !important;
+  .ui-menu-item-wrapper {
+    &.ui-state-active .search-api-autocomplete-suggestion {
+      background: transparent;
+      color: inherit;
+    }
+  }
+  .ui-menu-item {
+    margin-bottom: 16px;
+    &:last-child {margin-bottom: 0;}
+    &:hover {background: transparent;}
+  }
+}

@@ -1,0 +1,24 @@
+@import "../../variables/line-width";
+
+p {
+  line-height: 2;
+  max-width: $line-width;
+}
+
+.text-formatted > *:not(div,iframe, table) {
+  max-width: $line-width;
+}
+
+abbr {
+  &[title] {border-bottom: 0;}
+  text-decoration: underline dotted;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+address {font-style: normal;}
+
+code, kbd {
+  border-radius: 3px;
+  padding: 2px 4px;
+}

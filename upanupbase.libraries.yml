@@ -20,9 +20,26 @@ utility:
 base:
   css:
     base:
+      css/base/elements/figure.css: {}
+      css/base/elements/iframe.css: {}
+      css/base/elements/img.css: {}
+      css/base/elements/table.css: {}
+      css/base/form/captcha.css: {}
+      css/base/form/checkbox.css: {}
+      css/base/form/fieldset.css: {}
+      css/base/form/form-elements.css: {}
+      css/base/form/form-item.css: {}
+      css/base/form/input.css: {}
+      css/base/form/label.css: {}
+      css/base/form/radio.css: {}
       css/base/nav/nav.css: {}
+      css/base/typography/copy.css: {}
+    layout:
+      css/layout/header.css: {}
     component:
       css/component/field/field.css: {}
+    state:
+      css/state/form/required.css: {}
   js:
     js/layout/hidden-sidebar/hidden-sidebar.min.js: { minified: true }
     js/component/mobile-search-trigger/mobile-search-trigger.min.js: { minified: true }
@@ -44,6 +61,10 @@ swiper:
 # Component
 accordion:
   version: 1.x
+  css:
+    component:
+      css/component/accordion/accordion-group.css: {}
+      css/component/accordion/accordion.css: {}
   js:
     js/component/accordion/accordion.min.js: { minified: true }
 accordion-group-toggle:
@@ -55,6 +76,11 @@ alert:
   js:
     js/component/alert/alert-banner.min.js: { minified: true }
     js/component/alert/alert-slider.min.js: { minified: true }
+content-row:
+  version: 1.x
+  css:
+    component:
+      css/component/content-row/content-row.css: {}
 row_fade:
   version: 1.x
   css:
@@ -68,8 +94,16 @@ images:
     js/component/images/images-slider.min.js: { minified: true }
 message:
   version: 1.x
+  css:
+    component:
+      css/component/message/message-layout.css: {}
   js:
     js/component/message/message-close.min.js: { minified: true }
+modal:
+  version: 1.x
+  css:
+    component:
+      css/component/modal/modal.css: {}
 dynamic_quicklinks:
   version: 1.x
   js:
@@ -134,17 +168,28 @@ nav:
     js/nav/hoverIntent/hoverIntent.min.js: { minified: true }
     js/nav/keyNavMenus/jquery.keyNavMenus.min.js: { minified: true }
     js/nav/keyNavMenus/keyNavMenus.min.js: { minified: true }
+nav--breadcrumbs:
+  version: 1.x
+  css:
+    component:
+      css/component/nav/breadcrumbs.css: {}
+nav--section:
+  version: 1.x
+  css:
+    component:
+      css/component/nav/section.css: {}
+search:
+  version: 1.x
+  css:
+    component:
+      css/component/search/autocomplete.css: {}
+      css/component/search/facets-widget-links.css: {}
 # Libraries for upanupstarter
 card:
   version: 1.x
   css:
     component:
       css/component/card/card.css: {}
-content-row:
-  version: 1.x
-  css:
-    component:
-      css/content-row/content-row.css: {}
 emphasis:
   version: 1.x
   css:

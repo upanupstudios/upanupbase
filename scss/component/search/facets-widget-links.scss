@@ -1,0 +1,8 @@
+@import "../../mixins/unset";
+
+.facets-widget-links {
+  ul {
+    @include unset-list;
+    li + li {margin-top: 16px;}
+  }
+}

@@ -28,7 +28,9 @@ libraries:
   - upanupbase/reset
   - upanupbase/utility
   - upanupbase/base
+  - upanupbase/modal
   - upanupbase/nav
+  - upanupbase/search
 
 libraries-extend:
   cookieconsent/cookieconsent:

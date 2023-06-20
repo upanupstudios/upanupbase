@@ -1,0 +1,5 @@
+@import "../../variables/line-width";
+
+.accordion-group {
+  max-width: $line-width;
+}
