@@ -55,7 +55,7 @@ swiper:
   header: true
   css:
     theme:
-      css/third-party/swiper/swiper-bundle.min.css: { minified: true }
+      css/theme/swiper/swiper-bundle.min.css: { minified: true }
   js:
     js/third-party/swiper/swiper-bundle.min.js: { minified: true }
 # Component
@@ -153,7 +153,7 @@ progress:
   css:
     component:
       css/component/progress/progress.css: { weight: -10 }
-book_navigation:
+book-navigation:
   version: 1.x
   css:
     component:
@@ -194,17 +194,17 @@ emphasis:
   version: 1.x
   css:
     component:
-      css/emphasis/emphasis.css: {}
+      css/component/emphasis/emphasis.css: {}
 image-text:
   version: 1.x
   css:
     component:
-      css/image-text/image-text.css: {}
+      css/component/image-text/image-text.css: {}
 images-slider:
   version: 1.x
   css:
     component:
-      css/images-slider/images-slider.css: {}
+      css/component/images-slider/images-slider.css: {}
 nav--tabs:
   version: 1.x
   css:
