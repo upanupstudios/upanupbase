@@ -1,6 +1,6 @@
 # upanupbase
 
-Upanup's base theme for all projects. Started from `up3theme` 4.3.0.
+Upanup's base theme for all projects.
 
 ## Changelog
 
