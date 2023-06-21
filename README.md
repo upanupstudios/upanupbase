@@ -36,7 +36,7 @@ Example:
 
 ### [Unreleased]
 
-### [1.0.0] - 2023-05-29
+### [1.0.0] - 2023-06-20
 
 #### Added
 - Initial commit
