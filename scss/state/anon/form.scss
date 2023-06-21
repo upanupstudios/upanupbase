@@ -1,0 +1,46 @@
+form.node-form {
+  table {
+    td {
+      padding: 8px;
+    }
+  }
+  .field--type-smartdate {
+    .tabledrag-toggle-weight-wrapper {display: none;}
+    td.field-multiple-drag {display: none;}
+    .tabledrag-hide {display: none;}
+  }
+  h4.label {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+  .smartdate--widget {
+    margin: 0;
+    > * {margin: 0;}
+    label {
+      input {
+        &[type="checkbox"] {
+          appearance: checkbox;
+          height: auto;
+          left: auto;
+          overflow: auto;
+          position: relative;
+          top: auto;
+          width: auto;
+        }
+        &[type="radio"] {
+          appearance: radio;
+          height: auto;
+          left: auto;
+          overflow: auto;
+          position: relative;
+          top: auto;
+          width: auto;
+        }
+      }
+    }
+  }
+  .form-type-vertical-tabs,
+  .form-type-textarea + .js-filter-wrapper,
+  .field--name-moderation-state {display: none;}
+}

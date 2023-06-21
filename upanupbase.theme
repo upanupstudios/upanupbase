@@ -29,6 +29,9 @@ function upanupbase_form_alter(array &$form, FormStateInterface $form_state, $fo
   if ($form_object instanceof ViewsForm && strpos($form_object->getBaseFormId(), 'views_form_media_library') === 0) {
     $form['#attributes']['class'][] = 'media-library-views-form';
   }
+  if (preg_match('/^node_.*_form$/', $form_id)) {
+    $form['#attached']['library'][] = 'upanupbase/anon-form';
+  }
 }
 
 /**

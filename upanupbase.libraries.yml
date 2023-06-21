@@ -184,6 +184,11 @@ search:
     component:
       css/component/search/autocomplete.css: {}
       css/component/search/facets-widget-links.css: {}
+anon-form:
+  version: 1.x
+  css:
+    state:
+      css/state/anon/form.css: {}
 # Libraries for upanupstarter
 card:
   version: 1.x

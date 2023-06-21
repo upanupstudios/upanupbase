@@ -1,0 +1,50 @@
+form.node-form table td {
+  padding: 8px;
+}
+form.node-form .field--type-smartdate .tabledrag-toggle-weight-wrapper {
+  display: none;
+}
+form.node-form .field--type-smartdate td.field-multiple-drag {
+  display: none;
+}
+form.node-form .field--type-smartdate .tabledrag-hide {
+  display: none;
+}
+form.node-form h4.label {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+form.node-form .smartdate--widget {
+  margin: 0;
+}
+form.node-form .smartdate--widget > * {
+  margin: 0;
+}
+form.node-form .smartdate--widget label input[type=checkbox] {
+  -webkit-appearance: checkbox;
+     -moz-appearance: checkbox;
+          appearance: checkbox;
+  height: auto;
+  left: auto;
+  overflow: auto;
+  position: relative;
+  top: auto;
+  width: auto;
+}
+form.node-form .smartdate--widget label input[type=radio] {
+  -webkit-appearance: radio;
+     -moz-appearance: radio;
+          appearance: radio;
+  height: auto;
+  left: auto;
+  overflow: auto;
+  position: relative;
+  top: auto;
+  width: auto;
+}
+form.node-form .form-type-vertical-tabs,
+form.node-form .form-type-textarea + .js-filter-wrapper,
+form.node-form .field--name-moderation-state {
+  display: none;
+}
