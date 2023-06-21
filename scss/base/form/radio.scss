@@ -1,4 +1,4 @@
-.form-type-checkbox {
+.form-type-radio {
   display: block;
   margin: 0 !important;
   position: relative;
@@ -18,7 +18,7 @@
   }
 }
 
-input[type=checkbox] {
+input[type=radio] {
   appearance: none;
   border: 0;
   height: 0;
@@ -46,8 +46,8 @@ input[type=checkbox] {
 }
 
 .form-no-label {
-  input[type=checkbox] {
-    appearance: checkbox;
+  input[type=radio] {
+    appearance: radio;
     height: auto;
     left: auto;
     position: relative;

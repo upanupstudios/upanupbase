@@ -1,4 +1,4 @@
-{{ attach_library('upanupbase/when') }}
+{{ attach_library('up3theme/when') }}
 
 
 {%
@@ -36,13 +36,13 @@
                 {% set now = now|date('U') %}    
                 {% set start = item.content['#value'] %}
                 {% set end = item.content['#end_value'] %}
-                {% if start >= now or end > now %}
+
+                {% if (start < now) and (lastDate < now) %}
+                    <li>{{ item.content }}</li>
                     {% set count = count + 1 %}
-                    {% if count > 1 %}
-                    <li>{{ item.content }} </li>
-                    {% else %}
-                    {{ item.content }}
-                    {% endif %}
+                {% elseif (start > now) %}
+                    <li>{{ item.content }}</li>
+                    {% set count = count + 1 %}
                 {% endif %}
             {% endfor %}
         </{% if items|length > 1 %}ul{% else %}div{% endif %}>
