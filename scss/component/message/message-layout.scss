@@ -1,5 +1,5 @@
-@import "../../variables/line-width";
-@import "../../mixins/unset";
+ @import "../../variables/variables";
+ @import "../../mixins/mixins";
 
 .messages {
   &__message {
