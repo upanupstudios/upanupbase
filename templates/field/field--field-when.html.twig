@@ -1,0 +1,49 @@
+{{ attach_library('up3theme/when') }}
+
+
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
+%}
+
+
+<{{ field_wrapper_tag }}{{ attributes.addClass(classes, 'field__items').merge(field_wrapper_attributes) }}>
+
+    {% if label_hidden == false %}
+        <{{ label_tag|default('div') }}{{ title_attributes.addClass(title_classes) }}>{{ label }}</{{ label_tag|default('div') }}>
+    {% endif %}
+
+    <div class="when">
+            {% set lastDate = '' %}
+            {% set count = 0 %}
+            {% for item in items %}
+                {% if loop.index == items|length %}
+                    {% set lastDate = item.content['#end_value'] %}
+                {% endif %}
+            {% endfor %}
+            {% for item in items %}
+                {% set now = now|date('U') %}    
+                {% set start = item.content['#value'] %}
+                {% set end = item.content['#end_value'] %}
+                {% if (start < now) and (lastDate < now) %}
+                    {% set length = items|length - 1 %}
+                    {% if count == length %}{{ item.content }}{% endif %}
+                    {% set count = count + 1 %}
+                {% elseif (start > now) %}
+                    {% if count == 0 %}{{ item.content }}{% endif %}
+                    {% set count = count + 1 %}
+                {% endif %}
+            {% endfor %}
+    </div>
+
+</{{ field_wrapper_tag }}>
