@@ -32,12 +32,12 @@ base:
       css/base/form/input.css: {}
       css/base/form/label.css: {}
       css/base/form/radio.css: {}
-      css/base/nav/nav.css: {}
       css/base/typography/copy.css: {}
     layout:
       css/layout/header.css: {}
     component:
       css/component/field/field.css: {}
+      css/component/nav/nav.css: {}
     state:
       css/state/form/required.css: {}
   js:
