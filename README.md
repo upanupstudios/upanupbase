@@ -36,6 +36,16 @@ Example:
 
 ### [Unreleased]
 
+### [2.0.0] - 2023-07-05
+
+#### Changed
+- Updated `prepros.config` to ignore .scss files
+- Renamed scss folder to scss-css
+- Compiled all .scss files using Live Sass Compiler VS Code extension
+
+#### Removed
+- Removed css folder
+
 ### [1.0.0] - 2023-06-20
 
 #### Added
