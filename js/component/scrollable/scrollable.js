@@ -1,6 +1,6 @@
 (function($){
 
-  $('.t-content table').each(function() {
+  $('.content table').each(function() {
 		var element = $(this);
 		// Create the wrapper element
 		var scrollWrapper = $('<div />', {
