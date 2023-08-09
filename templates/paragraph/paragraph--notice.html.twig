@@ -38,19 +38,20 @@
  * @ingroup themeable
  */
 #}
-{%
-  set classes = [
-    'paragraph',
-    'paragraph--type--' ~ paragraph.bundle|clean_class,
-    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-    not paragraph.isPublished() ? 'paragraph--unpublished',
-    'card card--horizontal'
-  ]
-%}
+{{ attach_library('upanupbase/notice') }}
 {% block paragraph %}
+  {% block content %}
+  {%
+    set classes = [
+      'paragraph',
+      'paragraph--type--' ~ paragraph.bundle|clean_class,
+      view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+      not paragraph.isPublished() ? 'paragraph--unpublished',
+      'notice',
+    ]
+  %} 
   <div{{ attributes.addClass(classes) }}>
-    {% block content %}
-      {{ content }}
-    {% endblock %}
+    {{ content }}
   </div>
+  {% endblock %}
 {% endblock paragraph %}
