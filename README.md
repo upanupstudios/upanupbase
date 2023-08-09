@@ -36,6 +36,14 @@ Example:
 
 ### [Unreleased]
 
+### [2.1.0] - 2023-08-09
+
+#### Added
+- Added `notice` library, template
+
+#### Fixed
+- `card` library was only including on horizontal card and node cards. Added a function in `upanupbase.theme` to include on all paragraphs with 'card' in their name.
+
 ### [2.0.0] - 2023-07-05
 
 #### Changed

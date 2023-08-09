@@ -104,6 +104,11 @@ modal:
   css:
     component:
       scss-css/component/modal/modal.css: {}
+notice:
+  version: 1.x
+  css:
+    component:
+      scss-css/component/notice/notice.css: {}
 dynamic_quicklinks:
   version: 1.x
   js:
