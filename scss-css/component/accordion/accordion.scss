@@ -3,6 +3,7 @@
 .accordion,
 details,
 .webform-element-more {
+  max-width: $line-width;
   &__trigger,
   summary,
   .webform-element-more--link {

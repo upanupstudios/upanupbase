@@ -36,6 +36,12 @@ Example:
 
 ### [Unreleased]
 
+### [2.1.1] - 2023-10-18
+
+#### Fixed
+- Applied `max-width: $line-width` on accordions generally, rather than on child elements only
+- `accordion` library now attaches globally to catch `details` and `.webform-element-more`
+
 ### [2.1.0] - 2023-08-09
 
 #### Added
