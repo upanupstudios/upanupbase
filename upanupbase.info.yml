@@ -31,6 +31,7 @@ libraries:
   - upanupbase/modal
   - upanupbase/nav
   - upanupbase/search
+  - upanupbase/accordion
 
 libraries-extend:
   cookieconsent/cookieconsent:
