@@ -87,7 +87,7 @@ row_fade:
     state:
       scss-css/state/content-row/row-fade.css: {}
   js:
-    js/component/content-row/row-fade.min.js: { minified: true }
+    js/state/content-row/row-fade.min.js: { minified: true }
 images:
   version: 1.x
   js:

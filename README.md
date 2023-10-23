@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [2.1.2] - 2023-10-23
+
+#### Fixed
+- Fixed `row_fade` JavaScript file path
+
 ### [2.1.1] - 2023-10-18
 
 #### Fixed
