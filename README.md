@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [2.2.1] - 2023-10-27
+
+#### Fixed
+- Fixed missing prefixes from last compilation
+
 ### [2.2.0] - 2023-10-27
 
 #### Fixed
