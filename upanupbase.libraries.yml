@@ -76,6 +76,11 @@ alert:
   js:
     js/component/alert/alert-banner.min.js: { minified: true }
     js/component/alert/alert-slider.min.js: { minified: true }
+banner--content:
+  version: 1.x
+  css:
+    component:
+      scss-css/component/banner/content.css: {}
 content-row:
   version: 1.x
   css:

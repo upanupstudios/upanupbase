@@ -36,6 +36,14 @@ Example:
 
 ### [Unreleased]
 
+### [2.2.0] - 2023-10-27
+
+#### Fixed
+- Fixed swiper js & image-slider css being included when swiper not present
+
+#### Changed
+- Included compatibility for single image to adopt content banner styling
+
 ### [2.1.2] - 2023-10-23
 
 #### Fixed
