@@ -36,6 +36,12 @@ Example:
 
 ### [Unreleased]
 
+### [2.3.0] - 2023-10-30
+
+#### Changed
+- Upgraded SwiperJS from version 10 to 11
+- Changed instances of "slide" animation to "fade" on SwiperJS functions
+
 ### [2.2.1] - 2023-10-27
 
 #### Fixed

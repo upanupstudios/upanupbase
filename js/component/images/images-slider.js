@@ -28,16 +28,20 @@ import { toggleSlidesAttribute, updateCurrentSlideNumber, sliderStartingData } f
     const imageSwiper = new Swiper(sliderWrapper, {
       loop: true,
       autoHeight: true,
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
       // Navigation arrows
       navigation: {
         nextEl: nextButtonDiv,
         prevEl: prevButtonDiv,
       },
-	  // a11y
-	  a11y: {
-		prevSlideMessage: 'Previous slide',
-		nextSlideMessage: 'Next slide',
-	  },
+      // a11y
+      a11y: {
+        prevSlideMessage: 'Previous slide',
+        nextSlideMessage: 'Next slide',
+      },
       on: {
         afterInit: function () {
           toggleSlidesAttribute(imagesSlider);

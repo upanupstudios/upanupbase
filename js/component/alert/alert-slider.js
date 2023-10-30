@@ -21,6 +21,10 @@ import { toggleSlidesAttribute, updateCurrentSlideNumber, sliderStartingData } f
   const alertSwiper = new Swiper(sliderWrapper, {
     loop: true,
     autoHeight: true,
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true
+    },
     // Navigation arrows
     navigation: {
       nextEl: nextButtonDiv,
