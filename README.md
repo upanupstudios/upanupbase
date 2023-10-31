@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [2.4.1] - 2023-10-31
+
+#### Fixed
+- Fixed prepros setting that didn't have _Bundle Imports and Requires_ checked for some JS files
+
 ### [2.4.0] - 2023-10-31
 
 #### Changed
