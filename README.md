@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [2.4.0] - 2023-10-31
+
+#### Changed
+- Core version requirement now includes D10. Happy Halloween!
+
 ### [2.3.0] - 2023-10-30
 
 #### Changed
