@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [2.4.2] - 2023-10-31
+
+#### Fixed
+- Fixed two references to `up3theme` (with `upanupbase`)
+
 ### [2.4.1] - 2023-10-31
 
 #### Fixed
