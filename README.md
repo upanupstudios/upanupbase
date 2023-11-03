@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [2.4.3] - 2023-11-03
+
+#### Fixed
+- Direct children of an accordion trigger now use `block` display rather than `inline-block`, which fixes an issue with underline on hover, active
+
 ### [2.4.2] - 2023-10-31
 
 #### Fixed

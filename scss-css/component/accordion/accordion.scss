@@ -9,7 +9,7 @@ details,
   .webform-element-more--link {
     max-width: $line-width;
     width: 100%;
-    > * {display: inline-block;}
+    > * {display: block;}
   }
   .webform-element-more--link {
     a {display: block;}
