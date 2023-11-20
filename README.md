@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [2.4.4] - 2023-11-20
+
+#### Fixed
+- Removed `.ai-sb` and replaced with `.ai-b` as `space-between` is not a valid value, and `baseline` _is_ and was missing
+
 ### [2.4.3] - 2023-11-03
 
 #### Fixed
