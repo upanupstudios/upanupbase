@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [2.4.5] - 2023-11-23
+
+#### Fixed
+- Removed extra div in images slider that was causing markup, scripts issues
+
 ### [2.4.4] - 2023-11-20
 
 #### Fixed
