@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [2.4.6] - 2023-11-24
+
+#### Fixed
+- Fixed float issue occurring from fields with inline labels
+
 ### [2.4.5] - 2023-11-23
 
 #### Fixed

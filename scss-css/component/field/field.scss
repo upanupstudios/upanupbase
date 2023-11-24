@@ -1,6 +1,9 @@
 .field {
   &__label {font-weight: bold;}
-  &--label-inline {
+  &--label-inline {  
+    + div{
+      clear: both;
+    }
     .field {
       &__label {
         float: left;
@@ -10,14 +13,15 @@
           padding-right: 0;
           padding-left: 0.5em;
         }
-      }
-      &__items {
-        float: left;
-        padding-right: 0.5em;
-        [dir="rtl"] & {
-          padding-right: 0;
-          padding-left: 0.5em;
-        }
+      } 
+    }
+    .field__items, .when {
+      float: left;
+      padding-right: 0.5em;
+      margin-bottom: inherit;
+      [dir="rtl"] & {
+        padding-right: 0;
+        padding-left: 0.5em;        
       }
     }
     > .field__item {padding-right: 0.5em;}
