@@ -67,6 +67,7 @@ accordion:
       scss-css/component/accordion/accordion.css: {}
   js:
     js/component/accordion/accordion.min.js: { minified: true }
+    js/component/accordion/accordion-heading.min.js: { minified: true }
 accordion-group-toggle:
   version: 1.x
   js:

@@ -4,6 +4,7 @@
 details,
 .webform-element-more {
   max-width: $line-width;
+  &__heading {margin: 0;}
   &__trigger,
   summary,
   .webform-element-more--link {

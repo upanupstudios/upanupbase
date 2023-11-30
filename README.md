@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [2.5.0] - 2023-11-29
+
+#### Added
+- Wrapped `.accordion__trigger` buttons in `<h3>`, included script to replace those with `<h2>` if the content row has no title (which renders as `<h2>`)
+
 ### [2.4.6] - 2023-11-24
 
 #### Fixed

@@ -9,7 +9,7 @@
 		});
 	}
 
-  $('.accordion__trigger').on('click',function(){
+  $(document).on('click','.accordion__trigger',function(){
 		$(this).attr('aria-expanded',function(index,attr){
 			return attr == 'true' ? 'false' : 'true';
 		}).attr('aria-label',function(index,attr){

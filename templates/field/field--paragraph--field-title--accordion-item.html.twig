@@ -17,7 +17,6 @@
  * @see field_label_preprocess_field()
  */
 #}
-
 {%
   set classes = [
     'field',
@@ -32,10 +31,8 @@
     label_display == 'visually_hidden' ? 'visually-hidden',
   ]
 %}
-{% if items|length > 1 %}
-{{ attach_library('upanupbase/accordion-group-toggle') }}
-<button class="accordion-group__toggle" data-toggle>Open all</button>
-{% endif %}
+
+<h3 class="accordion__heading reset-heading">
 {% if label_hidden %}
   {% if multiple %}
     <{{ field_wrapper_tag }}{{ attributes.addClass(classes, 'field__items').merge(field_wrapper_attributes) }}>
@@ -62,3 +59,4 @@
     {% endif %}
   </{{ field_wrapper_tag }}>
 {% endif %}
+</h3>
