@@ -39,7 +39,7 @@ import { toggleSlidesAttribute, updateCurrentSlideNumber, sliderStartingData } f
       afterInit: function () {
         toggleSlidesAttribute(alertSlider);
       },
-      slideChangeTransitionEnd: function () {
+      transitionEnd: function () {
         toggleSlidesAttribute(alertSlider);
         updateCurrentSlideNumber(sliderControlDiv, this);
       },

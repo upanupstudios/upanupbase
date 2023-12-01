@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [2.5.1] - 2023-12-01
+
+#### Fixed
+- Changed instances of `slideChangeTransitionEnd` to `transitionEnd`, which fixed the current index not updating. This may have broken in `2.3.0` as that's when we switched from slide to fade.
+
 ### [2.5.0] - 2023-11-29
 
 #### Added

@@ -46,7 +46,7 @@ import { toggleSlidesAttribute, updateCurrentSlideNumber, sliderStartingData } f
         afterInit: function () {
           toggleSlidesAttribute(imagesSlider);
         },
-        slideChangeTransitionEnd: function () {
+        transitionEnd: function () {
           toggleSlidesAttribute(imagesSlider);
           updateCurrentSlideNumber(sliderControlDiv, this);
         },
