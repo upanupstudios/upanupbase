@@ -1,0 +1,4 @@
+.alerts-banner {
+  display: none;
+  &:has(.alerts-banner__trigger[aria-expanded="true"]) {display: block !important;}
+}

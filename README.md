@@ -36,6 +36,12 @@ Example:
 
 ### [Unreleased]
 
+### [3.0.0] - 2024-01-19
+
+#### Changed
+- Print styling removed from individual files and into new `*--print.scss` files
+- Libraries updated with new `*--print.css` files
+
 ### [2.5.1] - 2023-12-01
 
 #### Fixed

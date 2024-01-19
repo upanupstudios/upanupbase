@@ -18,6 +18,7 @@ utility:
        scss-css/state/utility/media-queries/desktop-hidden.css: {}
        scss-css/state/utility/media-queries/mobile-hidden.css: {}
 base:
+  version: 1.x
   css:
     base:
       scss-css/base/elements/figure.css: {}
@@ -35,6 +36,9 @@ base:
       scss-css/base/typography/copy.css: {}
     layout:
       scss-css/layout/header.css: {}
+      scss-css/layout/footer--print.css: { media: print }
+      scss-css/layout/content--print.css: { media: print }
+      scss-css/layout/sidebar--print.css: { media: print }
     component:
       scss-css/component/field/field.css: {}
       scss-css/component/nav/nav.css: {}
@@ -54,7 +58,8 @@ swiper:
   version: 1.x
   header: true
   css:
-    theme:
+    component:
+      scss-css/component/slider/controls--print.css: { media: print }
       scss-css/theme/swiper/swiper-bundle.min.css: { minified: true }
   js:
     js/third-party/swiper/swiper-bundle.min.js: { minified: true }
@@ -65,15 +70,23 @@ accordion:
     component:
       scss-css/component/accordion/accordion-group.css: {}
       scss-css/component/accordion/accordion.css: {}
+      scss-css/component/accordion/accordion--print.css: { media: print }
   js:
     js/component/accordion/accordion.min.js: { minified: true }
     js/component/accordion/accordion-heading.min.js: { minified: true }
 accordion-group-toggle:
   version: 1.x
+  css:
+    component:
+      scss-css/component/accordion/accordion-group-toggle--print.css: { media: print }
   js:
     js/component/accordion/accordion-group-toggle.min.js: { minified: true }
 alert:
   version: 1.x
+  css:
+    component:
+      scss-css/component/alerts-banner/alerts-banner--print.css: { media: print }
+      scss-css/component/alerts-banner/trigger--print.css: { media: print }
   js:
     js/component/alert/alert-banner.min.js: { minified: true }
     js/component/alert/alert-slider.min.js: { minified: true }
@@ -184,6 +197,12 @@ nav--breadcrumbs:
   css:
     component:
       scss-css/component/nav/breadcrumbs.css: {}
+      scss-css/component/nav/breadcrumbs--print.css: { media: print }
+nav--pager:
+  version: 1.x
+  css:
+    component:
+      scss-css/component/nav/pager--print.css: { media: print }
 nav--section:
   version: 1.x
   css:
@@ -195,6 +214,11 @@ search:
     component:
       scss-css/component/search/autocomplete.css: {}
       scss-css/component/search/facets-widget-links.css: {}
+view:
+  version: 1.x
+  css:
+    component:
+      scss-css/component/view/view--print.css: { media: print }
 anon-form:
   version: 1.x
   css:

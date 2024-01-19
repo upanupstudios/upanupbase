@@ -60,6 +60,7 @@ function upanupbase_preprocess_views_view(&$variables) {
       $variables['css_class'] = null;
     }
   }
+  $variables['#attached']['library'][] = 'upanupbase/view';
 }
 
 function upanupbase_theme_suggestions_page_alter(array &$suggestions, array $variables) {

@@ -19,7 +19,6 @@ details,
     display: none;
     max-width: $line-width;
     width: 100%;
-    @media print {display: block !important;}
     > .field__item > *:last-child {margin-bottom: 0;}
   }
   .details-wrapper,
