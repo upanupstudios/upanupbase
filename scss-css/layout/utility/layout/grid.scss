@@ -7,6 +7,9 @@
     height: 100%;
     > * {height: 100%;}
   }
+  > .views-row > *{
+    height: 100%;
+  }
 }
 
 .tc-1 {
