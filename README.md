@@ -36,6 +36,15 @@ Example:
 
 ### [Unreleased]
 
+### [3.1.0] - 2024-02-13
+
+#### Fixed
+- Fixed height of landing page quicklinks
+- Fixed/improved media alignment and appearance on images within WYSIWYG
+
+#### Changed
+- Adjusted conditional check for both hours and label in hours block (so each could appear independently)
+
 ### [3.0.0] - 2024-01-19
 
 #### Changed
