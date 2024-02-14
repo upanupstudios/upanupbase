@@ -3,9 +3,6 @@
 p {
   line-height: 2;
   max-width: $line-width;
-  &:has(+ .align-left), &:has(+ .align-right){
-    margin-bottom: 0;
-  }
 }
 
 .text-formatted > *:not(div,iframe, table) {
