@@ -18,6 +18,9 @@
     height: auto;
     > * {height: auto;}
   }
+  > .views-row > *{
+    height: auto;
+  }
 }
 .tc-2 {grid-template-columns: repeat(2,1fr);}
 .tc-3 {grid-template-columns: repeat(3,1fr);}
@@ -32,6 +35,9 @@
     > .field__item > .paragraph {
       height: auto;
       > * {height: auto;}
+    }
+    > .views-row > *{
+      height: auto;
     }
   }
   .tc-2-mq-xl {grid-template-columns: repeat(2,1fr);}
@@ -48,6 +54,9 @@
       height: auto;
       > * {height: auto;}
     }
+    > .views-row > *{
+      height: auto;
+    }
   }
   .tc-2-mq-l {grid-template-columns: repeat(2,1fr);}
   .tc-3-mq-l {grid-template-columns: repeat(3,1fr);}
@@ -62,6 +71,9 @@
     > .field__item > .paragraph {
       height: auto;
       > * {height: auto;}
+    }
+    > .views-row > *{
+      height: auto;
     }
   }
   .tc-2-mq-m {grid-template-columns: repeat(2,1fr);}
@@ -78,6 +90,9 @@
       height: auto;
       > * {height: auto;}
     }
+    > .views-row > *{
+      height: auto;
+    }
   }
   .tc-2-mq-s {grid-template-columns: repeat(2,1fr);}
   .tc-3-mq-s {grid-template-columns: repeat(3,1fr);}
@@ -92,6 +107,9 @@
     > .field__item > .paragraph {
       height: auto;
       > * {height: auto;}
+    }
+    > .views-row > *{
+      height: auto;
     }
   }
   .tc-2-mq-xs {grid-template-columns: repeat(2,1fr);}

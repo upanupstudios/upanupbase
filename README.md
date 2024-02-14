@@ -36,14 +36,11 @@ Example:
 
 ### [Unreleased]
 
-### [3.1.0] - 2024-02-13
+### [3.1.0] - 2024-02-14
 
 #### Fixed
-- Fixed height of landing page quicklinks
-- Fixed/improved media alignment and appearance on images within WYSIWYG
-
-#### Changed
-- Adjusted conditional check for both hours and label in hours block (so each could appear independently)
+- Fixed height of grid items in view to have consistent height (e.g. landing page quicklinks)
+- Fixed/improved <figure> media images where WYSIWYG applies .align-{direction} class (adjusted float, margins and mobile appearance)
 
 ### [3.0.0] - 2024-01-19
 
