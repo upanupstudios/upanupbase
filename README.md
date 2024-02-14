@@ -36,6 +36,12 @@ Example:
 
 ### [Unreleased]
 
+### [3.0.1] - 2024-02-14
+
+#### Fixed
+- Fixed height of grid items in view to have consistent height (e.g. landing page quicklinks)
+- Fixed/improved <figure> and <article> media images where WYSIWYG applies .align-{direction} class (adjusted float, margins and desktop/mobile appearance)
+
 ### [3.0.0] - 2024-01-19
 
 #### Changed
