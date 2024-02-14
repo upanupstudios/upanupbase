@@ -36,7 +36,7 @@ Example:
 
 ### [Unreleased]
 
-### [3.1.0] - 2024-02-14
+### [3.0.1] - 2024-02-14
 
 #### Fixed
 - Fixed height of grid items in view to have consistent height (e.g. landing page quicklinks)
