@@ -34,7 +34,7 @@
 .form-wrapper:not(.form-actions, .webform-flexbox) {
   > * {margin: 24px 0;}
   >legend{
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     &:has(.visually-hidden:only-child){
       margin:0;
     }
