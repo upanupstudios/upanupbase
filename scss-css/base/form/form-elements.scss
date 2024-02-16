@@ -1,4 +1,5 @@
- @import "../../mixins/mixins";
+@import "../../mixins/mixins";
+@import "../../variables/variables";
 
 .form-text {
   &::-ms-expand {
@@ -26,10 +27,55 @@
   display: block; // account for any element using help-block
   margin-top: 5px;
   margin-bottom: 10px;
-}
-
-.form-wrapper:not(.form-actions) {
+  .webform-element-more{
+    margin-top: 5px;
+  }
+} 
+.form-wrapper:not(.form-actions, .webform-flexbox) {
   > * {margin: 24px 0;}
+  >legend{
+    margin-bottom: 16px;
+    &:has(.visually-hidden:only-child){
+      margin:0;
+    }
+    +.fieldset-wrapper>.form-item:first-child{
+      margin-top: 0;
+    }
+  }
+  >.fieldset-wrapper{
+    margin:0; 
+    .form-wrapper{
+      >legend{
+        margin-top: 0;
+      }
+      >.fieldset-wrapper > *{
+        margin-bottom: 0;
+      }
+    }
+    .fieldgroup{
+      &,>summary,>.details-wrapper{
+        max-width: 100%;
+      } 
+    }
+  }
+}
+.webform-flexbox{
+  display: flex;
+  gap: 32px 24px;
+  margin: 32px 0 0;
+  &:first-child{
+    margin-top: 0;
+  }
+  >.webform-flex{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .webform-flex--container{
+    margin: 0;
+  } 
+  @include max($breakpoint--m) {
+    flex-direction: column;
+  }
 }
 
 .webform-element-help {

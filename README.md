@@ -36,6 +36,13 @@ Example:
 
 ### [Unreleased]
 
+
+### [3.0.2] - 2024-02-16
+
+#### Fixed
+- Margin adjustments to improve spacing of webform elements
+- Added fix for float issue occuring due to inline fields
+
 ### [3.0.1] - 2024-02-14
 
 #### Fixed
