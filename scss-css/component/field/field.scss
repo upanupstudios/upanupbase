@@ -4,6 +4,11 @@
     + div{
       clear: both;
     }
+    &::after{
+      display: table;
+      clear: both;
+      content: "";
+    }
     .field {
       &__label {
         float: left;

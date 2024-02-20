@@ -22,6 +22,9 @@ textarea {
   appearance: none;
   max-width: 100%;
 }
+input[type="file"]{
+  margin-bottom: 32px;
+}
 
 select {
   line-height: normal;
