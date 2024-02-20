@@ -1,0 +1,12 @@
+.tabs__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 8px;
+  &-item {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+  }
+}
