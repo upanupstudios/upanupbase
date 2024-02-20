@@ -147,6 +147,10 @@ when:
       scss-css/component/when/when.css: {}
   js:
     js/component/when/when-toggle.min.js: { minified: true }
+calendar:
+  version: 1.x
+  js:
+    js/component/calendar/list.min.js: { minified: true }
 indented:
   version: 1.x
   css:
