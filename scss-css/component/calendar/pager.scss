@@ -1,0 +1,28 @@
+.calendar-view-pager {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  .pager__item {
+    margin: 0;
+    > * {
+      font-size: inherit;
+      line-height: inherit;
+      text-transform: none;
+    }
+    &.pager__previous > *::before {
+      content:'‹';
+      display: inline-block;
+      margin-right: 0.25rem;
+    }
+    &.pager__next > *::after {
+      content:'›';
+      display: inline-block;
+      margin-left: 0.25rem;
+    }
+  }
+  &__reset a {
+    font-size: inherit;
+    line-height: inherit;
+    text-transform: none;
+  }
+}

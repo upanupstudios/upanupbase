@@ -1,4 +1,11 @@
-.tabs__list {
+@import "../../mixins/mixins";
+@import "../../variables/variables";
+
+.tabs-component__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -7,6 +14,8 @@
   gap: 8px;
   &-item {
     display: inline-block;
-    padding: 0.5rem 1rem;
+    margin: 0;
+    padding: 0;
+    a {display: inline-block;}
   }
 }

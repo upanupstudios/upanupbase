@@ -1,0 +1,25 @@
+@import "../../mixins/mixins";
+@import "../../variables/variables";
+
+.tabs-component__list {
+  @include min($breakpoint--s) {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  &-item {
+    @include min($breakpoint--s) {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+    }
+    a {display: inline-block;}
+  }
+}

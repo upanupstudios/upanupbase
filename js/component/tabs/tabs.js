@@ -1,17 +1,26 @@
-(function($) {
+import { selectTab } from "./globals";
+import { tabsID } from "./globals";
+import { setTabsAttrs } from "./globals";
+import { tabsKeyNav } from "./globals";
+import { currentTabSet } from "./globals";
 
-  $(document).on('click','.tabs__list-item a', function(e){
-    e.preventDefault();
-
-    $(this).attr({
-      'aria-selected': true,
-      'tabindex': 0
-    }).parent().addClass('tabs__list-item--selected').siblings('.tabs__list-item').removeClass('tabs__list-item--selected').find('a').attr({
-      'aria-selected': false,
-      'tabindex': -1
-    });
-    const controller = $(this).attr('aria-controls');
-    $('.tabs__panel[id="'+controller+'"]').removeClass('tabs__panel--hidden').siblings('.tabs__panel').addClass('tabs__panel--hidden');
+document.addEventListener('DOMContentLoaded', function() {
+  currentTabSet();
+  
+  tabsID();
+  
+  var tabsComponents = document.querySelectorAll('.tabs-component');
+  tabsComponents.forEach(function(component) {
+    setTabsAttrs(component);  
   });
-
-})(jQuery);
+  
+  document.addEventListener('click', function(e) {
+    var target = e.target;
+    if (target.closest('.tabs-component__list-item a')) {
+      e.preventDefault();
+      selectTab(target);
+    }
+  });
+  
+  tabsKeyNav();
+});

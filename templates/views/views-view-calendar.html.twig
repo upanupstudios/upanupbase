@@ -42,29 +42,29 @@
 {% endblock %}
 
 
-{{ attach_library('upanupbase/tabs') }}
+{{ attach_library('upanupbase/tabs_component') }}
 {{ attach_library('upanupbase/calendar_list') }}
-<div class="tabs">
-  <ul class="tabs__list" role="tablist">
-    <li class="tabs__list-item tabs__list-item--selected" role="presentation">
-      <a href="#panel--calendar" role="tab" id="tab--calendar" aria-controls="panel--calendar" aria-selected="true" tabindex="0">Calendar</a>
+<div class="tabs-component">
+  <ul class="tabs-component__list">
+    <li class="tabs-component__list-item">
+      <a href="#panel--calendar">Calendar</a>
     </li>
-    <li class="tabs__list-item" role="presentation">
-      <a href="#panel--list" role="tab" id="tab--list" aria-controls="panel--list" aria-selected="false" tabindex="-1">List</a>
+    <li class="tabs-component__list-item">
+      <a href="#panel--list">List</a>
     </li>
   </ul>
-  <div class="tabs__panels">
-    <div class="tabs__panel" id="panel--calendar" role="tabpanel" aria-labelledby="tab--calendar">
+  <div class="tabs-component__panels">
+    <div class="tabs-component__panel" id="panel--calendar">
       {% block calendars %}
       <div class="view-calendar">
         {{ calendars }}
       </div>
       {% endblock %}
     </div>
-    <div class="tabs__panel tabs__panel--hidden" id="panel--list" role="tabpanel" aria-labelledby="tab--list">
+    <div class="tabs-component__panel" id="panel--list">
       {% block rows %}
       {% if options.display_rows == 0 %}{{ attach_library('upanupbase/calendar_no_list') }}{% endif %}
-        <div class="view-results">
+        <div class="view-results list-view">
           {% for row in rows %}
             {% set row_classes = [ default_row_class ? 'views-row'] %}
             <div{{ row.attributes.addClass(row_classes) }} data-calendar-view-day="{{ row.content['#row'].node__field_when_field_when_value|date('d') }}" data-calendar-view-month="{{ row.content['#row'].node__field_when_field_when_value|date('m') }}" data-calendar-list-result>
