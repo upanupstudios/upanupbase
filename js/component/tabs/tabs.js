@@ -1,11 +1,6 @@
-import { selectTab } from "./globals";
-import { tabsID } from "./globals";
-import { setTabsAttrs } from "./globals";
-import { tabsKeyNav } from "./globals";
-import { currentTabSet } from "./globals";
+import { tabsID, setTabsAttrs, tabsKeyNav, currentTabSet, activateTab } from "./globals";
 
 document.addEventListener('DOMContentLoaded', function() {
-  currentTabSet();
   
   tabsID();
   
@@ -14,11 +9,13 @@ document.addEventListener('DOMContentLoaded', function() {
     setTabsAttrs(component);  
   });
   
+  currentTabSet();
+  
   document.addEventListener('click', function(e) {
     var target = e.target;
     if (target.closest('.tabs-component__list-item a')) {
       e.preventDefault();
-      selectTab(target);
+      activateTab(target);
     }
   });
   

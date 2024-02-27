@@ -1,48 +1,24 @@
-// TODO write the selectTab function so that tab/panel "activation" can happen without focus and more generically (for use in the currentTabSet function)
+// TODO
+// Ensure functions only target mobile-only or non-mobile components - add [data-tabs-mobile=true]
 
-export function selectTab(elem) {
-  elem.setAttribute('aria-selected', true);
-  elem.setAttribute('tabindex', '0');
-  elem.parentElement.classList.add('tabs-component__list-item--selected');
-  
-  const siblings = elem.parentElement.parentElement.querySelectorAll('.tabs-component__list-item');
-  siblings.forEach(function(sibling) {
-    if (sibling !== elem.parentElement) {
-      sibling.classList.remove('tabs-component__list-item--selected');
-      sibling.querySelector('a').setAttribute('aria-selected', false);
-      sibling.querySelector('a').setAttribute('tabindex', '-1');
-    }
-  });
-  
-  elem.focus();
+import { rem } from "../../globals";
 
-  const tabControls = elem.getAttribute('aria-controls');
-  const panel = document.getElementById(tabControls);
-  const panelSiblings = panel.parentElement.querySelectorAll('.tabs-component__panel');
-  panelSiblings.forEach(function(panelSibling){
-    panelSibling.classList.add('tabs-component__panel--hidden');
-  });
-  panel.classList.remove('tabs-component__panel--hidden');
-  
-  const tabURL = elem.getAttribute('href').split('#')[1];
-  if ('URLSearchParams' in window) {
-    let searchParams = new URLSearchParams(window.location.search)
-    searchParams.set("tab", tabURL);
-    const newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
-    history.pushState(null, '', newRelativePathQuery);
-  }
-}
-
+// Sets a unique ID on each tabs component
 export function tabsID() {
-  const tabsComponents = document.querySelectorAll('.tabs-component');
+  const tabsComponents = document.querySelectorAll('.tabs-component:not([data-tab-id-added=true]');
   tabsComponents.forEach(function(component, index) {
-    component.setAttribute('id', 'tabs-component--' + index);
+    component.setAttribute('id','tabs-component--' + index);
+    component.setAttribute('data-tab-id-added',true);
   });
 }
 
+// Adds attributes to each tabs component and children
 export function setTabsAttrs() {
-  const tabsComponents = document.querySelectorAll('.tabs-component');
+  const tabsComponents = document.querySelectorAll('.tabs-component:not([data-tab-attrs-set=true]');
+  if(!tabsComponents.length) return;
+
   tabsComponents.forEach(function(component) {
+    component.setAttribute('data-tab-attrs-set',true);
     let tabID = component.getAttribute('id');
     component.querySelector('.tabs-component__list').setAttribute('role', 'tablist');
     const listItems = component.querySelectorAll('.tabs-component__list-item');
@@ -64,16 +40,12 @@ export function setTabsAttrs() {
       panel.setAttribute('id', 'panel--' + tabID + '--' + panel.getAttribute('id'));
       panel.classList.add('tabs-component__panel--hidden');
     });
-    component.querySelector('.tabs-component__list-item:first-child').classList.add('tabs-component__list-item--selected');
-    component.querySelector('.tabs-component__list-item:first-child a').setAttribute('aria-selected', true);
-    component.querySelector('.tabs-component__list-item:first-child a').setAttribute('tabindex', '0');
-    const firstPanel = component.querySelector('.tabs-component__panel:first-child');
-    firstPanel.classList.remove('tabs-component__panel--hidden');
   });
 }
 
+// Removes attributes from each tabs component and children
 export function removeTabsAttrs() {
-  const tabsComponents = document.querySelectorAll('.tabs-component:not(.view .tabs-component)');
+  const tabsComponents = document.querySelectorAll('.tabs-component[data-tabs-mobile=true]');
   tabsComponents.forEach(function(component) {
     component.querySelector('.tabs-component__list').removeAttribute('role');
     const listItems = component.querySelectorAll('.tabs-component__list-item');
@@ -95,37 +67,93 @@ export function removeTabsAttrs() {
   });
 }
 
+// Arrow key nav for tabs
 export function tabsKeyNav() {
   document.addEventListener('keydown', function(e) {
     const target = e.target;
-    if (target.classList.contains('tabs-component__list-item') && window.innerWidth > rem(32) || target.closest('.view')) {
-      const arrow = e.which;
-      if (arrow === 37 || arrow === 38 || arrow === 39 || arrow === 40) {
+    if (target.parentElement.classList.contains('tabs-component__list-item') && window.innerWidth > rem(32) || target.closest('.view')) {
+      const arrow = e.key;
+      if (arrow === 'ArrowLeft' || arrow === 'ArrowDown' || arrow === 'ArrowRight' || arrow === 'ArrowUp') {
         e.preventDefault();
       }
       // Next
-      if ((arrow === 39 || arrow === 40) && target.parentElement.nextElementSibling) {
+      if ((arrow === 'ArrowRight' || arrow === 'ArrowDown') && target.parentElement.nextElementSibling) {
         const nextTab = target.parentElement.nextElementSibling.querySelector('a');
-        selectTab(nextTab);
+        activateTab(nextTab);
       }
       // Prev
-      if ((arrow === 37 || arrow === 38) && target.parentElement.previousElementSibling) {
+      if ((arrow === 'ArrowLeft' || arrow === 'ArrowUp') && target.parentElement.previousElementSibling) {
         const prevTab = target.parentElement.previousElementSibling.querySelector('a');
-        selectTab(prevTab);
+        activateTab(prevTab);
       }
     }
   });
 }
 
-// TODO on ajax set active tab based on param
-export function currentTabSet() {
-  let searchParams = new URLSearchParams(window.location.search)
-  if(searchParams.get("tab")) {
-    const tabValue = searchParams.get('tab');
-    if(document.getElementById(tabValue)) {
-      document.getElementById(tabValue)
-    }
-  }
+// Sets the specified panel as 'active'
+function selectPanel(elem) {
+  if(elem == null) return;
+
+  const panelSiblings = elem.parentElement.querySelectorAll('.tabs-component__panel');
+  if(!panelSiblings.length) return;
+
+  panelSiblings.forEach(function(panelSibling){
+    panelSibling.classList.add('tabs-component__panel--hidden');
+  });
+  elem.classList.remove('tabs-component__panel--hidden');
 }
 
-// TODO tab param needs to be per-instance
+// Sets the specified tab as 'active'
+function selectTab(elem) {
+  if(elem == null) return;
+
+  elem.setAttribute('aria-selected', true);
+  elem.setAttribute('tabindex', '0');
+  elem.parentElement.classList.add('tabs-component__list-item--selected');
+  
+  const siblings = elem.parentElement.parentElement.querySelectorAll('.tabs-component__list-item');
+  siblings.forEach(function(sibling) {
+    if (sibling !== elem.parentElement) {
+      sibling.classList.remove('tabs-component__list-item--selected');
+      sibling.querySelector('a').setAttribute('aria-selected', false);
+      sibling.querySelector('a').setAttribute('tabindex', '-1');
+    }
+  });
+  const tabControls = elem.getAttribute('aria-controls');
+  const panel = document.querySelector('[id='+tabControls+']');
+  selectPanel(panel);
+  
+  const tabAC = elem.getAttribute('aria-controls');
+  const tabsComponentID = elem.closest('.tabs-component').getAttribute('id');
+  sessionStorage[tabsComponentID] = tabAC;
+}
+
+// Sets the specified tab as 'active'
+export function activateTab(elem) {
+  
+  selectTab(elem);
+  
+  elem.focus();
+  
+}
+
+// Checks for sessionStorage for each tabs component and sets the active tab, panel if found. If not found it sets the first tab and panel as active.
+export function currentTabSet() {
+  const tabElem = document.querySelectorAll('.tabs-component');
+  if(!tabElem.length) return;
+  
+  tabElem.forEach(function(tabs){
+    const tabsComponentID = tabs.getAttribute('id');
+    if(sessionStorage.getItem(tabsComponentID)) {
+      const panel = document.querySelector('[id='+sessionStorage[tabsComponentID]+']');
+      const tab = document.querySelector('[aria-controls='+sessionStorage[tabsComponentID]+']');
+      selectTab(tab);
+      selectPanel(panel);
+    } else {
+      const panel = tabs.querySelector('.tabs-component__panel');
+      const tab = tabs.querySelector('.tabs-component__list-item a');
+      selectTab(tab);
+      selectPanel(panel);
+    }
+  });
+}

@@ -1,11 +1,5 @@
 import { rem } from "../../globals";
-import { selectTab } from "./globals";
-import { tabsID } from "./globals";
-import { setTabsAttrs } from "./globals";
-import { removeTabsAttrs } from "./globals";
-import { tabsKeyNav } from "./globals";
-
-// TODO set active tab on ajax
+import { activateTab ,tabsID ,setTabsAttrs ,removeTabsAttrs ,tabsKeyNav } from "./globals";
 
 (function($) {
   
@@ -21,7 +15,7 @@ import { tabsKeyNav } from "./globals";
     
     if(window.innerWidth > rem(32) || $(this).parents('.view').length) {
       e.preventDefault();
-      selectTab($(this));
+      activateTab($(this));
     }
     
   });
