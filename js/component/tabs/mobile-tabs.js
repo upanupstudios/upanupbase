@@ -1,25 +1,25 @@
-import { rem } from "../../globals";
-import { activateTab ,tabsID ,setTabsAttrs ,removeTabsAttrs ,tabsKeyNav } from "./globals";
+const { rem } = require("../../globals");
+const { activateTab, tabsID, setTabsAttrs, removeTabsAttrs, tabsKeyNav } = require("./globals");
 
-(function($) {
-  
+document.addEventListener('DOMContentLoaded', function() {
   tabsID();
-  
-  if((window.innerWidth > rem(32)) && $('.tabs-component').length) {
-    setTabsAttrs();  
-  } else {
-    removeTabsAttrs();
-  }
-  
-  $(document).on('click','.tabs-component__list-item a', function(e){
-    
-    if(window.innerWidth > rem(32) || $(this).parents('.view').length) {
-      e.preventDefault();
-      activateTab($(this));
+
+  var tabsComponents = document.querySelectorAll('.tabs-component[data-tabs-mobile=true]');
+  tabsComponents.forEach(function(component) {
+    if (window.innerWidth > rem(32)) {
+      setTabsAttrs(component);
+    } else {
+      removeTabsAttrs(component);
     }
-    
+  });
+
+  document.addEventListener('click', function(e) {
+    var target = e.target;
+    if (target.closest('.tabs-component__list-item a') && window.innerWidth > rem(32)) {
+      e.preventDefault();
+      activateTab(target);
+    }
   });
 
   tabsKeyNav();
-  
-})(jQuery);
+});

@@ -13,11 +13,11 @@ export function tabsID() {
 }
 
 // Adds attributes to each tabs component and children
-export function setTabsAttrs() {
-  const tabsComponents = document.querySelectorAll('.tabs-component:not([data-tab-attrs-set=true]');
-  if(!tabsComponents.length) return;
+export function setTabsAttrs(tabs) {
+  //const tabsComponents = document.querySelectorAll('.tabs-component:not([data-tab-attrs-set=true]');
+  if(!tabs.length) return;
 
-  tabsComponents.forEach(function(component) {
+  tabs.forEach(function(component) {
     component.setAttribute('data-tab-attrs-set',true);
     let tabID = component.getAttribute('id');
     component.querySelector('.tabs-component__list').setAttribute('role', 'tablist');
@@ -29,7 +29,9 @@ export function setTabsAttrs() {
       link.setAttribute('role', 'tab');
       link.setAttribute('id', 'list-item--' + tabID + '--' + linkHref);
       link.setAttribute('aria-controls', 'panel--' + tabID + '--' + linkHref);
-      link.setAttribute('href', '#panel--' + tabID + '--' + linkHref);
+      if(linkHref != '#panel--' + tabID + '--' + linkHref) {
+        link.setAttribute('href', '#panel--' + tabID + '--' + linkHref);
+      }
       link.setAttribute('aria-selected', false);
       link.setAttribute('tabindex', '-1');
     });
@@ -44,10 +46,12 @@ export function setTabsAttrs() {
 }
 
 // Removes attributes from each tabs component and children
-export function removeTabsAttrs() {
-  const tabsComponents = document.querySelectorAll('.tabs-component[data-tabs-mobile=true]');
-  tabsComponents.forEach(function(component) {
-    component.querySelector('.tabs-component__list').removeAttribute('role');
+export function removeTabsAttrs(tabs) {
+  if(!tabs.length) return;
+
+  tabs.forEach(function(component) {
+    component.setAttribute('data-tab-attrs-set',false);
+    component.removeAttribute('.tabs-component__list').removeAttribute('role');
     const listItems = component.querySelectorAll('.tabs-component__list-item');
     listItems.forEach(function(item) {
       item.removeAttribute('role');
@@ -60,9 +64,10 @@ export function removeTabsAttrs() {
     });
     const panels = component.querySelectorAll('.tabs-component__panel');
     panels.forEach(function(panel) {
-      panel.classList.remove('tabs-component__panel--hidden');
       panel.removeAttribute('role');
       panel.removeAttribute('aria-labelledby');
+      panel.removeAttribute('id');
+      panel.classList.remove('tabs-component__panel--hidden');
     });
   });
 }
