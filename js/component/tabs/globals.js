@@ -14,10 +14,11 @@ export function tabsID() {
 
 // Adds attributes to each tabs component and children
 export function setTabsAttrs(tabs) {
-  //const tabsComponents = document.querySelectorAll('.tabs-component:not([data-tab-attrs-set=true]');
   if(!tabs.length) return;
 
   tabs.forEach(function(component) {
+    if(component.getAttribute('data-tab-attrs-set') == 'true') return;
+
     component.setAttribute('data-tab-attrs-set',true);
     let tabID = component.getAttribute('id');
     component.querySelector('.tabs-component__list').setAttribute('role', 'tablist');
@@ -51,7 +52,8 @@ export function removeTabsAttrs(tabs) {
 
   tabs.forEach(function(component) {
     component.setAttribute('data-tab-attrs-set',false);
-    component.removeAttribute('.tabs-component__list').removeAttribute('role');
+    component.removeAttribute('.tabs-component__list');
+    component.removeAttribute('role');
     const listItems = component.querySelectorAll('.tabs-component__list-item');
     listItems.forEach(function(item) {
       item.removeAttribute('role');
