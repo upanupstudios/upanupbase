@@ -42,9 +42,10 @@
 {% endblock %}
 
 
-{{ attach_library('upanupbase/tabs_component') }}
+{{ attach_library('upanupbase/tabs') }}
+{{ attach_library('upanupbase/tabs.static') }}
 {{ attach_library('upanupbase/calendar_list') }}
-<div class="tabs-component" data-tab-attrs-set="false">
+<div class="tabs-component" data-tab-attrs-set="false" data-tab-type="static">
   <ul class="tabs-component__list">
     <li class="tabs-component__list-item">
       <a href="#panel--calendar">Calendar</a>
@@ -77,8 +78,8 @@
   </div>
 </div>
 
-{{ attach_library('upanupbase/tabs_component_mobile') }}
-<div class="tabs-component" data-tabs-mobile="true" data-tab-attrs-set="false">
+{{ attach_library('upanupbase/tabs.responsive') }}
+<div class="tabs-component" data-tab-attrs-set="false" data-tab-type="responsive">
   <ul class="tabs-component__list">
     <li class="tabs-component__list-item">
       <a href="#panel--first">First</a>

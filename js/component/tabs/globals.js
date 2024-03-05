@@ -1,5 +1,6 @@
 // TODO
 // Ensure functions only target mobile-only or non-mobile components - add [data-tabs-mobile=true]
+// Update sessionStorage to include page URL so we don't set selections for tabs that haven't been loaded before (on another page)
 
 import { rem } from "../../globals";
 
@@ -7,7 +8,8 @@ import { rem } from "../../globals";
 export function tabsID() {
   const tabsComponents = document.querySelectorAll('.tabs-component:not([data-tab-id-added=true]');
   tabsComponents.forEach(function(component, index) {
-    component.setAttribute('id','tabs-component--' + index);
+    const tabType = component.getAttribute('data-tab-type');
+    component.setAttribute('id',tabType+'-tabs--' + index);
     component.setAttribute('data-tab-id-added',true);
   });
 }
@@ -57,6 +59,7 @@ export function removeTabsAttrs(tabs) {
     const listItems = component.querySelectorAll('.tabs-component__list-item');
     listItems.forEach(function(item) {
       item.removeAttribute('role');
+      item.classList.remove('tabs-component__list-item--selected');
       const link = item.querySelector('a');
       link.removeAttribute('role');
       link.removeAttribute('id');
@@ -99,11 +102,12 @@ export function tabsKeyNav() {
 
 // Sets the specified panel as 'active'
 function selectPanel(elem) {
+  console.log(elem)
   if(elem == null) return;
-
+  
   const panelSiblings = elem.parentElement.querySelectorAll('.tabs-component__panel');
   if(!panelSiblings.length) return;
-
+  
   panelSiblings.forEach(function(panelSibling){
     panelSibling.classList.add('tabs-component__panel--hidden');
   });
@@ -151,14 +155,20 @@ export function currentTabSet() {
   
   tabElem.forEach(function(tabs){
     const tabsComponentID = tabs.getAttribute('id');
+    console.log(tabs)
+    console.log(tabsComponentID)
     if(sessionStorage.getItem(tabsComponentID)) {
       const panel = document.querySelector('[id='+sessionStorage[tabsComponentID]+']');
       const tab = document.querySelector('[aria-controls='+sessionStorage[tabsComponentID]+']');
+      //console.log(panel)
+      //console.log(tab)
       selectTab(tab);
       selectPanel(panel);
     } else {
       const panel = tabs.querySelector('.tabs-component__panel');
       const tab = tabs.querySelector('.tabs-component__list-item a');
+      //console.log(panel)
+      //console.log(tab)
       selectTab(tab);
       selectPanel(panel);
     }
