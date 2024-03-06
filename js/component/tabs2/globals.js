@@ -1,19 +1,21 @@
 // Sets the specified panel as 'active'
-function selectPanel(elem) {
-  if(elem == null) return;
+// function selectPanel(elem) {
+//   if(elem == null) return;
   
-  const panelSiblings = elem.parentElement.querySelectorAll('.tabs-component__panel');
-  if(!panelSiblings.length) return;
+//   const panelSiblings = elem.parentElement.querySelectorAll('.tabs-component__panel');
+//   if(!panelSiblings.length) return;
   
-  panelSiblings.forEach(function(panelSibling){
-    panelSibling.classList.add('tabs-component__panel--hidden');
-  });
-  elem.classList.remove('tabs-component__panel--hidden');
-}
+//   panelSiblings.forEach(function(panelSibling){
+//     panelSibling.classList.add('tabs-component__panel--hidden');
+//   });
+//   elem.classList.remove('tabs-component__panel--hidden');
+// }
 
 // Sets the specified tab as 'active'
 export function selectTab(elem) {
   if(elem == null) return;
+
+  const elemParent = elem.closest('.tabs-component');
 
   elem.setAttribute('aria-selected', true);
   elem.setAttribute('tabindex', '0');
@@ -28,12 +30,30 @@ export function selectTab(elem) {
     }
   });
   const tabControls = elem.getAttribute('aria-controls');
-  const panel = document.querySelector('[id='+tabControls+']');
-  selectPanel(panel);
+  const controlledPanel = document.querySelector('[id='+tabControls+']');
+  var tabItems = Array.prototype.slice.call( elem.parentElement.parentElement.children );
+  var controlTabIndex = false;
+  if(controlledPanel == null) {
+    controlTabIndex = tabItems.indexOf(elem.parentElement);
+  }
+  
+  const panels = elemParent.querySelectorAll('.tabs-component__panel');
+  if(!panels.length) return;
+  
+  panels.forEach(function(panel,index){
+    panel.classList.add('tabs-component__panel--hidden');
+    if(controlledPanel == null && index == controlTabIndex) {
+      panel.classList.remove('tabs-component__panel--hidden');
+    }
+  });
+  if(controlledPanel != null) {
+    controlledPanel.classList.remove('tabs-component__panel--hidden');
+  }
+  
   
   const tabAC = elem.getAttribute('aria-controls');
   const tabsComponentID = elem.closest('.tabs-component').getAttribute('id');
-  const URL = window.location.href;
+  const URL = window.location.href.split('?')[0];
   sessionStorage[tabsComponentID+': '+URL] = tabAC;
 }
 

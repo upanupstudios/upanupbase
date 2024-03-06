@@ -1,3 +1,5 @@
+import { selectTab } from "./globals";
+
 document.addEventListener('DOMContentLoaded', function() {
 
   
@@ -31,18 +33,17 @@ document.addEventListener('DOMContentLoaded', function() {
       panel.classList.add('tabs-component__panel--hidden');
     });
 
-    // const URL = window.location.href;
-    // if(sessionStorage.getItem(tabID+': '+URL)) {
-    //   const panel = document.querySelector('[id='+sessionStorage[tabID+': '+URL]+']');
-    //   const tab = document.querySelector('[aria-controls='+sessionStorage[tabID+': '+URL]+']');
-    //   selectTab(tab);
-    //   selectPanel(panel);
-    // } else {
-    //   const panel = tab.querySelector('.tabs-component__panel');
-    //   const tab = tab.querySelector('.tabs-component__list-item a');
-    //   selectTab(tab);
-    //   selectPanel(panel);
-    // }
+    const URL = window.location.href.split('?')[0];
+    function currentTab() {
+      if(sessionStorage.getItem(tabID+': '+URL)) {
+        const tabElem = document.querySelector('[aria-controls='+sessionStorage[tabID+': '+URL]+']');
+        selectTab(tabElem);
+      } else {
+        const tabElem = tab.querySelector('.tabs-component__list-item a');
+        selectTab(tabElem);
+      }
+    };
+    setTimeout(currentTab(),200);
 
   });
 

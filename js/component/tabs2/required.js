@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
   tabsLinks.forEach(function(tabsLink) {
     tabsLink.setAttribute('data-link-attrs-set',true);
     let tabID = tabsLink.getAttribute('id');
-    console.log('reqd: '+tabID)
     const listItems = tabsLink.querySelectorAll('.tabs-component__list-item');
     listItems.forEach(function(listItem) {
       const link = listItem.querySelector('a');
