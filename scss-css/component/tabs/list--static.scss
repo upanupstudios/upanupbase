@@ -1,21 +1,25 @@
 @import "../../mixins/mixins";
 @import "../../variables/variables";
 
-.tabs-component__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.tabs-component[data-tab-type="static"] {
   
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: flex-start;
-  gap: 8px;
-  &-item {
-    display: inline-block;
+  .tabs-component__list {
+    list-style: none;
     margin: 0;
     padding: 0;
-    a {display: inline-block;}
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 8px;
+    &-item {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      a {display: inline-block;}
+    }
   }
+
 }

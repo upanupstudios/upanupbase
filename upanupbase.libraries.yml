@@ -206,23 +206,16 @@ tabs:
     component:
       scss-css/component/tabs/panel.css: {}
   js:
-    js/component/tabs2/click.min.js: { minified: true }
-    js/component/tabs2/keyNav.min.js: { minified: true }
-    js/component/tabs2/required.min.js: { minified: true }
-tabs.responsive:
-  version: 1.x
-  css:
-    component:
-      scss-css/component/tabs/list--responsive.css: {}
-  js:
-    js/component/tabs2/responsive.min.js: { minified: true }
+    js/component/tabs/click.min.js: { minified: true }
+    js/component/tabs/keyNav.min.js: { minified: true }
+    js/component/tabs/required.min.js: { minified: true }
 tabs.static:
   version: 1.x
   css:
     component:
       scss-css/component/tabs/list--static.css: {}
   js:
-    js/component/tabs2/static.min.js: { minified: true }
+    js/component/tabs/static.min.js: { minified: true }
 # tabs_component:
 #   version: 1.x
 #   css:
