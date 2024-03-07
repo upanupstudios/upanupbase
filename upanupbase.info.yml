@@ -38,3 +38,5 @@ libraries-extend:
     - upanupbase/cookie-consent
   cookieconsent/cookieconsent-min:
     - upanupbase/cookie-consent
+  calendar_view/calendar:
+    - upanupbase/calendar

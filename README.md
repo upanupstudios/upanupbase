@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+#### [3.1.0] - 2024-03-07
+
+#### Added
+- Added `calendar` library, `views-view-calendar.html.twig` for use with the _Calendar_ module
+- Added `tabs` and `tabs.static` libraries to include tabbed functionality on calendar, other views
 
 ### [3.0.2] - 2024-02-16
 

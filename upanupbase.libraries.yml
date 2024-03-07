@@ -147,6 +147,24 @@ when:
       scss-css/component/when/when.css: {}
   js:
     js/component/when/when-toggle.min.js: { minified: true }
+calendar:
+  version: 1.x
+  css:
+    component:
+      scss-css/component/calendar/pager.css: {}
+      scss-css/component/calendar/table.css: {}
+calendar_list:
+  version: 1.x
+  css:
+    component:
+      scss-css/component/calendar/list.css: {}
+  js:
+    js/component/calendar/list.min.js: { minified: true }
+calendar_no_list:
+  version: 1.x
+  css:
+    component:
+      scss-css/component/calendar/no-list.css: {}
 indented:
   version: 1.x
   css:
@@ -182,6 +200,22 @@ book-navigation:
   css:
     component:
       scss-css/component/book-navigation/book-navigation.css: {}
+tabs:
+  version: 1.x
+  css:
+    component:
+      scss-css/component/tabs/panel.css: {}
+  js:
+    js/component/tabs/click.min.js: { minified: true }
+    js/component/tabs/keyNav.min.js: { minified: true }
+    js/component/tabs/required.min.js: { minified: true }
+tabs.static:
+  version: 1.x
+  css:
+    component:
+      scss-css/component/tabs/list--static.css: {}
+  js:
+    js/component/tabs/static.min.js: { minified: true }
 # Nav
 nav:
   version: 1.x
