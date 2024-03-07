@@ -216,23 +216,6 @@ tabs.static:
       scss-css/component/tabs/list--static.css: {}
   js:
     js/component/tabs/static.min.js: { minified: true }
-# tabs_component:
-#   version: 1.x
-#   css:
-#     component:
-#       scss-css/component/tabs/list.css: {}
-#       scss-css/component/tabs/panel.css: {}
-#   js:
-#     # js/component/tabs/set.min.js: { minified: true }
-#     js/component/tabs/tabs.min.js: { minified: true }
-# tabs_component_mobile:
-#   version: 1.x
-#   css:
-#     component:
-#       scss-css/component/tabs/mobile-list.css: {}
-#   js:
-#     # js/component/tabs/set.min.js: { minified: true }
-#     js/component/tabs/mobile-tabs.min.js: { minified: true }
 # Nav
 nav:
   version: 1.x
