@@ -1,16 +1,3 @@
-// Sets the specified panel as 'active'
-// function selectPanel(elem) {
-//   if(elem == null) return;
-  
-//   const panelSiblings = elem.parentElement.querySelectorAll('.tabs-component__panel');
-//   if(!panelSiblings.length) return;
-  
-//   panelSiblings.forEach(function(panelSibling){
-//     panelSibling.classList.add('tabs-component__panel--hidden');
-//   });
-//   elem.classList.remove('tabs-component__panel--hidden');
-// }
-
 // Sets the specified tab as 'active'
 export function selectTab(elem) {
   if(elem == null) return;
