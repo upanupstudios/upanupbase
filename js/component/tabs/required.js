@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+function tabsRequirements() {
   
   const staticTabs = document.querySelectorAll('.tabs-component[data-tab-type=static]:not([data-tab-id-added=true])');
   if(!staticTabs.length) return;
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     component.setAttribute('id','static-tabs--' + index);
     component.setAttribute('data-tab-id-added',true);
   });
-
+  
   const responsiveTabs = document.querySelectorAll('.tabs-component[data-tab-type=responsive]:not([data-tab-id-added=true])');
   if(!responsiveTabs.length) return;
   
@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
     component.setAttribute('id','responsive-tabs--' + index);
     component.setAttribute('data-tab-id-added',true);
   });
-
+  
   const tabsLinks = document.querySelectorAll('.tabs-component:not([data-link-attrs-set=true])');
   if(!tabsLinks.length) return;
-
+  
   tabsLinks.forEach(function(tabsLink) {
     tabsLink.setAttribute('data-link-attrs-set',true);
     let tabID = tabsLink.getAttribute('id');
@@ -31,9 +31,23 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     const panels = tabsLink.querySelectorAll('.tabs-component__panel');
-      panels.forEach(function(panel) {
-        panel.setAttribute('id', 'panel--' + tabID + '--' + panel.getAttribute('id'));
-      });
+    panels.forEach(function(panel) {
+      panel.setAttribute('id', 'panel--' + tabID + '--' + panel.getAttribute('id'));
+    });
   });
   
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+  tabsRequirements();
+  
 });
+
+(function($){
+  
+  $(document).ajaxComplete(function() {
+    setTimeout(tabsRequirements(),200);
+  });
+  
+})(jQuery);

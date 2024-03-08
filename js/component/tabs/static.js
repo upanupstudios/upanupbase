@@ -1,7 +1,23 @@
 import { selectTab } from "./globals";
 
-document.addEventListener('DOMContentLoaded', function() {
+const URL = window.location.href.split('?')[0];
 
+function logSessionStorageKeyEndingWith(endingString) {
+  for (var i = 0; i < sessionStorage.length; i++) {
+    var key = sessionStorage.key(i);
+    
+    if (key.endsWith(endingString)) {
+      const tabElem = document.querySelector('[aria-controls='+sessionStorage.getItem(key)+']');
+      selectTab(tabElem);
+    }
+  }
+}
+
+function currentTab() {
+  logSessionStorageKeyEndingWith(URL);
+};
+
+function staticTabs() {
   
   const tabs = document.querySelectorAll('.tabs-component[data-tab-type=static]:not([data-tab-attrs-set=true])');
   if(!tabs.length) return;
@@ -32,20 +48,23 @@ document.addEventListener('DOMContentLoaded', function() {
       panel.setAttribute('aria-labelledby', 'list-item--' + tabID + '--' + panel.getAttribute('id'));
       panel.classList.add('tabs-component__panel--hidden');
     });
-
-    const URL = window.location.href.split('?')[0];
-    function currentTab() {
-      if(sessionStorage.getItem(tabID+': '+URL)) {
-        const tabElem = document.querySelector('[aria-controls='+sessionStorage[tabID+': '+URL]+']');
-        selectTab(tabElem);
-      } else {
-        const tabElem = tab.querySelector('.tabs-component__list-item a');
-        selectTab(tabElem);
-      }
-    };
+    
     setTimeout(currentTab(),200);
-
+    
   });
+  
+}
 
-
+document.addEventListener('DOMContentLoaded', function() {
+  
+  staticTabs();
+  
 });
+
+(function($){
+  
+  $(document).ajaxComplete(function() {
+    staticTabs();
+  });
+  
+})(jQuery);
