@@ -8,8 +8,6 @@
 			if (toc && !b2t.length) {
 				var link = document.createElement('a');
 				link.classList.add('toc__b2t');
-				link.classList.add('button');
-				link.classList.add('button--emphasis');
 				link.href = '#' + toc.id;
 				link.textContent = 'Back to top';
 				document.querySelector('#main-content').appendChild(link);
