@@ -216,6 +216,14 @@ tabs.static:
       scss-css/component/tabs/list--static.css: {}
   js:
     js/component/tabs/static.min.js: { minified: true }
+toc:
+  version: 1.x
+  js:
+    js/component/toc/nav.min.js: { minified: true }
+toc.back_to_top:
+  version: 1.x
+  js:
+    js/component/toc/back-to-top.min.js: { minified: true }
 # Nav
 nav:
   version: 1.x

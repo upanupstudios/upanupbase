@@ -36,7 +36,12 @@ Example:
 
 ### [Unreleased]
 
-#### [3.1.0] - 2024-03-08
+### [3.2.0] - 2024-03-08
+
+#### Added
+- Scripts, template, libraries for new "table of contents" component
+
+### [3.1.0] - 2024-03-08
 
 #### Added
 - Added `calendar` library, `views-view-calendar.html.twig` for use with the _Calendar_ module
