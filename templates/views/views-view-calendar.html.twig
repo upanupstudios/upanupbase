@@ -47,11 +47,11 @@
 {{ attach_library('upanupbase/calendar_list') }}
 <div class="tabs-component" data-tab-attrs-set="false" data-tab-type="static">
   <ul class="tabs-component__list">
-    <li class="tabs-component__list-item">
-      <a href="#panel--calendar">Calendar</a>
+    <li class="tabs-component__list-item tabs-component__list-item--selected">
+      <a href="#panel--calendar" aria-selected="true">Calendar</a>
     </li>
     <li class="tabs-component__list-item">
-      <a href="#panel--list">List</a>
+      <a href="#panel--list" aria-selected="false" tabindex="-1">List</a>
     </li>
   </ul>
   <div class="tabs-component__panels">
@@ -62,7 +62,7 @@
       </div>
       {% endblock %}
     </div>
-    <div class="tabs-component__panel" id="panel--list">
+    <div class="tabs-component__panel tabs-component__panel--hidden" id="panel--list">
       {% block rows %}
       {% if options.display_rows == 0 %}{{ attach_library('upanupbase/calendar_no_list') }}{% endif %}
         <div class="view-results list-view">
