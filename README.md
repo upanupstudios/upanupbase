@@ -36,7 +36,7 @@ Example:
 
 ### [Unreleased]
 
-#### [3.1.0] - 2024-03-07
+#### [3.1.0] - 2024-03-08
 
 #### Added
 - Added `calendar` library, `views-view-calendar.html.twig` for use with the _Calendar_ module
