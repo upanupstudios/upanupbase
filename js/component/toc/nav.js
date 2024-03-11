@@ -1,6 +1,6 @@
 (function ($, Drupal)
 {
-	Drupal.behaviors.static_tabs_required = {
+	Drupal.behaviors.toc_nav = {
 		attach: function (context, settings)
 		{
 			const tocElements = document.querySelectorAll('.toc');

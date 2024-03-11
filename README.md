@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [3.2.1] - 2024-03-11
+
+#### Fixed
+- Changed `Drupal.behaviors.static_tabs_required` to `Drupal.behaviors.toc_nav`
+
 ### [3.2.0] - 2024-03-08
 
 #### Added
