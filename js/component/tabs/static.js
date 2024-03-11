@@ -18,13 +18,12 @@ function logSessionStorageKeyEndingWith(endingString) {
     attach: function (context, settings)
     {
       const URL = window.location.href.split('?')[0];
-      
       const tabs = document.querySelectorAll('.tabs-component[data-tab-type=static]');
       if(!tabs.length) return;
       
       tabs.forEach(function() {
         
-        setTimeout(logSessionStorageKeyEndingWith(URL),5000);
+        setTimeout(logSessionStorageKeyEndingWith(URL),10000);
         
       });
     }
