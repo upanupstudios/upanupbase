@@ -25,7 +25,7 @@ function logSessionStorageKeyEndingWith(endingString) {
       
       tabs.forEach(function(tab) {
         
-        setTimeout(logSessionStorageKeyEndingWith(URL),200);
+        setTimeout(logSessionStorageKeyEndingWith(URL),500);
         
       });
     }
