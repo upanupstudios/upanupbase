@@ -23,7 +23,7 @@ function logSessionStorageKeyEndingWith(endingString) {
         
         setTimeout(function() {
           logSessionStorageKeyEndingWith(URL)
-        },200);
+        },0);
         
       });
     }
