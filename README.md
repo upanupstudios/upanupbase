@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [3.2.3] - 2024-03-11
+
+#### Added
+- Added check for empty `content` in nav block (`block--system-menu-block.html.twig`)
+
 ### [3.2.2] - 2024-03-11
 
 #### Fixed
