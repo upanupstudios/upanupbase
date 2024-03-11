@@ -33,7 +33,6 @@
 					tocArray.push({ id: id, text: $(this).text().trim() });
 				});
 			});
-			console.log(tocArray.length)
 			const tocList = $('.toc__list');
 			tocArray.forEach(pair => {
 				tocList.append('<li class="toc__list-item"><a href="#'+pair.id+'">'+pair.text+'</a></li>')
