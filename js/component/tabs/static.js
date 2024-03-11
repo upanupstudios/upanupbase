@@ -5,8 +5,6 @@ function logSessionStorageKeyEndingWith(endingString) {
     var key = sessionStorage.key(i);
     if (key.endsWith(endingString)) {
       const tabElem = document.querySelector('[aria-controls='+sessionStorage.getItem(key)+']');
-      console.log(sessionStorage.getItem(key))
-      console.log(tabElem)
       selectTab(tabElem);
     }
   }
