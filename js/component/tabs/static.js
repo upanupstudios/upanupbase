@@ -3,11 +3,9 @@ import { selectTab } from "./globals";
 function logSessionStorageKeyEndingWith(endingString) {
   for (var i = 0; i < sessionStorage.length; i++) {
     var key = sessionStorage.key(i);
-    console.log(1)
     if (key.endsWith(endingString)) {
-      console.log(2)
-      console.log(sessionStorage.getItem(key))
       const tabElem = document.querySelector('[aria-controls='+sessionStorage.getItem(key)+']');
+      console.log(sessionStorage.getItem(key))
       console.log(tabElem)
       selectTab(tabElem);
     }
@@ -24,9 +22,9 @@ function logSessionStorageKeyEndingWith(endingString) {
       const tabs = document.querySelectorAll('.tabs-component[data-tab-type=static]');
       if(!tabs.length) return;
       
-      tabs.forEach(function(tab) {
+      tabs.forEach(function() {
         
-        setTimeout(logSessionStorageKeyEndingWith(URL),500);
+        setTimeout(logSessionStorageKeyEndingWith(URL),5000);
         
       });
     }
