@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [3.2.2] - 2024-03-11
+
+#### Fixed
+- Fixed tabs ajax not working due to incorrect use of `setTimeout`
+
 ### [3.2.1] - 2024-03-11
 
 #### Fixed
