@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [3.2.4] - 2024-03-12
+
+#### Fixed
+- Made hidden calendar list items _actually_ hidden
+
 ### [3.2.3] - 2024-03-11
 
 #### Added
