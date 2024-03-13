@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [3.2.5] - 2024-03-13
+
+#### Added
+- Calendar pager styling updates
+
 ### [3.2.4] - 2024-03-12
 
 #### Fixed

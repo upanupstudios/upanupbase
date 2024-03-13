@@ -2,7 +2,23 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  flex: 1 1 auto;
+  justify-content: center;
+  gap: 0.5rem;
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 1rem 0;
+    @media only screen and (max-width: 48rem) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
   .pager__item {
+    flex: 0 1 auto;
     margin: 0;
     > * {
       font-size: inherit;
@@ -20,9 +36,12 @@
       margin-left: 0.25rem;
     }
   }
-  &__reset a {
-    font-size: inherit;
-    line-height: inherit;
-    text-transform: none;
+  &__reset {
+    flex: 0 1 auto;
+    a {
+      font-size: inherit;
+      line-height: inherit;
+      text-transform: none;
+    }
   }
 }
