@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [3.2.6] - 2024-03-13
+
+#### Added
+- Added `calendar-view-pager.html.twig`
+
 ### [3.2.5] - 2024-03-13
 
 #### Added
