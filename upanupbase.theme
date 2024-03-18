@@ -87,10 +87,12 @@ function upanupbase_theme_suggestions_block_alter(array &$suggestions, array $va
   if (!empty($variables['elements']['#id'])) {
     $block_id = $variables['elements']['#id'];
     $block = Drupal\block\Entity\Block::load($block_id);
-    $region = $block->getRegion();
-    // Allow per-region block templating.
-    $suggestions[] = 'block__' . $region;
-    $suggestions[] = 'block__' . $region . '__' . $block_id;
+    if ($block) {
+      $region = $block->getRegion();
+      // Allow per-region block templating.
+      $suggestions[] = 'block__' . $region;
+      $suggestions[] = 'block__' . $region . '__' . $block_id;
+    }
   }
   // Allow custom block type templating - block–-type–-custom-block-name.html.twig
   if (isset($variables['elements']['content']['#block_content'])) { 
