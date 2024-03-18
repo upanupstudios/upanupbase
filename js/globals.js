@@ -25,11 +25,13 @@ export function toggleSlidesAttribute(slider) {
     const slideLinks = activeSlide.querySelectorAll('a');
     slideLinks.forEach((slideLink) => slideLink.removeAttribute('tabindex'));
     activeSlide.removeAttribute('tabindex');
+    activeSlide.removeAttribute('aria-hidden');
   });
   nonActiveSlides.forEach((nonActiveSlides) => {
     const slideLinks = nonActiveSlides.querySelectorAll('a');
     slideLinks.forEach((slideLink) => slideLink.setAttribute('tabindex', -1));
     nonActiveSlides.setAttribute('tabindex', -1);
+    nonActiveSlides.setAttribute('aria-hidden', true);
   });
 }
 export function updateCurrentSlideNumber(sliderControl, swiper) {
