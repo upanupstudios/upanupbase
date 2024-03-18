@@ -36,6 +36,12 @@ Example:
 
 ### [Unreleased]
 
+### [3.2.7] - 2024-03-18
+
+#### Changed
+- Changed `toggleSlidesAttribute` function to include `aria-hidden` attribute toggling on swiper slides on alerts and photo sliders
+- Changed `upanupbase_theme_suggestions_block_alter` function to include check for block in the first place (to prevent WSOD in some cases)
+
 ### [3.2.6] - 2024-03-13
 
 #### Added
