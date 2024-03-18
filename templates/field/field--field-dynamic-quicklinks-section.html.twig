@@ -44,16 +44,16 @@
         {% endfor %}
       </select>
     </div>
-    <ul class="dynamic-quicklinks__filter dynamic-quicklinks__filter--desktop">
+    <ul class="dynamic-quicklinks__filter dynamic-quicklinks__filter--desktop" role="tablist">
       {% for item in items %}
-        <li><button class="button button--default" data-category="{{ item.content['#paragraph'].field_title.value }}">{{ item.content['#paragraph'].field_title.value }}</button></li>
+        <li role="presentation"><a role="tab" class="button button--default" href="#tab-{{ item.content['#paragraph'].field_title.value|clean_class }}" data-category="{{ item.content['#paragraph'].field_title.value }}" id="tab-{{ item.content['#paragraph'].field_title.value|clean_class }}" aria-controls="{{ item.content['#paragraph'].field_title.value|clean_class }}">{{ item.content['#paragraph'].field_title.value }}</a></li>
       {% endfor %}
     </ul>
   </header>
   {% endif %}
   <div class="dynamic-quicklinks__content">
     {% for item in items %}
-    <div class="dynamic-quicklinks__section{% if dqLength <= 1%} is-active{% endif %}" data-category="{{ item.content['#paragraph'].field_title.value }}">{{ item.content }}</div>
+    <div class="dynamic-quicklinks__section{% if dqLength <= 1%} is-active{% endif %}" data-category="{{ item.content['#paragraph'].field_title.value }}" id="{{ item.content['#paragraph'].field_title.value|clean_class }}" role="tabpanel" aria-labelledby="tab-{{ item.content['#paragraph'].field_title.value|clean_class }}">{{ item.content }}</div>
     {% endfor %}
   </div>
 </section>
