@@ -34,7 +34,7 @@
 %}
 {% if items|length > 1 %}
 {{ attach_library('upanupbase/accordion-group-toggle') }}
-<button class="accordion-group__toggle" data-toggle>Open all</button>
+<button class="accordion-group__toggle" data-toggle aria-pressed="false" data-toggle-state="close">Open all</button>
 {% endif %}
 {% if label_hidden %}
   {% if multiple %}

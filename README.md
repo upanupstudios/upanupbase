@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [3.2.8] - 2024-03-20
+
+#### Changed
+- Changed `aria-expanded` to `aria-pressed` and added `data-toggle-state` on `.accordion-group__toggle` as the "pressed" value can be `true`, `false`, or `mixed` when all accordions are open, all are closed, or some are open and some are closed, respectively
+
 ### [3.2.7] - 2024-03-18
 
 #### Changed

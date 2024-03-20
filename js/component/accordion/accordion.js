@@ -21,10 +21,11 @@
 		});
 		if($(this).parents('.accordion-group').find('.accordion-group__toggle').length) {
 			if(!$(this).parents('.accordion-group').find('.accordion__trigger[aria-expanded="true"]').length) {
-				$(this).parents('.accordion-group').find('.accordion-group__toggle').attr('aria-expanded',false).text('Open all');
-			}
-			if(!$(this).parents('.accordion-group').find('.accordion__trigger[aria-expanded="false"]').length) {
-				$(this).parents('.accordion-group').find('.accordion-group__toggle').attr('aria-expanded',true).text('Close all');
+				$(this).parents('.accordion-group').find('.accordion-group__toggle').attr('aria-pressed',false).attr('data-toggle-state','close').text('Open all');
+			} else if(!$(this).parents('.accordion-group').find('.accordion__trigger[aria-expanded="false"]').length) {
+				$(this).parents('.accordion-group').find('.accordion-group__toggle').attr('aria-pressed',true).attr('data-toggle-state','open').text('Close all');
+			} else {
+				$(this).parents('.accordion-group').find('.accordion-group__toggle').attr('aria-pressed','mixed');
 			}
 		}
 	});
