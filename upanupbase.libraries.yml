@@ -44,16 +44,35 @@ base:
       scss-css/component/nav/nav.css: {}
     state:
       scss-css/state/form/required.css: {}
+hidden-sidebar:
+  version: 1.x
   js:
     js/layout/hidden-sidebar/hidden-sidebar.min.js: { minified: true }
+  dependencies:
+    - core/jquery
+mobile-search-trigger:
+  version: 1.x
+  js:
     js/component/mobile-search-trigger/mobile-search-trigger.min.js: { minified: true }
+  dependencies:
+    - core/jquery
+scrollable:
+  version: 1.x
+  js:
     js/component/scrollable/scrollable.min.js: { minified: true }
+view-reset:
+  version: 1.x
+  js:
     js/component/view-reset/view-reset.min.js: { minified: true }
+  dependencies:
+    - core/jquery
 # Third-party
 cookie-consent:
   version: 1.x
   js:
     js/third-party/cookie-consent/cookie-consent.min.js: { minified: true }
+  dependencies:
+    - core/jquery
 swiper:
   version: 1.x
   header: true
@@ -74,6 +93,8 @@ accordion:
   js:
     js/component/accordion/accordion.min.js: { minified: true }
     js/component/accordion/accordion-heading.min.js: { minified: true }
+  dependencies:
+    - core/jquery
 accordion-group-toggle:
   version: 1.x
   css:
@@ -81,6 +102,8 @@ accordion-group-toggle:
       scss-css/component/accordion/accordion-group-toggle--print.css: { media: print }
   js:
     js/component/accordion/accordion-group-toggle.min.js: { minified: true }
+  dependencies:
+    - core/jquery
 alert:
   version: 1.x
   css:
@@ -90,6 +113,8 @@ alert:
   js:
     js/component/alert/alert-banner.min.js: { minified: true }
     js/component/alert/alert-slider.min.js: { minified: true }
+  dependencies:
+    - core/jquery
 banner--content:
   version: 1.x
   css:
@@ -107,10 +132,14 @@ row_fade:
       scss-css/state/content-row/row-fade.css: {}
   js:
     js/state/content-row/row-fade.min.js: { minified: true }
+  dependencies:
+    - core/jquery
 images:
   version: 1.x
   js:
     js/component/images/images-slider.min.js: { minified: true }
+  dependencies:
+    - core/jquery
 message:
   version: 1.x
   css:
@@ -118,6 +147,8 @@ message:
       scss-css/component/message/message-layout.css: {}
   js:
     js/component/message/message-close.min.js: { minified: true }
+  dependencies:
+    - core/jquery
 modal:
   version: 1.x
   css:
@@ -132,14 +163,20 @@ dynamic_quicklinks:
   version: 1.x
   js:
     js/component/quicklink/dynamic-quicklinks.min.js: { minified: true }
+  dependencies:
+    - core/jquery
 dynamic_quicklinks_storage:
   version: 1.x
   js:
     js/component/quicklink/dynamic-quicklinks-storage.min.js: { minified: true }
+  dependencies:
+    - core/jquery
 sidebar_block:
   version: 1.x
   js:
     js/component/sidebar-block/sidebar-block.min.js: { minified: true }
+  dependencies:
+    - core/jquery
 when:
   version: 1.x
   css:
@@ -147,6 +184,8 @@ when:
       scss-css/component/when/when.css: {}
   js:
     js/component/when/when-toggle.min.js: { minified: true }
+  dependencies:
+    - core/jquery
 calendar:
   version: 1.x
   css:
@@ -160,6 +199,8 @@ calendar_list:
       scss-css/component/calendar/list.css: {}
   js:
     js/component/calendar/list.min.js: { minified: true }
+  dependencies:
+    - core/jquery
 calendar_no_list:
   version: 1.x
   css:
@@ -220,6 +261,8 @@ toc:
   version: 1.x
   js:
     js/component/toc/nav.min.js: { minified: true }
+  dependencies:
+    - core/jquery
 toc.back_to_top:
   version: 1.x
   js:
@@ -234,6 +277,8 @@ nav:
     js/nav/hoverIntent/hoverIntent.min.js: { minified: true }
     js/nav/keyNavMenus/jquery.keyNavMenus.min.js: { minified: true }
     js/nav/keyNavMenus/keyNavMenus.min.js: { minified: true }
+  dependencies:
+    - core/jquery
 nav--breadcrumbs:
   version: 1.x
   css:

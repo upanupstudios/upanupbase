@@ -36,6 +36,12 @@ Example:
 
 ### [Unreleased]
 
+### [4.0.0] - 2024-03-21
+
+#### Changed
+- Put all JS from `base` library into separate libraries
+- Added jQuery as a dependency to each library that uses it
+
 ### [3.2.8] - 2024-03-20
 
 #### Changed

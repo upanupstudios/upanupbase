@@ -1,36 +1,35 @@
-(function($){
-
-  $('.content table').each(function() {
-		var element = $(this);
-		// Create the wrapper element
-		var scrollWrapper = $('<div />', {
-			'class': 'scrollable',
-			'html': '<div tabindex="0" role="region" />' // The inner div is needed for styling
-		}).insertBefore(element);
-		// Store a reference to the wrapper element
-		element.data('scrollWrapper', scrollWrapper);
-		// Move the scrollable element inside the wrapper element
-		element.appendTo(scrollWrapper.find('div'));
+document.addEventListener('DOMContentLoaded', function() {
+	var tables = document.querySelectorAll('.content table');
+	tables.forEach(function(table) {
+		var scrollWrapper = document.createElement('div');
+		scrollWrapper.classList.add('scrollable');
+		scrollWrapper.innerHTML = '<div tabindex="0" role="region"></div>';
+		table.parentNode.insertBefore(scrollWrapper, table);
+		scrollWrapper.querySelector('div').appendChild(table);
+		table.dataset.scrollWrapper = scrollWrapper;
 	});
-
-  var resizeTimer;
+	
+	var resizeTimer;
 	function resizeFunction() {
-
-    if($('.scrollable').length) {
-			$('.scrollable').each(function(){
-				if ($(this).find('> div > table').not('table.sticky-header').outerWidth() > $(this).find('> div > table').not('table.sticky-header').parent().outerWidth()) {
-					$(this).find('> div > table').not('table.sticky-header').data('scrollWrapper').addClass('has-scroll');
+		var scrollables = document.querySelectorAll('.scrollable');
+		scrollables.forEach(function(scrollable) {
+			var innerTable = scrollable.querySelector('div > table');
+			if (innerTable && !innerTable.classList.contains('sticky-header')) {
+				var wrapperWidth = scrollable.querySelector('div').offsetWidth;
+				var tableWidth = innerTable.offsetWidth;
+				if (tableWidth > wrapperWidth) {
+					scrollable.classList.add('has-scroll');
 				} else {
-					$(this).find('> div > table').not('table.sticky-header').data('scrollWrapper').removeClass('has-scroll');
+					scrollable.classList.remove('has-scroll');
 				}
-			});
-		}
-
-  };
-	$(window).on('load resize',function() {
+			}
+		});
+	}
+	
+	window.addEventListener('resize', function() {
 		clearTimeout(resizeTimer);
 		resizeTimer = setTimeout(resizeFunction, 250);
 	});
+	
 	resizeFunction();
-
-})(jQuery);
+});

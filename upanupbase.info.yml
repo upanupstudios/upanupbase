@@ -28,6 +28,10 @@ libraries:
   - upanupbase/reset
   - upanupbase/utility
   - upanupbase/base
+  - upanupbase/hidden-sidebar
+  - upanupbase/mobile-search-trigger
+  - upanupbase/scrollable
+  - upanupbase/view-reset
   - upanupbase/modal
   - upanupbase/nav
   - upanupbase/search
