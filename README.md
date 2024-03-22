@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [4.0.1] - 2024-03-22
+
+### Fixed
+- Removed tables from tabindex until becomes interactive due to scrollable overflow
+
 ### [4.0.0] - 2024-03-21
 
 #### Changed
