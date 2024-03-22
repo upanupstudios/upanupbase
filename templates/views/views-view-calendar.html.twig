@@ -48,21 +48,21 @@
 <div class="tabs-component" data-tab-attrs-set="false" data-tab-type="static">
   <ul class="tabs-component__list">
     <li class="tabs-component__list-item tabs-component__list-item--selected" role="presentation">
-      <a href="#panel--calendar" aria-selected="true" role="tab" id="list-item--TABIDPLACEHOLDER--panel--calendar" aria-controls="panel--TABIDPLACEHOLDER--panel--calendar">Calendar</a>
+      <a href="#panel--TABIDPLACEHOLDER--panel--calendar" aria-selected="true" role="tab" id="list-item--TABIDPLACEHOLDER--panel--calendar" aria-controls="panel--TABIDPLACEHOLDER--panel--calendar">Calendar</a>
     </li>
     <li class="tabs-component__list-item" role="presentation">
-      <a href="#panel--list" aria-selected="false" tabindex="-1" role="tab" id="list-item--TABIDPLACEHOLDER--panel--list" aria-controls="panel--TABIDPLACEHOLDER--panel--list">List</a>
+      <a href="#panel--TABIDPLACEHOLDER--panel--list" aria-selected="false" tabindex="-1" role="tab" id="list-item--TABIDPLACEHOLDER--panel--list" aria-controls="panel--TABIDPLACEHOLDER--panel--list">List</a>
     </li>
   </ul>
   <div class="tabs-component__panels">
-    <div class="tabs-component__panel" id="panel--calendar" role="tabpanel" aria-labelledby="list-item--TABIDPLACEHOLDER--panel--calendar">
+    <div class="tabs-component__panel" id="panel--TABIDPLACEHOLDER--panel--calendar" role="tabpanel" aria-labelledby="list-item--TABIDPLACEHOLDER--panel--calendar">
       {% block calendars %}
       <div class="view-calendar">
         {{ calendars }}
       </div>
       {% endblock %}
     </div>
-    <div class="tabs-component__panel tabs-component__panel--hidden" id="panel--list" role="tabpanel" aria-labelledby="list-item--TABIDPLACEHOLDER--panel--list">
+    <div class="tabs-component__panel tabs-component__panel--hidden" id="panel--TABIDPLACEHOLDER--panel--list" role="tabpanel" aria-labelledby="list-item--TABIDPLACEHOLDER--panel--list">
       {% block rows %}
       {% if options.display_rows == 0 %}{{ attach_library('upanupbase/calendar_no_list') }}{% endif %}
         <div class="view-results list-view">
