@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [4.0.2] - 2024-03-22
+
+#### Fixed
+- Fixed issue where `.tabs-component__panel` `id` was `undefined`
+
 ### [4.0.1] - 2024-03-22
 
 ### Fixed
