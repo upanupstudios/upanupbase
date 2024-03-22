@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					scrollable.querySelector('div').setAttribute("tabindex", "0");
 				} else {
 					scrollable.classList.remove('has-scroll');
-					scrollable.querySelector('div').setAttribute("tabindex", "-1");
+					scrollable.querySelector('div').removeAttribute("tabindex");
 				}
 			}
 		});
