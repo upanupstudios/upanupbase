@@ -2,7 +2,7 @@
   function updateQuicklinks(element) {
     var selectedSection = $(element).attr('data-category');
 
-    $('.dynamic-quicklinks__filter--desktop a').removeClass('is-selected').attr({
+    $('.dynamic-quicklinks__filter a').removeClass('is-selected').attr({
       'tabindex': -1,
       'aria-selected': false
     });
@@ -12,7 +12,6 @@
       'aria-selected': true
     });
 
-    $('.dynamic-quicklinks__filter select').val(selectedSection);
     $('.dynamic-quicklinks__section.is-active').removeClass('is-active');
     $('.dynamic-quicklinks__section[data-category="' + selectedSection + '"]').addClass('is-active');
 
@@ -22,15 +21,15 @@
   $(document).ready(function() {
     var storedSection = sessionStorage['dynamic-quicklinks'];
     if ($('.dynamic-quicklinks__filter li a').length) {
-      if (storedSection && $('.dynamic-quicklinks__filter--desktop a[data-category="' + storedSection + '"]').length) {
-        updateQuicklinks($('.dynamic-quicklinks__filter--desktop a[data-category="' + storedSection + '"]')[0]);
+      if (storedSection && $('.dynamic-quicklinks__filter a[data-category="' + storedSection + '"]').length) {
+        updateQuicklinks($('.dynamic-quicklinks__filter a[data-category="' + storedSection + '"]')[0]);
       } else {
         $('.dynamic-quicklinks__filter li:first a').click();
       }
     }
   });
 
-  $('.dynamic-quicklinks__filter--desktop a').on('click', function(e) {
+  $('.dynamic-quicklinks__filter a').on('click', function(e) {
     e.preventDefault();
     updateQuicklinks(this);
 		var href = $(e).attr('href');
@@ -38,9 +37,9 @@
   });
 
   $(document).keydown(function(e) {
-    var focusedWithin = $('.dynamic-quicklinks__filter--desktop a:focus');
+    var focusedWithin = $('.dynamic-quicklinks__filter a:focus');
     if (focusedWithin.length > 0) {
-      var selected = $('.dynamic-quicklinks__filter--desktop a.is-selected').closest('li');
+      var selected = $('.dynamic-quicklinks__filter a.is-selected').closest('li');
       var target;
 
       if (e.which === 37 || e.which === 38) {
@@ -62,14 +61,6 @@
 					history.pushState(null, '', href);
         }
       }
-    }
-  });
-
-  $('.dynamic-quicklinks__filter select').on('change', function() {
-    var selectedSection = $(this).val();
-    var target = $('.dynamic-quicklinks__filter--desktop a[data-category="' + selectedSection + '"]');
-    if (target.length) {
-      updateQuicklinks(target[0]);
     }
   });
 

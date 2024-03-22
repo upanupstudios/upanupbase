@@ -3,7 +3,7 @@
   margin: 0 !important;
   position: relative;
   width: 100%;
-  label.option {
+  label {
     background-color: transparent;
     display: inline-block;
     margin-bottom:0;
@@ -33,7 +33,7 @@ input[type=radio] {
   &:hover, &:active {
     &:focus {outline: none;}
   }
-  &:checked ~ label.option {
+  &:checked ~ label {
     &::before {
       display:inline-block;
     }
@@ -42,6 +42,16 @@ input[type=radio] {
   &.disabled,
   fieldset[disabled] & {
     cursor: not-allowed;
+  }
+}
+
+.form-item.form-type-radio.form-item-title-before {
+  label::before {
+    left: auto;
+    right: 0;
+  }
+  &:has(input[type=radio]:checked) {
+    label::before {display: inline-block;}
   }
 }
 
