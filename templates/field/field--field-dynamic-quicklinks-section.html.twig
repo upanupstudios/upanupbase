@@ -36,15 +36,7 @@
 <section class="dynamic-quicklinks">
   {% if dqLength > 1 %}
   <header class="dynamic-quicklinks__header">
-    <div class="dynamic-quicklinks__filter dynamic-quicklinks__filter--mobile">
-      <label for="dynamic-quicklinks-select" class="visually-hidden">Filter quicklinks by category</label>
-      <select id="dynamic-quicklinks-select">
-        {% for item in items %}
-        <option value="{{ item.content['#paragraph'].field_title.value }}" data-category="{{ item.content['#paragraph'].field_title.value }}">{{ item.content['#paragraph'].field_title.value }}</option>
-        {% endfor %}
-      </select>
-    </div>
-    <ul class="dynamic-quicklinks__filter dynamic-quicklinks__filter--desktop" role="tablist">
+    <ul class="dynamic-quicklinks__filter" role="tablist">
       {% for item in items %}
         <li role="presentation"><a role="tab" class="button button--default" href="#tab-{{ item.content['#paragraph'].field_title.value|clean_class }}" data-category="{{ item.content['#paragraph'].field_title.value }}" id="tab-{{ item.content['#paragraph'].field_title.value|clean_class }}" aria-controls="{{ item.content['#paragraph'].field_title.value|clean_class }}">{{ item.content['#paragraph'].field_title.value }}</a></li>
       {% endfor %}

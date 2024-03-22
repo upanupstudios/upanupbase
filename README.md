@@ -36,6 +36,14 @@ Example:
 
 ### [Unreleased]
 
+### [5.0.1] - 2024-03-22
+
+#### Changed
+- Changed mobile markup, scripts for dynamic quicklinks filters to benefit from updates in 5.0.0
+
+#### Fixed
+- Fixed styling for checkbox, radio elements with title's shown before the input
+
 ### [5.0.0] - 2024-03-22
 
 #### Changed
