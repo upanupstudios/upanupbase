@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [5.0.0] - 2024-03-22
+
+#### Changed
+- Adjusted desktop homepage dynamic quicklinks markup/functionality to use tabbed (https://design-system.service.gov.uk/components/tabs/) a11y practices
+
 ### [4.0.2] - 2024-03-22
 
 #### Fixed
