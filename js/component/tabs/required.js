@@ -33,7 +33,6 @@ function tabsRequirements() {
       if (ariaLabelledby && ariaLabelledby.includes('TABIDPLACEHOLDER')) {
         const newAriaLabelledby = ariaLabelledby.replace(/TABIDPLACEHOLDER/g, staticTabID);
         needsAttr.setAttribute('aria-labelledby', newAriaLabelledby);
-        //needsAttr.setAttribute('id', newAriaControls);
       }
     });
   });
