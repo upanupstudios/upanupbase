@@ -1,6 +1,7 @@
 #required mappings
 name: Upanup Base Theme
 description: Upanup's base theme
+version: 1.0
 type: theme
 core_version_requirement: ^8.8 || ^9 || ^10
 # Defines the base theme
@@ -22,8 +23,8 @@ regions:
   content: 'Content'
   footer: 'Footer'
   highlighted: 'Highlighted'
-  help: 'help'  
-  
+  help: 'help'
+
 libraries:
   - upanupbase/reset
   - upanupbase/utility
