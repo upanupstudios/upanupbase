@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [5.0.2] - 2024-04-02
+
+#### Changed
+- Changed version number in `upanupbase.info.yml` from `1.0` to `5.0.2`
+
 ### [5.0.1] - 2024-03-22
 
 #### Changed
