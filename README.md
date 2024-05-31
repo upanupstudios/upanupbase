@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [5.0.3] - 2024-05-31
+
+#### Fixed
+- Rendered `content` without explicitly printed fields in `paragraph--image-and-text.html.twig` and `paragraph--table-of-contents.html.twig` to ensure caching works as needed
+
 ### [5.0.2] - 2024-04-02
 
 #### Changed

@@ -59,6 +59,7 @@
       {{ content.field_content }}
       {{ content.field_image }}
     {% endif %}
+    {{ content|without('field_layout','field_image','field_content') }}
     {% endblock %}
   </div>
 {% endblock paragraph %}

@@ -56,5 +56,6 @@
   <nav{{ attributes.addClass(classes) }} role="navigation" id="toc">
     <ul class="toc__list"></ul>
   </nav>
+  {{ content|without('field_include_back_to_top_link') }}
   {% endblock %}
 {% endblock paragraph %}
