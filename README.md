@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [5.1.0] - 2024-06-14
+
+#### Changed
+- Changed existing `mobile-menu-trigger.js` and `mobile-search-trigger.js` functionality to include toggling of `aria-hidden` and `aria-label` attributes on appropriate elements. Note: the `aria-hidden` attribute was used to prevent potentially breaking changes as the `hidden` attribute actually affects the display of the element – and also causes some jankiness when adjusting window size. `aria-hidden` is appropriate as long as it's used in conjunction with `display: none;` (which was already in use)
+
 ### [5.0.3] - 2024-05-31
 
 #### Fixed
