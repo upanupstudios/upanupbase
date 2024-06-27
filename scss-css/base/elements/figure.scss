@@ -7,9 +7,9 @@ figure {
     display: block;
   }
 }
-.text-formatted > .field__item {
-  > figure,
-  > article.media {
+.text-formatted {
+  figure,
+  article.media {
     &.align {
       &-left {
         margin-right: 16px;

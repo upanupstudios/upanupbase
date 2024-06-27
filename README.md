@@ -36,6 +36,20 @@ Example:
 
 ### [Unreleased]
 
+### [5.2.0] - 2024-06-27
+
+#### Changed
+- `row-fade.js` now vanilla JS and uses IntersectionObserver rather than `inView` function
+
+#### Removed
+- Removed `inView` function from `globals.js`
+- Removed jQuery dependency on `row_fade` library
+
+#### Fixed
+- Scrollable on load and resize
+- Row fade on load and scroll
+- Margin on aligned media in WYSIWYG's
+
 ### [5.1.0] - 2024-06-14
 
 #### Changed

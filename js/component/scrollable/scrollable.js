@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		table.dataset.scrollWrapper = scrollWrapper;
 	});
 	
-	var resizeTimer;
-	function resizeFunction() {
+	function scrollableCheck() {
 		var scrollables = document.querySelectorAll('.scrollable');
 		scrollables.forEach(function(scrollable) {
 			var innerTable = scrollable.querySelector('div > table');
@@ -29,10 +28,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	}
 	
+	var resizeTimer;
 	window.addEventListener('resize', function() {
 		clearTimeout(resizeTimer);
-		resizeTimer = setTimeout(resizeFunction, 250);
+		resizeTimer = setTimeout(scrollableCheck, 250);
 	});
 	
-	resizeFunction();
+	scrollableCheck();
 });

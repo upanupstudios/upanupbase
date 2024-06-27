@@ -5,13 +5,6 @@ export function rem(multiplier) {
   );
   return multiplier ? parseInt(fontSize * multiplier) : fontSize;
 }
-  
-export function inView(elem) {
-  const distance = elem.getBoundingClientRect();
-  return (
-    distance.top <= window.innerHeight
-  );
-}
 
 export function toggleSlidesAttribute(slider) {
   const activeSlides = slider.querySelectorAll(

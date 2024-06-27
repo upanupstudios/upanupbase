@@ -132,8 +132,6 @@ row_fade:
       scss-css/state/content-row/row-fade.css: {}
   js:
     js/state/content-row/row-fade.min.js: { minified: true }
-  dependencies:
-    - core/jquery
 images:
   version: 1.x
   js:
