@@ -267,7 +267,7 @@ toc.back_to_top:
     js/component/toc/back-to-top.min.js: { minified: true }
 # Nav
 nav:
-  version: 1.x
+  version: 2.x
   js:
     js/nav/submenu-trigger/submenu-trigger.min.js: { minified: true }
     js/nav/mobile-menu-trigger/mobile-menu-trigger.min.js: { minified: true }

@@ -36,6 +36,8 @@ Example:
 
 ### [Unreleased]
 
+### [5.2.1] - 2025-01-10
+
 #### Fixed
 - JavaScript within _nav_ now uses `MutationObserver` (or similar) to avoid reliance on markup being rendered before script is initialized
 
