@@ -2,7 +2,7 @@ import { rem } from "../../globals";
 
 (function($){
 
-  $('.submenu-trigger').on('click',function(){
+  $(document).on('click','.submenu-trigger',function(){
 		$(this).attr('aria-expanded',function(index,attr){
 			return attr == 'false' ? 'true' : 'false';
 		}).attr('aria-label',function(index,attr){

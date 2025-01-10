@@ -16,7 +16,7 @@ import { rem } from "../../globals";
 			});
 		});
 	}
-	$('.mobile-menu-trigger').on('click',function(){
+	$(document).on('click','.mobile-menu-trigger',function(){
 		const isExpanded = $(this).attr('aria-expanded') === 'true';
 		const mainMenu = $('#' + $(this).attr('aria-controls'));
 		$(this).attr({
