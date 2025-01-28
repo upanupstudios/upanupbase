@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [5.2.2] - 2025-01-28
+
+#### Fixed
+- Added a MutationObserver to `images-slider.js` and `alert-slider.js` to remove incorrectly added `aria-hidden=true` on `nextButtonDiv` and `prevButtonDiv`.
+
 ### [5.2.1] - 2025-01-10
 
 #### Fixed
