@@ -23,6 +23,23 @@ import { toggleSlidesAttribute, updateCurrentSlideNumber, sliderStartingData } f
       '.slider-controls__button--next',
     );
 
+    const navButtonsObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'aria-hidden') {
+          const target = mutation.target;
+          if (target === prevButtonDiv || target === nextButtonDiv) {
+            target.removeAttribute('aria-hidden');
+          }
+        }
+      });
+    });
+    [prevButtonDiv, nextButtonDiv].forEach(button => {
+      navButtonsObserver.observe(button, {
+        attributes: true,
+        attributeFilter: ['aria-hidden']
+      });
+    });
+
     sliderStartingData(sliderControlDiv, imagesSlides.length);
 
     const imageSwiper = new Swiper(sliderWrapper, {
@@ -45,6 +62,8 @@ import { toggleSlidesAttribute, updateCurrentSlideNumber, sliderStartingData } f
       on: {
         afterInit: function () {
           toggleSlidesAttribute(imagesSlider);
+          prevButtonDiv.removeAttribute('aria-hidden');
+          nextButtonDiv.removeAttribute('aria-hidden');
         },
         transitionEnd: function () {
           toggleSlidesAttribute(imagesSlider);
