@@ -42,6 +42,7 @@ Example:
 - Additional utility classes for flex grids to control flex-basis, flex-shrink, and flex-grow
 #### Fixed
 - Corrected file icon urls within component/file/file.scss
+- Removed images from being affected by 75ch $line-width
 #### Changed
 - Moved figure styling to upanupstarter so it can be inherited by ckeditor.scss
 
