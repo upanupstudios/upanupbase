@@ -1,7 +1,7 @@
 #required mappings
 name: Upanup Base Theme
 description: Upanup's base theme
-version: 5.2.3
+version: 5.2.4
 type: theme
 core_version_requirement: ^8.8 || ^9 || ^10
 # Defines the base theme
