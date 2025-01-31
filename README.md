@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [5.2.3] - 2025-01-30
+
+#### Fixed
+- Added `field-group-html-element--group-page-management.html.twig` and attached _notice_ library so the `.notice` class (applied in this template and sometimes in display) now renders the CSS correctly.
+
 ### [5.2.2] - 2025-01-28
 
 #### Fixed
