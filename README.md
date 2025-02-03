@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [5.2.6] - 2025-02-03
+
+#### Fixed
+- Added `aria-label` directly within `field--paragraph--field-title--accordion-item.html.twig` to address issue where special characters rendered differently between the `aria-label` attribute (as added via FDK) and the text of the button.
+
 ### [5.2.5] - 2025-02-03
 
 #### Changed

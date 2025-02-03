@@ -35,18 +35,18 @@
 <h3 class="accordion__heading reset-heading">
 {% if label_hidden %}
   {% if multiple %}
-    <{{ field_wrapper_tag }}{{ attributes.addClass(classes, 'field__items').merge(field_wrapper_attributes) }}>
+    <{{ field_wrapper_tag }}{{ attributes.addClass(classes, 'field__items').merge(field_wrapper_attributes) }} aria-label="{{ items.0.content['#context'].value }}, {{ 'Show this section'|t }}">
       {% for item in items %}
         <{{ field_item_wrapper_tag }}{{ item.attributes.addClass('field__item') }}>{{ item.content }}</{{ field_item_wrapper_tag }}>
       {% endfor %}
     </{{ field_wrapper_tag }}>
   {% else %}
     {% for item in items %}
-      <{{ field_item_wrapper_tag }}{{ attributes.addClass(classes, 'field__item').merge(item.attributes) }}>{{ item.content }}</{{ field_item_wrapper_tag }}>
+      <{{ field_item_wrapper_tag }}{{ attributes.addClass(classes, 'field__item').merge(item.attributes) }} aria-label="{{ item.content['#context'].value }}, {{ 'Show this section'|t }}">{{ item.content }}</{{ field_item_wrapper_tag }}>
     {% endfor %}
   {% endif %}
 {% else %}
-  <{{ field_wrapper_tag }}{{ attributes.addClass(classes).merge(field_wrapper_attributes) }}>
+  <{{ field_wrapper_tag }}{{ attributes.addClass(classes).merge(field_wrapper_attributes) }} aria-label="{{ items.0.content['#context'].value }}, {{ 'Show this section'|t }}">
     <{{ label_tag|default('div') }}{{ title_attributes.addClass(title_classes) }}>{{ label }}</{{ label_tag|default('div') }}>
     {% if multiple %}
       <div class="field__items">
