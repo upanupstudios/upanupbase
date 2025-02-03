@@ -6,7 +6,7 @@ reset:
       scss-css/base/reset/box-sizing.css: {}
       scss-css/base/reset/button.css: {}
 utility:
-  version: 1.x
+  version: 2.x
   css:
     layout:
       scss-css/layout/utility/layout/flex.css: {}
