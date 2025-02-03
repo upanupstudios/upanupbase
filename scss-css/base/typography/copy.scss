@@ -1,11 +1,6 @@
  @import "../../variables/variables";
 
-p {
-  line-height: 2;
-  max-width: $line-width;
-}
-
-.text-formatted > *:not(div,iframe, table) {
+.text-formatted > *:not(div,iframe,table,article,figure) {
   max-width: $line-width;
 }
 
