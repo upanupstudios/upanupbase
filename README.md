@@ -36,6 +36,11 @@ Example:
 
 ### [Unreleased]
 
+### [5.2.5] - 2025-02-03
+
+#### Changed
+- Spacing variables (gap, margin, padding) now include classes ranging from 0 to 80 to allow finer control. These classes also include `!important` now.
+
 ### [5.2.4] - 2025-01-31
 
 #### Added
