@@ -34,13 +34,10 @@
             {% endfor %}
             {% for item in items %}
                 {% set now = now|date('U') %}    
-                {% set start = item.content['#value'] %}
                 {% set end = item.content['#end_value'] %}
-
-                {% if (start < now) and (lastDate < now) %}
-                    <li>{{ item.content }}</li>
-                    {% set count = count + 1 %}
-                {% elseif (start > now) %}
+                
+                {% if end > now or lastDate < now %}
+                    {# List only current+future, unless old event then list all #}
                     <li>{{ item.content }}</li>
                     {% set count = count + 1 %}
                 {% endif %}
