@@ -34,7 +34,10 @@ Example:
 
 
 
-### [Unreleased]
+### [5.2.7] - 2025-02-10
+
+#### Fixed
+- Adjusted template `field--field-when--full.html.twig` to fix bug where nothing displays when event in progress.
 
 ### [5.2.6] - 2025-02-03
 
