@@ -32,7 +32,10 @@ Example:
 - in case of vulnerabilities.
 ```
 
+### [5.2.8] - 2025-02-11
 
+#### Fixed
+- Alignment styling fixes for link wrapped wysiwyg media
 
 ### [5.2.7] - 2025-02-10
 
