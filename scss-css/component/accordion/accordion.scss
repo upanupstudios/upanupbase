@@ -1,29 +1,28 @@
- @import "../../variables/variables";
+@import "../../variables/variables";
 
 .accordion,
 details,
 .webform-element-more {
-  max-width: $line-width;
   &__heading {margin: 0;}
   &__trigger,
   summary,
   .webform-element-more--link {
-    max-width: $line-width;
     width: 100%;
-    > * {display: block;}
+    > * {
+      display: block;
+      max-width: $line-width;
+    }
   }
   .webform-element-more--link {
     a {display: block;}
   }
   &__content {
     display: none;
-    max-width: $line-width;
     width: 100%;
     > .field__item > *:last-child {margin-bottom: 0;}
   }
   .details-wrapper,
   .webform-element-more--content {
-    max-width: $line-width;
     overflow: auto;
     width: 100%;
   }

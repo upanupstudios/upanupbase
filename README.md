@@ -32,7 +32,10 @@ Example:
 - in case of vulnerabilities.
 ```
 
+### [5.2.8] - 2025-02-25
 
+#### Changed
+- Removed accordion max-width as per base Figma design changes.
 
 ### [5.2.7] - 2025-02-10
 
