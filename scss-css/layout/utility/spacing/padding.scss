@@ -2,76 +2,71 @@
 @import "../../../mixins/media-queries";
 
 $breakpoints: (
-  xl: $breakpoint--xl,
-  l: $breakpoint--l,
-  m: $breakpoint--m,
-  s: $breakpoint--s,
-  xs: $breakpoint--xs
+xl: $breakpoint--xl,
+l: $breakpoint--l,
+m: $breakpoint--m,
+s: $breakpoint--s,
+xs: $breakpoint--xs
 );
 
 $queries: (xl, l, m, s, xs);
 
 @for $i from 0 through 80 {
-  .p-#{$i} {
-    padding: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
-        @include max(map-get($breakpoints, $query)) {padding: #{$i}px !important;}
-      }
+  @if $i % 4 == 0 {
+    .p-#{$i} {
+      padding: #{$i}px;
+    }
+    .pt-#{$i} {
+      padding-top: #{$i}px;
+    }
+    .pr-#{$i} {
+      padding-right: #{$i}px;
+    }
+    .pb-#{$i} {
+      padding-bottom: #{$i}px;
+    }
+    .pl-#{$i} {
+      padding-left: #{$i}px;
+    }
+    .px-#{$i} {
+      padding-left: #{$i}px;
+      padding-right: #{$i}px;
+    }
+    .py-#{$i} {
+      padding-top: #{$i}px;
+      padding-bottom: #{$i}px;
     }
   }
-  .pt-#{$i} {
-    padding-top: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
-        @include max(map-get($breakpoints, $query)) {padding-top: #{$i}px !important;}
+}
+
+@each $query in $queries {
+  @for $i from 0 through 80 {
+    @if $i % 4 == 0 {
+      .p-#{$i}-mq-#{$query} {
+        @include max(map-get($breakpoints, $query)) {padding: #{$i}px;}
       }
-    }
-  }
-  .pr-#{$i} {
-    padding-right: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
-        @include max(map-get($breakpoints, $query)) {padding-right: #{$i}px !important;}
+      .pt-#{$i}-mq-#{$query} {
+        @include max(map-get($breakpoints, $query)) {padding-top: #{$i}px;}
       }
-    }
-  }
-  .pb-#{$i} {
-    padding-bottom: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
-        @include max(map-get($breakpoints, $query)) {padding-bottom: #{$i}px !important;}
+      .pr-#{$i}-mq-#{$query} {
+        @include max(map-get($breakpoints, $query)) {padding-right: #{$i}px;}
       }
-    }
-  }
-  .pl-#{$i} {
-    padding-left: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
-        @include max(map-get($breakpoints, $query)) {padding-left: #{$i}px !important;}
+      .pb-#{$i}-mq-#{$query} {
+        @include max(map-get($breakpoints, $query)) {padding-bottom: #{$i}px;}
       }
-    }
-  }
-  .px-#{$i} {
-    padding-left: #{$i}px !important;
-    padding-right: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
+      .pl-#{$i}-mq-#{$query} {
+        @include max(map-get($breakpoints, $query)) {padding-left: #{$i}px;}
+      }
+      .px-#{$i}-mq-#{$query} {
         @include max(map-get($breakpoints, $query)) {
-          padding-left: #{$i}px !important;
-          padding-right: #{$i}px !important;
+          padding-left: #{$i}px;
+          padding-right: #{$i}px;
         }
       }
-    }
-  }
-  .py-#{$i} {
-    padding-top: #{$i}px !important;
-    padding-bottom: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
+      .py-#{$i}-mq-#{$query} {
         @include max(map-get($breakpoints, $query)) {
-          padding-top: #{$i}px !important;
-          padding-bottom: #{$i}px !important;
+          padding-top: #{$i}px;
+          padding-bottom: #{$i}px;
         }
       }
     }

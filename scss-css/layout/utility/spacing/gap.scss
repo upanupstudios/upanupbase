@@ -2,37 +2,40 @@
 @import "../../../mixins/media-queries";
 
 $breakpoints: (
-  xl: $breakpoint--xl,
-  l: $breakpoint--l,
-  m: $breakpoint--m,
-  s: $breakpoint--s,
-  xs: $breakpoint--xs
+xl: $breakpoint--xl,
+l: $breakpoint--l,
+m: $breakpoint--m,
+s: $breakpoint--s,
+xs: $breakpoint--xs
 );
 
 $queries: (xl, l, m, s, xs);
 
 @for $i from 0 through 80 {
-  .g-#{$i} {
-    gap: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
-        @include max(map-get($breakpoints, $query)) {gap: #{$i}px !important;}
-      }
+  @if $i % 4 == 0 {
+    .g-#{$i} {
+      gap: #{$i}px;
+    }
+    .gx-#{$i} {
+      column-gap: #{$i}px;
+    }
+    .gy-#{$i} {
+      row-gap: #{$i}px;
     }
   }
-  .gx-#{$i} {
-    column-gap: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
-        @include max(map-get($breakpoints, $query)) {column-gap: #{$i}px !important;}
+}
+
+@each $query in $queries {
+  @for $i from 0 through 80 {
+    @if $i % 4 == 0 {
+      .g-#{$i}-mq-#{$query} {
+        @include max(map-get($breakpoints, $query)) {gap: #{$i}px;}
       }
-    }
-  }
-  .gy-#{$i} {
-    row-gap: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
-        @include max(map-get($breakpoints, $query)) {row-gap: #{$i}px !important;}
+      .gx-#{$i}-mq-#{$query} {
+        @include max(map-get($breakpoints, $query)) {column-gap: #{$i}px;}
+      }
+      .gy-#{$i}-mq-#{$query} {
+        @include max(map-get($breakpoints, $query)) {row-gap: #{$i}px;}
       }
     }
   }

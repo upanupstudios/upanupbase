@@ -31,6 +31,18 @@ Example:
 #### Security
 - in case of vulnerabilities.
 ```
+### [Unreleased]
+
+### [5.2.9] - 2025-03-05
+
+#### Changed
+- Gap, margin, padding utility classes reverted to increments of 4 (to reduce file size)
+
+#### Removed
+- Removed `!important` from gap, margin, padding utility classes
+
+#### Fixed
+- Gap, margin, padding utility classes rewritten so breakpoint classes override properly
 
 ### [5.2.8] - 2025-02-25
 
