@@ -31,7 +31,11 @@ Example:
 #### Security
 - in case of vulnerabilities.
 ```
-### [Unreleased]
+
+### [5.2.10] - 2025-02-11
+
+#### Fixed
+- Alignment styling fixes for link wrapped wysiwyg media
 
 ### [5.2.9] - 2025-03-05
 
