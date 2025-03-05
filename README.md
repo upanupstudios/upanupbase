@@ -32,10 +32,26 @@ Example:
 - in case of vulnerabilities.
 ```
 
-### [5.2.8] - 2025-02-11
+### [5.2.10] - 2025-02-11
 
 #### Fixed
 - Alignment styling fixes for link wrapped wysiwyg media
+
+### [5.2.9] - 2025-03-05
+
+#### Changed
+- Gap, margin, padding utility classes reverted to increments of 4 (to reduce file size)
+
+#### Removed
+- Removed `!important` from gap, margin, padding utility classes
+
+#### Fixed
+- Gap, margin, padding utility classes rewritten so breakpoint classes override properly
+
+### [5.2.8] - 2025-02-25
+
+#### Changed
+- Removed accordion max-width as per base Figma design changes.
 
 ### [5.2.7] - 2025-02-10
 

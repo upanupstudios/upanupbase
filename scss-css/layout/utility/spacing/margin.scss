@@ -2,108 +2,97 @@
 @import "../../../mixins/media-queries";
 
 $breakpoints: (
-  xl: $breakpoint--xl,
-  l: $breakpoint--l,
-  m: $breakpoint--m,
-  s: $breakpoint--s,
-  xs: $breakpoint--xs
+xl: $breakpoint--xl,
+l: $breakpoint--l,
+m: $breakpoint--m,
+s: $breakpoint--s,
+xs: $breakpoint--xs
 );
 
 $queries: (xl, l, m, s, xs);
 
 @for $i from 0 through 80 {
-  .m-#{$i} {
-    margin: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
-        @include max(map-get($breakpoints, $query)) {margin: #{$i}px !important;}
-      }
+  @if $i % 4 == 0 {
+    .m-#{$i} {
+      margin: #{$i}px;
+    }
+    .mt-#{$i} {
+      margin-top: #{$i}px;
+    }
+    .mr-#{$i} {
+      margin-right: #{$i}px;
+    }
+    .mb-#{$i} {
+      margin-bottom: #{$i}px;
+    }
+    .ml-#{$i} {
+      margin-left: #{$i}px;
+    }
+    .mx-#{$i} {
+      margin-left: #{$i}px;
+      margin-right: #{$i}px;
+    }
+    .my-#{$i} {
+      margin-top: #{$i}px;
+      margin-bottom: #{$i}px;
+    }
+    .m-auto {
+      margin: auto;
+    }
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .my-auto {
+      margin-top: auto;
+      margin-bottom: auto;
     }
   }
-  .mt-#{$i} {
-    margin-top: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
-        @include max(map-get($breakpoints, $query)) {margin-top: #{$i}px !important;}
+}
+
+@each $query in $queries {
+  @for $i from 0 through 80 {
+    @if $i % 4 == 0 {
+      .m-#{$i}-mq-#{$query} {
+        @include max(map-get($breakpoints, $query)) {margin: #{$i}px;}
       }
-    }
-  }
-  .mr-#{$i} {
-    margin-right: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
-        @include max(map-get($breakpoints, $query)) {margin-right: #{$i}px !important;}
+      .mt-#{$i}-mq-#{$query} {
+        @include max(map-get($breakpoints, $query)) {margin-top: #{$i}px;}
       }
-    }
-  }
-  .mb-#{$i} {
-    margin-bottom: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
-        @include max(map-get($breakpoints, $query)) {margin-bottom: #{$i}px !important;}
+      .mr-#{$i}-mq-#{$query} {
+        @include max(map-get($breakpoints, $query)) {margin-right: #{$i}px;}
       }
-    }
-  }
-  .ml-#{$i} {
-    margin-left: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
-        @include max(map-get($breakpoints, $query)) {margin-left: #{$i}px !important;}
+      .mb-#{$i}-mq-#{$query} {
+        @include max(map-get($breakpoints, $query)) {margin-bottom: #{$i}px;}
       }
-    }
-  }
-  .mx-#{$i} {
-    margin-left: #{$i}px !important;
-    margin-right: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
+      .ml-#{$i}-mq-#{$query} {
+        @include max(map-get($breakpoints, $query)) {margin-left: #{$i}px;}
+      }
+      .mx-#{$i}-mq-#{$query} {
         @include max(map-get($breakpoints, $query)) {
-          margin-left: #{$i}px !important;
-          margin-right: #{$i}px !important;
+          margin-left: #{$i}px;
+          margin-right: #{$i}px;
         }
       }
-    }
-  }
-  .my-#{$i} {
-    margin-top: #{$i}px !important;
-    margin-bottom: #{$i}px !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
+      .my-#{$i}-mq-#{$query} {
         @include max(map-get($breakpoints, $query)) {
-          margin-top: #{$i}px !important;
-          margin-bottom: #{$i}px !important;
+          margin-top: #{$i}px;
+          margin-bottom: #{$i}px;
         }
       }
-    }
-  }
-  .m-auto {
-    margin: auto !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
-        @include max(map-get($breakpoints, $query)) {margin: auto !important;}
+      .m-auto-mq-#{$query} {
+        @include max(map-get($breakpoints, $query)) {margin: auto;}
       }
-    }
-  }
-  .mx-auto {
-    margin-left: auto !important;
-    margin-right: auto !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
+      .mx-auto-mq-#{$query} {
         @include max(map-get($breakpoints, $query)) {
-          margin-left: auto !important;
-          margin-right: auto !important;
+          margin-left: auto;
+          margin-right: auto;
         }
       }
-    }
-  }
-  .my-auto {
-    margin-top: auto !important;
-    margin-bottom: auto !important;
-    @each $query in $queries {
-      &-mq-#{$query} {
+      .my-auto-mq-#{$query} {
         @include max(map-get($breakpoints, $query)) {
-          margin-top: auto !important;
-          margin-bottom: auto !important;
+          margin-top: auto;
+          margin-bottom: auto;
         }
       }
     }
