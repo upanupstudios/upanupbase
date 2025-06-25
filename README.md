@@ -31,6 +31,10 @@ Example:
 #### Security
 - in case of vulnerabilities.
 ```
+### [5.2.11] - 2025-06-24
+
+#### Fixed
+- Applied js to calendar view to fix misalignment issue on multiday events at certain screen sizes
 
 ### [5.2.10] - 2025-03-05
 
