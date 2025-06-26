@@ -190,6 +190,8 @@ calendar:
     component:
       scss-css/component/calendar/pager.css: {}
       scss-css/component/calendar/table.css: {}
+  js:
+    js/component/calendar/calendar.min.js: { minified: true }
 calendar_list:
   version: 1.x
   css:
