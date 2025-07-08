@@ -1,59 +1,80 @@
-import { rem } from "../../globals";
+(function (Drupal) {
+	Drupal.behaviors.mobileMenuTrigger = {
+		attach(context) {
+			const mainMenuTrigger = context.querySelector('.mobile-menu-trigger');
+			const mainMenu = context.querySelector('#main-menu');
+			const navMain = context.querySelector('.nav--main');
 
-(function($){
+			if (!mainMenuTrigger || !mainMenu || !navMain) return;
 
-	function openActiveTrail() {
-		$('.nav--main .menu__item--active-trail').each(function(){
-			$(this).addClass('is-open').find('> .menu__item-link-wrapper > .submenu-trigger').attr('aria-expanded',true).attr('aria-label',function(index,attr){
-				return attr.replace('Open the','Close the');
-			});
-		});
-	}
-	function closeActiveTrail() {
-		$('.nav--main .is-open').each(function(){
-			$(this).removeClass('is-open').find('> .menu__item-link-wrapper > .submenu-trigger').attr('aria-expanded',false).attr('aria-label',function(index,attr){
-				return attr.replace('Close the','Open the');
-			});
-		});
-	}
-	$(document).on('click','.mobile-menu-trigger',function(){
-		const isExpanded = $(this).attr('aria-expanded') === 'true';
-		const mainMenu = $('#' + $(this).attr('aria-controls'));
-		$(this).attr({
-			'aria-expanded': !isExpanded,
-			'aria-label': isExpanded ? 'Show navigation menu' : 'Hide navigation menu'
-		}).text(isExpanded ? 'Menu' : 'Close');
-		mainMenu.toggle().attr('aria-hidden', isExpanded);
-		isExpanded ? closeActiveTrail() : openActiveTrail();
-	});
-	if(window.innerWidth <= rem(64)) {
-		openActiveTrail();
-	} else {
-		closeActiveTrail();
-	}
+			function openActiveTrail() {
+				navMain.querySelectorAll('.menu__item--active-trail').forEach(item => {
+					item.classList.add('is-open');
+					const trigger = item.querySelector('.menu__item-link-wrapper .submenu-trigger');
+					if (trigger) {
+						trigger.setAttribute('aria-expanded', 'true');
+						trigger.setAttribute('aria-label', trigger.getAttribute('aria-label').replace('Open the', 'Close the'));
+					}
+				});
+			}
 
-	var resizeTimer;
-	function resizeFunction() {
-		
-		const mainMenu = $('#main-menu');
-		const mainMenuTrigger = $('.mobile-menu-trigger');
-		const isExpanded = mainMenuTrigger.attr('aria-expanded') === 'true';
-		if(window.innerWidth > rem(64)) {
-			mainMenuTrigger.text('Menu').attr({
-				'aria-expanded':false,
-				'aria-label':'Show navigation menu'
-			});
-			mainMenu.show().attr('style','').attr('aria-hidden', false);
-			$('.nav--main *').attr('style','');
-		} else {
-			mainMenu.attr('aria-hidden', !isExpanded);
+			function closeActiveTrail() {
+				navMain.querySelectorAll('.is-open').forEach(item => {
+					item.classList.remove('is-open');
+					const trigger = item.querySelector('.menu__item-link-wrapper .submenu-trigger');
+					if (trigger) {
+						trigger.setAttribute('aria-expanded', 'false');
+						trigger.setAttribute('aria-label', trigger.getAttribute('aria-label').replace('Close the', 'Open the'));
+					}
+				});
+			}
+
+			function toggleMenu() {
+				const isExpanded = mainMenuTrigger.getAttribute('aria-expanded') === 'true';
+				mainMenuTrigger.setAttribute('aria-expanded', String(!isExpanded));
+				mainMenuTrigger.setAttribute('aria-label', isExpanded ? 'Show navigation menu' : 'Hide navigation menu');
+				mainMenuTrigger.textContent = isExpanded ? 'Menu' : 'Close';
+				mainMenu.setAttribute('aria-hidden', String(isExpanded));
+				isExpanded ? closeActiveTrail() : openActiveTrail();
+			}
+
+			function resizeFunction() {
+				const isExpanded = mainMenuTrigger.getAttribute('aria-expanded') === 'true';
+				if (window.innerWidth > 1024) {
+					mainMenuTrigger.textContent = 'Menu';
+					mainMenuTrigger.setAttribute('aria-expanded', 'false');
+					mainMenuTrigger.setAttribute('aria-label', 'Show navigation menu');
+					mainMenu.setAttribute('aria-hidden', 'false');
+				} else {
+					mainMenu.setAttribute('aria-hidden', String(!isExpanded));
+				}
+			}
+
+			// Initial state
+			if (window.innerWidth <= 1024) {
+				openActiveTrail();
+			} else {
+				closeActiveTrail();
+			}
+
+			// Event listeners
+			if (!mainMenuTrigger.classList.contains('menu-trigger-initialized')) {
+				mainMenuTrigger.addEventListener('click', toggleMenu);
+				mainMenuTrigger.classList.add('menu-trigger-initialized');
+			}
+
+			let resizeTimer;
+			if (!window.mobileMenuResizeInitialized) {
+				window.addEventListener('resize', () => {
+					clearTimeout(resizeTimer);
+					resizeTimer = setTimeout(resizeFunction, 250);
+				});
+				window.addEventListener('load', resizeFunction);
+				window.mobileMenuResizeInitialized = true;
+			}
+
+			// Run once on attach
+			resizeFunction();
 		}
-		
 	};
-	$(window).on('load resize',function() {
-		clearTimeout(resizeTimer);
-		resizeTimer = setTimeout(resizeFunction, 250);
-	});
-	resizeFunction();
-
-})(jQuery);
+})(Drupal);

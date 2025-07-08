@@ -1,54 +1,61 @@
-// Sets the specified tab as 'active'
 export function selectTab(elem) {
-  if(elem == null) return;
+  if (!elem) return;
 
   const elemParent = elem.closest('.tabs-component');
-
-  elem.setAttribute('aria-selected', true);
+  elem.setAttribute('aria-selected', 'true');
   elem.setAttribute('tabindex', '0');
   elem.parentElement.classList.add('tabs-component__list-item--selected');
-  
-  const siblings = elem.parentElement.parentElement.querySelectorAll('.tabs-component__list-item');
-  siblings.forEach(function(sibling) {
+
+  // Deselect siblings
+  elem.parentElement.parentElement.querySelectorAll('.tabs-component__list-item').forEach((sibling) => {
     if (sibling !== elem.parentElement) {
       sibling.classList.remove('tabs-component__list-item--selected');
-      sibling.querySelector('a').setAttribute('aria-selected', false);
-      sibling.querySelector('a').setAttribute('tabindex', '-1');
+      const siblingLink = sibling.querySelector('a');
+      if (siblingLink) {
+        siblingLink.setAttribute('aria-selected', 'false');
+        siblingLink.setAttribute('tabindex', '-1');
+      }
     }
   });
+
+  // Handle panels
   const tabControls = elem.getAttribute('aria-controls');
-  const controlledPanel = document.querySelector('[id='+tabControls+']');
-  var tabItems = Array.prototype.slice.call( elem.parentElement.parentElement.children );
-  var controlTabIndex = false;
-  if(controlledPanel == null) {
+  const controlledPanel = document.getElementById(tabControls);
+  const tabItems = Array.from(elem.parentElement.parentElement.children);
+  let controlTabIndex = false;
+  if (!controlledPanel) {
     controlTabIndex = tabItems.indexOf(elem.parentElement);
   }
-  
+
   const panels = elemParent.querySelectorAll('.tabs-component__panel');
-  if(!panels.length) return;
-  
-  panels.forEach(function(panel,index){
+  if (!panels.length) return;
+
+  panels.forEach((panel, index) => {
     panel.classList.add('tabs-component__panel--hidden');
-    if(controlledPanel == null && index == controlTabIndex) {
+    if (!controlledPanel && index === controlTabIndex) {
       panel.classList.remove('tabs-component__panel--hidden');
     }
   });
-  if(controlledPanel != null) {
+  if (controlledPanel) {
     controlledPanel.classList.remove('tabs-component__panel--hidden');
   }
-  
-  
-  const tabAC = elem.getAttribute('aria-controls');
-  const tabsComponentID = elem.closest('.tabs-component').getAttribute('id');
+
+  // Store selected tab in sessionStorage
+  const tabsComponentID = elemParent.getAttribute('id');
   const URL = window.location.href.split('?')[0];
-  sessionStorage[tabsComponentID+': '+URL] = tabAC;
+  sessionStorage[`${tabsComponentID}: ${URL}`] = tabControls;
 }
 
-// Sets the specified tab as 'active'
 export function activateTab(elem) {
-  
   selectTab(elem);
-  
   elem.focus();
-  
+}
+
+export function attachTabsComponent(context = document) {
+  context.querySelectorAll('.tabs-component__list-item > a').forEach((tab) => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      activateTab(tab);
+    });
+  });
 }

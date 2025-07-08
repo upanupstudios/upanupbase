@@ -1,17 +1,21 @@
-(function ($, Drupal)
-{
-	Drupal.behaviors.toc_b2t = {
-		attach: function (context, settings)
-		{
+(function (Drupal) {
+	Drupal.behaviors.tocB2T = {
+		attach(context) {
+			// Ensure this runs only once per page load
+			if (!context || context !== document) return;
+
 			const toc = document.querySelector('.toc[id]');
-			const b2t = document.querySelectorAll('.toc__b2t');
-			if (toc && !b2t.length) {
-				var link = document.createElement('a');
-				link.classList.add('toc__b2t');
-				link.href = '#' + toc.id;
+			const b2t = document.querySelector('.toc__b2t');
+			if (toc && !b2t) {
+				const link = document.createElement('a');
+				link.className = 'toc__b2t';
+				link.href = `#${toc.id}`;
 				link.textContent = 'Back to top';
-				document.querySelector('#main-content').appendChild(link);
+				const mainContent = document.getElementById('main-content');
+				if (mainContent) {
+					mainContent.appendChild(link);
+				}
 			}
 		}
 	};
-}(jQuery, Drupal));
+})(Drupal);

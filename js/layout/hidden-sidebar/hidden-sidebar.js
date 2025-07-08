@@ -1,8 +1,26 @@
-(function($){
+(function (Drupal) {
+	Drupal.behaviors.hiddenSidebar = {
+		attach: function (context, settings) {
+			var sidebar = context.querySelector('.sidebar');
+			var regionSidebar = sidebar && sidebar.querySelector('.region-sidebar');
+			if (!sidebar || !regionSidebar) {
+				return;
+			}
 
-  if($('.sidebar .region-sidebar > *').length < 0 || $('.sidebar.sidebar--no-nav .region-sidebar > *:not(.block-menu)').length < 0) {
-		$('.sidebar').addClass('sidebar--hidden');
-		$('.content').addClass('content--fullwidth');
-	}
+			var allChildren = regionSidebar.children;
+			var nonMenuBlocks = regionSidebar.querySelectorAll(':scope > *:not(.block-menu)');
 
-})(jQuery);
+			// Check if sidebar is empty or only contains menu blocks
+			if (
+				allChildren.length === 0 ||
+				(sidebar.classList.contains('sidebar--no-nav') && nonMenuBlocks.length === 0)
+			) {
+				sidebar.classList.add('sidebar--hidden');
+				var content = context.querySelector('.content');
+				if (content) {
+					content.classList.add('content--fullwidth');
+				}
+			}
+		}
+	};
+})(Drupal);

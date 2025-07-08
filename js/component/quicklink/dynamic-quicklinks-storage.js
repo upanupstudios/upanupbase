@@ -1,67 +1,90 @@
-(function ($) {
+(function (Drupal) {
+  'use strict';
+
   function updateQuicklinks(element) {
-    var selectedSection = $(element).attr('data-category');
+    var selectedSection = element.getAttribute('data-category');
 
-    $('.dynamic-quicklinks__filter a').removeClass('is-selected').attr({
-      'tabindex': -1,
-      'aria-selected': false
+    document.querySelectorAll('.dynamic-quicklinks__filter a').forEach(function (el) {
+      el.classList.remove('is-selected');
+      el.setAttribute('tabindex', -1);
+      el.setAttribute('aria-selected', 'false');
     });
 
-    $(element).addClass('is-selected').attr({
-      'tabindex': 0,
-      'aria-selected': true
+    element.classList.add('is-selected');
+    element.setAttribute('tabindex', 0);
+    element.setAttribute('aria-selected', 'true');
+
+    document.querySelectorAll('.dynamic-quicklinks__section.is-active').forEach(function (el) {
+      el.classList.remove('is-active');
     });
 
-    $('.dynamic-quicklinks__section.is-active').removeClass('is-active');
-    $('.dynamic-quicklinks__section[data-category="' + selectedSection + '"]').addClass('is-active');
+    var activeSection = document.querySelector('.dynamic-quicklinks__section[data-category="' + selectedSection + '"]');
+    if (activeSection) {
+      activeSection.classList.add('is-active');
+    }
 
-    sessionStorage['dynamic-quicklinks'] = selectedSection;
+    sessionStorage.setItem('dynamic-quicklinks', selectedSection);
   }
 
-  $(document).ready(function() {
-    var storedSection = sessionStorage['dynamic-quicklinks'];
-    if ($('.dynamic-quicklinks__filter li a').length) {
-      if (storedSection && $('.dynamic-quicklinks__filter a[data-category="' + storedSection + '"]').length) {
-        updateQuicklinks($('.dynamic-quicklinks__filter a[data-category="' + storedSection + '"]')[0]);
-      } else {
-        $('.dynamic-quicklinks__filter li:first a').click();
+  Drupal.behaviors.dynamicQuicklinksStorage = {
+    attach: function (context) {
+      // Only run once per context.
+      var filterLinks = once('dynamic-quicklinks-filter', '.dynamic-quicklinks__filter a', context);
+
+      if (filterLinks.length) {
+        // Restore from sessionStorage if possible.
+        var storedSection = sessionStorage.getItem('dynamic-quicklinks');
+        var storedLink = storedSection && context.querySelector('.dynamic-quicklinks__filter a[data-category="' + storedSection + '"]');
+        if (storedLink) {
+          updateQuicklinks(storedLink);
+        } else {
+          // Default to first link.
+          updateQuicklinks(filterLinks[0]);
+        }
+
+        // Click event.
+        filterLinks.forEach(function (link) {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            updateQuicklinks(link);
+            var href = link.getAttribute('href');
+            if (href) {
+              history.pushState(null, '', href);
+            }
+          });
+        });
+
+        // Keyboard navigation.
+        context.addEventListener('keydown', function (e) {
+          var focused = document.activeElement;
+          if (focused && focused.matches('.dynamic-quicklinks__filter a')) {
+            var selected = context.querySelector('.dynamic-quicklinks__filter a.is-selected');
+            var selectedLi = selected ? selected.closest('li') : null;
+            var targetLink;
+            if ((e.key === 'ArrowLeft' || e.key === 'ArrowUp') && selectedLi) {
+              e.preventDefault();
+              var prevLi = selectedLi.previousElementSibling;
+              if (prevLi) {
+                targetLink = prevLi.querySelector('a');
+              }
+            } else if ((e.key === 'ArrowRight' || e.key === 'ArrowDown') && selectedLi) {
+              e.preventDefault();
+              var nextLi = selectedLi.nextElementSibling;
+              if (nextLi) {
+                targetLink = nextLi.querySelector('a');
+              }
+            }
+            if (targetLink) {
+              updateQuicklinks(targetLink);
+              targetLink.focus();
+              var href = targetLink.getAttribute('href');
+              if (href) {
+                history.pushState(null, '', href);
+              }
+            }
+          }
+        });
       }
     }
-  });
-
-  $('.dynamic-quicklinks__filter a').on('click', function(e) {
-    e.preventDefault();
-    updateQuicklinks(this);
-		var href = $(e).attr('href');
-    history.pushState(null, '', href);
-  });
-
-  $(document).keydown(function(e) {
-    var focusedWithin = $('.dynamic-quicklinks__filter a:focus');
-    if (focusedWithin.length > 0) {
-      var selected = $('.dynamic-quicklinks__filter a.is-selected').closest('li');
-      var target;
-
-      if (e.which === 37 || e.which === 38) {
-        e.preventDefault();
-        target = selected.prev('li').find('a');
-        if (target.length) {
-          updateQuicklinks(target[0]);
-          target.focus();
-					var href = $(target).attr('href');
-					history.pushState(null, '', href);
-        }
-      } else if (e.which === 39 || e.which === 40) {
-        e.preventDefault();
-        target = selected.next('li').find('a');
-        if (target.length) {
-					updateQuicklinks(target[0]);
-          target.focus();
-					var href = $(target).attr('href');
-					history.pushState(null, '', href);
-        }
-      }
-    }
-  });
-
-})(jQuery);
+  };
+})(Drupal);

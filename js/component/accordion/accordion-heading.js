@@ -1,22 +1,33 @@
-(function($){
-  
-  if($('.accordion__heading').length) {
-    $('.accordion__heading').each(function(){
-      if($(this).parents('.content-row').find('.content-row__title').length <= 0) {
-        $(this).replaceWith(function(){
-          return this.outerHTML.replace("<h3", "<h2").replace("</h3", "</h2");
-        });
+(function (Drupal) {
+  Drupal.behaviors.accordionHeading = {
+    attach: function (context) {
+      // Utility to replace heading tag while preserving classes and content
+      function replaceHeadingTag(element, newTag) {
+        const newHeading = document.createElement(newTag);
+        newHeading.className = element.className;
+        newHeading.innerHTML = element.innerHTML;
+        element.replaceWith(newHeading);
       }
-    });
-  }
-  if($('.accordion-block__heading').length) {
-    $('.accordion-block__heading').each(function(){
-      if($(this).parents('.block').find('> h2').length > 0) {
-        $(this).replaceWith(function(){
-          return this.outerHTML.replace("<h2", "<h3").replace("</h2", "</h3");
-        });
-      }
-    });
-  }
-  
-})(jQuery);
+
+      // Replace .accordion__heading <h3> with <h2> if no .content-row__title in parent .content-row
+      document.querySelectorAll('.accordion__heading', context).forEach(function (heading) {
+        const contentRow = heading.closest('.content-row');
+        if (contentRow && !contentRow.querySelector('.content-row__title')) {
+          if (heading.tagName.toLowerCase() !== 'h2') {
+            replaceHeadingTag(heading, 'h2');
+          }
+        }
+      });
+
+      // Replace .accordion-block__heading <h2> with <h3> if parent .block has direct <h2>
+      document.querySelectorAll('.accordion-block__heading', context).forEach(function (heading) {
+        const block = heading.closest('.block');
+        if (block && block.querySelector(':scope > h2')) {
+          if (heading.tagName.toLowerCase() !== 'h3') {
+            replaceHeadingTag(heading, 'h3');
+          }
+        }
+      });
+    }
+  };
+})(Drupal);

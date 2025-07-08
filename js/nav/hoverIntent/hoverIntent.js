@@ -1,5 +1,3 @@
-import { rem } from "../../globals";
-
 (function ($) {
 
 	function runHoverIntent() {
@@ -11,13 +9,13 @@ import { rem } from "../../globals";
 		});
 		
 		function mainmenuOn() {
-			if(window.innerWidth > rem(64)) {
+			if(window.innerWidth > 1024) {
 				$(this).addClass('is-open');
 				checkOverflow($(this).find('> .menu'));
 			}
 		}
 		function mainmenuOff() {
-			if(window.innerWidth > rem(64)) {
+			if(window.innerWidth > 1024) {
 				$(this).removeClass('is-open').find('.is-overflowing').removeClass('is-overflowing');
 				$(this).find('.has-overflow').removeClass('has-overflow');
 			}

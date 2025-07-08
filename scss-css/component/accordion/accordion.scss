@@ -17,9 +17,9 @@ details,
     a {display: block;}
   }
   &__content {
-    display: none;
     width: 100%;
     > .field__item > *:last-child {margin-bottom: 0;}
+    &[aria-hidden="true"] {display: none;}
   }
   .details-wrapper,
   .webform-element-more--content {

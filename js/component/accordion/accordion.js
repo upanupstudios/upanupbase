@@ -1,33 +1,63 @@
-(function($){
+(function (Drupal) {
+	Drupal.behaviors.accordion = {
+		attach: function (context) {
+			// Add aria-labels if missing
+			document.querySelectorAll('.accordion__trigger:not([aria-label])', context).forEach(function (trigger) {
+				const accordionText = trigger.textContent.trim();
+				trigger.setAttribute('aria-label', accordionText + ', Show this section');
+			});
 
-	if($('.accordion__trigger').length && ($('.accordion__trigger').length != $('.accordion__trigger[aria-label]').length)) {
-		$('.accordion__trigger').each(function(attr){
-			if (typeof attr !== 'undefined' && attr !== false) {
-				const accordionText = $(this).text().trim();
-				$(this).attr('aria-label',accordionText+', Show this section');
-			}
-		});
-	}
+			// Click handler for accordion triggers
+			context.querySelectorAll('.accordion__trigger').forEach(function (trigger) {
+				if (!trigger.hasAttribute('data-accordion-initialized')) {
+					trigger.setAttribute('data-accordion-initialized', 'true');
+					trigger.addEventListener('click', function (e) {
+						// Toggle aria-expanded
+						const expanded = trigger.getAttribute('aria-expanded') === 'true';
+						trigger.setAttribute('aria-expanded', (!expanded).toString());
 
-  $(document).on('click','.accordion__trigger',function(){
-		$(this).attr('aria-expanded',function(index,attr){
-			return attr == 'true' ? 'false' : 'true';
-		}).attr('aria-label',function(index,attr){
-			const accordionText = $(this).text().trim();
-			return attr == (accordionText+', Hide this section') ? (accordionText+', Show this section') : (accordionText+', Hide this section');
-		});
-		$('#'+$(this).attr('aria-controls')).slideToggle().attr('aria-hidden',function(index,attr){
-			return attr == 'true' ? 'false' : 'true';
-		});
-		if($(this).parents('.accordion-group').find('.accordion-group__toggle').length) {
-			if(!$(this).parents('.accordion-group').find('.accordion__trigger[aria-expanded="true"]').length) {
-				$(this).parents('.accordion-group').find('.accordion-group__toggle').attr('aria-pressed',false).attr('data-toggle-state','close').text('Open all');
-			} else if(!$(this).parents('.accordion-group').find('.accordion__trigger[aria-expanded="false"]').length) {
-				$(this).parents('.accordion-group').find('.accordion-group__toggle').attr('aria-pressed',true).attr('data-toggle-state','open').text('Close all');
-			} else {
-				$(this).parents('.accordion-group').find('.accordion-group__toggle').attr('aria-pressed','mixed');
-			}
+						// Toggle aria-label
+						const accordionText = trigger.textContent.trim();
+						const showLabel = accordionText + ', Show this section';
+						const hideLabel = accordionText + ', Hide this section';
+						trigger.setAttribute('aria-label', expanded ? showLabel : hideLabel);
+
+						// Toggle controlled panel
+						const controlsId = trigger.getAttribute('aria-controls');
+						if (controlsId) {
+							const panel = document.getElementById(controlsId);
+							if (panel) {
+								const hidden = panel.getAttribute('aria-hidden') === 'true';
+								panel.setAttribute('aria-hidden', (!hidden).toString());
+								panel.style.display = hidden ? '' : 'none';
+							}
+						}
+
+						// Handle group toggle state
+						const group = trigger.closest('.accordion-group');
+						if (group) {
+							const groupToggle = group.querySelector('.accordion-group__toggle');
+							if (groupToggle) {
+								const triggers = group.querySelectorAll('.accordion__trigger');
+								const expandedCount = Array.from(triggers).filter(t => t.getAttribute('aria-expanded') === 'true').length;
+								const collapsedCount = Array.from(triggers).filter(t => t.getAttribute('aria-expanded') === 'false').length;
+
+								if (expandedCount === 0) {
+									groupToggle.setAttribute('aria-pressed', 'false');
+									groupToggle.setAttribute('data-toggle-state', 'close');
+									groupToggle.textContent = 'Open all';
+								} else if (collapsedCount === 0) {
+									groupToggle.setAttribute('aria-pressed', 'true');
+									groupToggle.setAttribute('data-toggle-state', 'open');
+									groupToggle.textContent = 'Close all';
+								} else {
+									groupToggle.setAttribute('aria-pressed', 'mixed');
+								}
+							}
+						}
+					});
+				}
+			});
 		}
-	});
-
-})(jQuery);
+	};
+})(Drupal);

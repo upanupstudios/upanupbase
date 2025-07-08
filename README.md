@@ -31,6 +31,17 @@ Example:
 #### Security
 - in case of vulnerabilities.
 ```
+### [6.0.0] - 2025-07-08
+
+#### Added
+- Added a handful of scss files to handle hiding/showing content (formerly handled by jQuery slide toggling)
+
+#### Changed
+- All js files rewritten from jQuery to vanilla js (with some exceptions) following Drupal js standards
+
+#### Removed
+- Removed jQuery as dependency on many libraries
+
 ### [5.2.11] - 2025-06-24
 
 #### Fixed

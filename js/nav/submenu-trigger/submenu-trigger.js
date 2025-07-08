@@ -1,40 +1,68 @@
-import { rem } from "../../globals";
+(function (Drupal) {
+	Drupal.behaviors.submenuTrigger = {
+		attach(context) {
+			// Click handler for submenu triggers
+			context.querySelectorAll('.submenu-trigger').forEach(trigger => {
+				if (!trigger.hasSubmenuListener) {
+					trigger.addEventListener('click', function (e) {
+						// Toggle aria-expanded
+						const expanded = this.getAttribute('aria-expanded') === 'true';
+						this.setAttribute('aria-expanded', !expanded);
 
-(function($){
+						// Toggle aria-label
+						let label = this.getAttribute('aria-label') || '';
+						if (label.includes('Open the')) {
+							this.setAttribute('aria-label', label.replace('Open the', 'Close the'));
+						} else if (label.includes('Close the')) {
+							this.setAttribute('aria-label', label.replace('Close the', 'Open the'));
+						}
 
-  $(document).on('click','.submenu-trigger',function(){
-		$(this).attr('aria-expanded',function(index,attr){
-			return attr == 'false' ? 'true' : 'false';
-		}).attr('aria-label',function(index,attr){
-			if(attr.indexOf('Open the') > -1) {
-				return attr.replace('Open the', 'Close the')
-			} else {
-				return attr.replace('Close the', 'Open the')
+						// Toggle is-open class on parent li and close siblings
+						const parentLi = this.closest('li');
+						if (parentLi) {
+							parentLi.classList.toggle('is-open');
+							// Close siblings
+							parentLi.parentElement.querySelectorAll(':scope > li').forEach(sibling => {
+								if (sibling !== parentLi) {
+									sibling.classList.remove('is-open');
+									const siblingTrigger = sibling.querySelector('.submenu-trigger');
+									if (siblingTrigger) {
+										siblingTrigger.setAttribute('aria-expanded', 'false');
+										let siblingLabel = siblingTrigger.getAttribute('aria-label') || '';
+										if (siblingLabel.includes('Close the')) {
+											siblingTrigger.setAttribute('aria-label', siblingLabel.replace('Close the', 'Open the'));
+										}
+									}
+								}
+							});
+						}
+					});
+					trigger.hasSubmenuListener = true; // Prevent duplicate listeners
+				}
+			});
+
+			// Resize handler for enabling/disabling triggers
+			let resizeTimer;
+			function resizeFunction() {
+				document.querySelectorAll('.nav--main .submenu-trigger').forEach(trigger => {
+					if (window.innerWidth > 1024) {
+						trigger.setAttribute('disabled', true);
+					} else {
+						trigger.removeAttribute('disabled');
+					}
+				});
 			}
-		});
-		$(this).parent().parent().toggleClass('is-open').siblings().find('.submenu-trigger').attr('aria-expanded',false).attr('aria-label',function(index,attr){
-			if(attr.indexOf('Close the') > -1) {
-				return attr.replace('Close the', 'Open the')
-			}
-		}).parent().parent().removeClass('is-open');
-	});
 
-	var resizeTimer;
-	function resizeFunction() {
-
-		if($('.nav--main .submenu-trigger').length) {
-			if(window.innerWidth > rem(64)) {
-				$('.nav--main .submenu-trigger').attr('disabled',true);
-			} else {
-				$('.nav--main .submenu-trigger').attr('disabled',false);
+			function debounceResize() {
+				clearTimeout(resizeTimer);
+				resizeTimer = setTimeout(resizeFunction, 250);
 			}
+
+			window.addEventListener('resize', debounceResize);
+			window.addEventListener('load', resizeFunction);
+
+			// Initial call
+			resizeFunction();
 		}
-		
 	};
-	$(window).on('load resize',function() {
-		clearTimeout(resizeTimer);
-		resizeTimer = setTimeout(resizeFunction, 250);
-	});
-	resizeFunction();
-
-})(jQuery);
+})(Drupal);

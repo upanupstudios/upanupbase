@@ -1,26 +1,38 @@
-(function ($) {
+(function (Drupal) {
+	let resizeTimer;
 
-    var resizeTimer;
 	function resizeFunction() {
-		
-        $( ".calendar-view-day__row.is-multi" ).each(function( index ) {
-			//Fix multiday event responsiveness
-            var eventMarginTop =  $( this ).get(0).style.marginTop;
-			var eventHash = $(this).data('calendar-view-hash');
-			if (eventMarginTop){  
-				//match alignment of first in row
-				var eventItem = $( this ).closest('tr').find(`[data-calendar-view-hash=${eventHash}]`).first(); 
-				if (eventItem){   
-					var newOffsetTop = eventItem.get(0).offsetTop;
-					$( this ).css('margin-top', newOffsetTop+'px');
+		document.querySelectorAll('.calendar-view-day__row.is-multi').forEach(function (el) {
+			// Fix multiday event responsiveness
+			const eventMarginTop = el.style.marginTop;
+			const eventHash = el.getAttribute('data-calendar-view-hash');
+			if (eventMarginTop) {
+				// Match alignment of first in row
+				const tr = el.closest('tr');
+				if (tr) {
+					const eventItem = tr.querySelector(`[data-calendar-view-hash="${eventHash}"]`);
+					if (eventItem) {
+						const newOffsetTop = eventItem.offsetTop;
+						el.style.marginTop = newOffsetTop + 'px';
+					}
 				}
-			
 			}
-        });
-	};
-	$(window).on('load resize',function() {
+		});
+	}
+
+	function debounceResize() {
 		clearTimeout(resizeTimer);
 		resizeTimer = setTimeout(resizeFunction, 50);
-	});
-  
-})(jQuery);
+	}
+
+	Drupal.behaviors.calendarMultiDayFix = {
+		attach: function (context, settings) {
+			// Only attach once per page load.
+			if (!context.__calendarMultiDayFixAttached) {
+				context.__calendarMultiDayFixAttached = true;
+				window.addEventListener('load', debounceResize);
+				window.addEventListener('resize', debounceResize);
+			}
+		}
+	};
+})(Drupal);

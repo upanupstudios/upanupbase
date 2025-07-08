@@ -1,64 +1,83 @@
-(function ($) {
-	
-	if($('.dynamic-quicklinks__filter li a').length) {
-		$('.dynamic-quicklinks__filter li:first a').addClass('is-selected').attr({
-			'aria-selected': true,
-			'tabindex': 0
-		});
-		$('.dynamic-quicklinks__filter li:not(:first) a').attr({
-			'aria-selected': false,
-			'tabindex': -1
-		});
-		$('.dynamic-quicklinks__section:first').addClass('is-active');
-	}
-	
-	 $('.dynamic-quicklinks__filter a').on('click', function(e) {
-    e.preventDefault();
-    updateQuicklinks(this);
-  });
+(function (Drupal) {
+  Drupal.behaviors.dynamicQuicklinks = {
+    attach: function (context) {
+      const filterLinks = context.querySelectorAll('.dynamic-quicklinks__filter li a');
+      const sections = context.querySelectorAll('.dynamic-quicklinks__section');
 
-  $(document).keydown(function(e) {
-    var focusedWithin = $('.dynamic-quicklinks__filter a:focus');
-    if (focusedWithin.length > 0) {
-      var selected = $('.dynamic-quicklinks__filter a.is-selected').closest('li');
-      var target;
-
-      if (e.which === 37 || e.which === 38) {
-				e.preventDefault();
-        target = selected.prev('li').find('a');
-        if (target.length) {
-          updateQuicklinks(target[0]);
-          target.focus();
+      if (filterLinks.length) {
+        filterLinks.forEach((link, i) => {
+          if (i === 0) {
+            link.classList.add('is-selected');
+            link.setAttribute('aria-selected', 'true');
+            link.setAttribute('tabindex', '0');
+          } else {
+            link.setAttribute('aria-selected', 'false');
+            link.setAttribute('tabindex', '-1');
+          }
+        });
+        const firstSection = context.querySelector('.dynamic-quicklinks__section');
+        if (firstSection) {
+          firstSection.classList.add('is-active');
         }
       }
-      else if (e.which === 39 || e.which === 40) {
-				e.preventDefault();
-        target = selected.next('li').find('a');
-        if (target.length) {
-          updateQuicklinks(target[0]);
-          target.focus();
+
+      filterLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          updateQuicklinks(this, filterLinks, sections);
+        });
+      });
+
+      document.addEventListener('keydown', function (e) {
+        const focused = document.activeElement;
+        if (Array.from(filterLinks).includes(focused)) {
+          const selected = Array.from(filterLinks).find(link => link.classList.contains('is-selected'));
+          let target;
+          if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prev = selected.closest('li').previousElementSibling;
+            if (prev) {
+              target = prev.querySelector('a');
+            }
+          } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            const next = selected.closest('li').nextElementSibling;
+            if (next) {
+              target = next.querySelector('a');
+            }
+          }
+          if (target) {
+            updateQuicklinks(target, filterLinks, sections);
+            target.focus();
+          }
+        }
+      });
+
+      function updateQuicklinks(element, allLinks, allSections) {
+        const href = element.getAttribute('href');
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, '', href);
+        }
+        const selectedCategory = element.getAttribute('data-category');
+
+        allLinks.forEach(link => {
+          link.classList.remove('is-selected');
+          link.setAttribute('tabindex', '-1');
+          link.setAttribute('aria-selected', 'false');
+        });
+
+        element.classList.add('is-selected');
+        element.setAttribute('tabindex', '0');
+        element.setAttribute('aria-selected', 'true');
+
+        allSections.forEach(section => {
+          section.classList.remove('is-active');
+        });
+        const activeSection = context.querySelector('.dynamic-quicklinks__section[data-category="' + selectedCategory + '"]');
+        if (activeSection) {
+          activeSection.classList.add('is-active');
         }
       }
     }
-  });
-
-  function updateQuicklinks(element) {
-    var href = $(element).attr('href');
-    history.pushState(null, '', href);
-    var selectedSection = $(element).attr('data-category');
-
-    $('.dynamic-quicklinks__filter a').removeClass('is-selected').attr({
-      'tabindex': -1,
-      'aria-selected': false
-    });
-
-    $(element).addClass('is-selected').attr({
-      'tabindex': 0,
-      'aria-selected': true
-    });
-
-    $('.dynamic-quicklinks__section.is-active').removeClass('is-active');
-    $('.dynamic-quicklinks__section[data-category="' + selectedSection + '"]').addClass('is-active');
-  }
-	
-})(jQuery);
+  };
+})(Drupal);

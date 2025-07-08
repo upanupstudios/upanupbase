@@ -1,28 +1,50 @@
-(function($){
+(function (Drupal) {
+	Drupal.behaviors.accordionGroupToggle = {
+		attach: function (context) {
+			context.querySelectorAll('.accordion-group__toggle:not([data-accordion-toggle-initialized])').forEach(function (toggleBtn) {
+				toggleBtn.setAttribute('data-accordion-toggle-initialized', 'true');
 
-  $('.accordion-group__toggle').on('click',function(){
-		$(this).attr('data-toggle-state',function(index,attr){
-			return attr == 'close' ? 'open' : 'close';
-		}).attr('aria-pressed',function(index,attr){
-			return attr == 'true' ? 'false' : 'true';
-		}).text(function(index,text){
-			return text == 'Open all' ? 'Close all' : 'Open all';
-		});
-		if($(this).attr('data-toggle-state') == 'open') {
-			$(this).parents('.accordion-group').find('.accordion').each(function(){
-				$(this).find('.accordion__trigger').attr('aria-expanded',true).attr('aria-label',function(index,attr){
-					return attr.replace(', Show this section',', Hide this section');
+				toggleBtn.addEventListener('click', function () {
+					// Toggle state
+					const isClosed = toggleBtn.getAttribute('data-toggle-state') === 'close';
+					const newState = isClosed ? 'open' : 'close';
+					toggleBtn.setAttribute('data-toggle-state', newState);
+
+					// Toggle aria-pressed
+					toggleBtn.setAttribute('aria-pressed', isClosed ? 'true' : 'false');
+
+					// Toggle button text
+					toggleBtn.textContent = isClosed ? 'Close all' : 'Open all';
+
+					// Find the accordion group
+					const accordionGroup = toggleBtn.closest('.accordion-group');
+					if (!accordionGroup) return;
+
+					accordionGroup.querySelectorAll('.accordion').forEach(function (accordion) {
+						const trigger = accordion.querySelector('.accordion__trigger');
+						const content = accordion.querySelector('.accordion__content');
+						if (!trigger || !content) return;
+
+						if (isClosed) {
+							trigger.setAttribute('aria-expanded', 'true');
+							const label = trigger.getAttribute('aria-label');
+							if (label) {
+								trigger.setAttribute('aria-label', label.replace(', Show this section', ', Hide this section'));
+							}
+							content.setAttribute('aria-hidden', 'false');
+							content.style.display = '';
+						} else {
+							trigger.setAttribute('aria-expanded', 'false');
+							const label = trigger.getAttribute('aria-label');
+							if (label) {
+								trigger.setAttribute('aria-label', label.replace(', Hide this section', ', Show this section'));
+							}
+							content.setAttribute('aria-hidden', 'true');
+							content.style.display = 'none';
+						}
+					});
 				});
-				$(this).find('.accordion__content').attr('aria-hidden',false).slideDown();
-			});
-		} else {
-			$(this).parents('.accordion-group').find('.accordion').each(function(){
-				$(this).find('.accordion__trigger').attr('aria-expanded',false).attr('aria-label',function(index,attr){
-					return attr.replace(', Hide this section',', Show this section');
-				});
-				$(this).find('.accordion__content').attr('aria-hidden',true).slideUp();
 			});
 		}
-	});
-
-})(jQuery);
+	};
+})(Drupal);
