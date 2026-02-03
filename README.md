@@ -31,6 +31,11 @@ Example:
 #### Security
 - in case of vulnerabilities.
 ```
+### [5.2.12] - 2026-01-03
+
+#### Fixed
+- "Drupalified" list.js to fix ajax issue (previously events from _all_ months were displaying in the list view)
+
 ### [5.2.11] - 2025-06-24
 
 #### Fixed
