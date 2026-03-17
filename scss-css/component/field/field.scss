@@ -22,13 +22,14 @@
     }
     .field__items, .when {
       float: left;
-      padding-right: 0.5em;
-      margin-bottom: inherit;
+      padding-right: 0.5em; 
       [dir="rtl"] & {
         padding-right: 0;
         padding-left: 0.5em;        
       }
     }
-    > .field__item {padding-right: 0.5em;}
+    > .field__item {
+      padding-right: 0.5em; 
+    }
   }
 }
