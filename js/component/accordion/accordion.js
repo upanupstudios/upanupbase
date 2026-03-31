@@ -16,9 +16,17 @@
 			const accordionText = $(this).text().trim();
 			return attr == (accordionText+', Hide this section') ? (accordionText+', Show this section') : (accordionText+', Hide this section');
 		});
-		$('#'+$(this).attr('aria-controls')).slideToggle().attr('aria-hidden',function(index,attr){
+		var prefersReducedMotion = matchMedia("(prefers-reduced-motion)").matches;
+		if (prefersReducedMotion){
+			$('#'+$(this).attr('aria-controls')).fadeToggle('fast'); 
+		}else{
+			$('#'+$(this).attr('aria-controls')).slideToggle(); 
+		}
+
+		$('#'+$(this).attr('aria-controls')).attr('aria-hidden',function(index,attr){
 			return attr == 'true' ? 'false' : 'true';
 		});
+
 		if($(this).parents('.accordion-group').find('.accordion-group__toggle').length) {
 			if(!$(this).parents('.accordion-group').find('.accordion__trigger[aria-expanded="true"]').length) {
 				$(this).parents('.accordion-group').find('.accordion-group__toggle').attr('aria-pressed',false).attr('data-toggle-state','close').text('Open all');

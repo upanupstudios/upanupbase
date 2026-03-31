@@ -31,6 +31,17 @@ Example:
 #### Security
 - in case of vulnerabilities.
 ```
+
+### [5.2.13] - 2026-03-31
+
+#### Added
+- Added check for reduced motion preference on accordion open/close
+#### Fixed
+- Fixed scrollable script not checking tables within accordions
+- Fixed double margin below fields with inline labels
+- Changed cookie consent banner wrapper to `<aside>` to avoid get flagged by a11y scans
+- Added [role="tablist"] to tab navigation on calendar template for a11y
+
 ### [5.2.12] - 2026-01-03
 
 #### Fixed
@@ -222,7 +233,7 @@ Example:
 
 #### Fixed
 - Fixed height of grid items in view to have consistent height (e.g. landing page quicklinks)
-- Fixed/improved <figure> and <article> media images where WYSIWYG applies .align-{direction} class (adjusted float, margins and desktop/mobile appearance)
+- Fixed/improved `<figure>` and `<article>` media images where WYSIWYG applies .align-{direction} class (adjusted float, margins and desktop/mobile appearance)
 
 ### [3.0.0] - 2024-01-19
 
