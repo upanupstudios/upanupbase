@@ -32,6 +32,11 @@ Example:
 - in case of vulnerabilities.
 ```
 
+### [5.3.0] - 2026-04-28
+
+#### Added
+- Accordion groups can now be marked as 'FAQs' which renders schema info in the `head`
+
 ### [5.2.13] - 2026-03-31
 
 #### Added
