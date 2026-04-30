@@ -1,5 +1,8 @@
 <?php
 
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Url;
 
 // Taken from Classy
@@ -81,6 +84,9 @@ function upanupbase_preprocess_html(&$variables) {
     $variables['attributes']['class'][] = 'node--' . $node->id();
     $variables['attributes']['class'][] = 'type--' . $node->bundle();
   }
+
+  // Generate FAQ schema for accordion paragraphs flagged with field_faqs.
+  upanupbase_add_faq_schema($variables);
 }
 
 function upanupbase_theme_suggestions_block_alter(array &$suggestions, array $variables) {
@@ -137,4 +143,178 @@ function upanupbase_theme_suggestions_field_alter(array &$suggestions, array $va
     // Add the field name to the list of suggestions.
     $suggestions[] = 'field__' . $field_name . '__' . $view_mode;
   }
+}
+
+/**
+ * Collects FAQ accordion items from the current node and adds FAQPage schema.
+ *
+ * Walks the current node's entity-reference graph for accordion paragraphs
+ * flagged with `field_faqs`, then attaches a JSON-LD <script> to <head> with
+ * cache metadata propagated from every entity visited.
+ *
+ * @param array $variables
+ *   The variables array from hook_preprocess_html(), modified in place.
+ */
+function upanupbase_add_faq_schema(array &$variables) {
+  // Schema only belongs on public node pages — skip admin routes so we don't
+  // walk paragraphs on every node edit/listing render.
+  if (\Drupal::service('router.admin_context')->isAdminRoute()) {
+    return;
+  }
+
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if (!$node instanceof ContentEntityInterface) {
+    return;
+  }
+
+  $cacheability = new CacheableMetadata();
+  $faq_items = upanupbase_extract_faq_items_from_entity($node, $cacheability);
+  $cacheability->applyTo($variables);
+
+  if (empty($faq_items)) {
+    return;
+  }
+
+  $schema = [
+    '@context' => 'https://schema.org',
+    '@type' => 'FAQPage',
+    'mainEntity' => $faq_items,
+  ];
+
+  // JSON_HEX_* flags ensure a stray </script> in content can't terminate the
+  // script element.
+  $flags = JSON_UNESCAPED_SLASHES
+    | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT;
+
+  $variables['#attached']['html_head'][] = [
+    [
+      '#tag' => 'script',
+      '#attributes' => ['type' => 'application/ld+json'],
+      '#value' => json_encode($schema, $flags),
+    ],
+    'faq_schema',
+  ];
+}
+
+/**
+ * Recursively collects FAQ Question entries from an entity tree.
+ *
+ * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+ *   The entity to walk.
+ * @param \Drupal\Core\Cache\CacheableMetadata $cacheability
+ *   Accumulator for cache metadata of every entity visited.
+ * @param int $depth
+ *   Current recursion depth; capped to bound traversal cost.
+ * @param array $visited
+ *   Set of `entity_type:id` keys already processed, to break cycles.
+ *
+ * @return array
+ *   Schema.org Question dictionaries suitable for FAQPage `mainEntity`.
+ */
+function upanupbase_extract_faq_items_from_entity(ContentEntityInterface $entity, CacheableMetadata $cacheability, int $depth = 0, array &$visited = []) {
+  $faq_items = [];
+
+  if ($depth > 5) {
+    return $faq_items;
+  }
+  $key = $entity->getEntityTypeId() . ':' . $entity->id();
+  if (isset($visited[$key])) {
+    return $faq_items;
+  }
+  $visited[$key] = TRUE;
+  $cacheability->addCacheableDependency($entity);
+
+  foreach ($entity->getFieldDefinitions() as $field_name => $field_definition) {
+    if (!in_array($field_definition->getType(), ['entity_reference', 'entity_reference_revisions'], TRUE)) {
+      continue;
+    }
+    if ($entity->get($field_name)->isEmpty()) {
+      continue;
+    }
+
+    foreach ($entity->get($field_name)->referencedEntities() as $referenced) {
+      // Respect view access — unpublished or restricted items must not leak
+      // into JSON-LD on the public page.
+      if (!$referenced instanceof ContentEntityInterface || !$referenced->access('view')) {
+        continue;
+      }
+
+      $is_faq_accordion = $referenced->bundle() === 'accordion'
+        && $referenced->hasField('field_faqs')
+        && !$referenced->get('field_faqs')->isEmpty()
+        && $referenced->get('field_faqs')->first()->value;
+
+      if ($is_faq_accordion) {
+        $faq_items = array_merge(
+          $faq_items,
+          _upanupbase_accordion_questions($referenced, $cacheability)
+        );
+      }
+      else {
+        $faq_items = array_merge(
+          $faq_items,
+          upanupbase_extract_faq_items_from_entity($referenced, $cacheability, $depth + 1, $visited)
+        );
+      }
+    }
+  }
+
+  return $faq_items;
+}
+
+/**
+ * Extracts schema.org Question entries from a FAQ-flagged accordion paragraph.
+ *
+ * @param \Drupal\Core\Entity\ContentEntityInterface $accordion
+ *   An `accordion` paragraph with `field_faqs` enabled.
+ * @param \Drupal\Core\Cache\CacheableMetadata $cacheability
+ *   Accumulator for cache metadata of every accordion item visited.
+ *
+ * @return array
+ *   List of Question dictionaries; empty if the accordion has no readable
+ *   items.
+ */
+function _upanupbase_accordion_questions(ContentEntityInterface $accordion, CacheableMetadata $cacheability) {
+  $questions = [];
+  $cacheability->addCacheableDependency($accordion);
+
+  if (!$accordion->hasField('field_accordion_item') || $accordion->get('field_accordion_item')->isEmpty()) {
+    return $questions;
+  }
+
+  foreach ($accordion->get('field_accordion_item')->referencedEntities() as $item) {
+    if (!$item instanceof ContentEntityInterface || !$item->access('view')) {
+      continue;
+    }
+    if (!$item->hasField('field_title') || !$item->hasField('field_body')) {
+      continue;
+    }
+    if ($item->get('field_title')->isEmpty() || $item->get('field_body')->isEmpty()) {
+      continue;
+    }
+
+    $cacheability->addCacheableDependency($item);
+
+    $title = (string) $item->get('field_title')->first()->value;
+    $body_item = $item->get('field_body')->first();
+    $body_value = (string) $body_item->value;
+    $body_format = $body_item->format ?? NULL;
+
+    // Run the body through its text format so filters resolve, then collapse
+    // to plain text for the schema string.
+    $rendered = $body_format ? (string) check_markup($body_value, $body_format) : $body_value;
+    $text = trim(Html::decodeEntities(strip_tags($rendered)));
+    $text = preg_replace('/\s+/', ' ', $text);
+
+    $questions[] = [
+      '@type' => 'Question',
+      'name' => $title,
+      'acceptedAnswer' => [
+        '@type' => 'Answer',
+        'text' => $text,
+      ],
+    ];
+  }
+
+  return $questions;
 }
