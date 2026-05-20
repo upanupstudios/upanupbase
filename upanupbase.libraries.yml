@@ -2,9 +2,9 @@ reset:
   version: 1.x
   css:
     base:
-      scss-css/base/reset/normalize.css: {}
-      scss-css/base/reset/box-sizing.css: {}
-      scss-css/base/reset/button.css: {}
+      scss-css/base/reset/normalize.css: { weight: -300 }
+      scss-css/base/reset/box-sizing.css: { weight: -300 }
+      scss-css/base/reset/button.css: { weight: -300 }
 utility:
   version: 1.x
   css:
